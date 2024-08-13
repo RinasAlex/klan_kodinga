@@ -1,10 +1,15 @@
-import React from 'react'
-import './MainPage.scss'
+import React from "react";
+import "./MainPage.scss";
+import Categories from "@/components/Categories/Categories";
+import CategoryCard from "@/components/Categories/CategoryCard";
 
 const MainPage = () => {
   return (
-    <div>MainPage</div>
-  )
-}
+    <>
+      <Categories />
+      <CategoryCard />
+    </>
+  );
+};
 
-export default MainPage
+export default MainPage;
