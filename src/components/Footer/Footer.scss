@@ -7,94 +7,74 @@
 }
 
 .container {
-    padding: 110px 40px 80px 40px;
-    display: block;
-    position: absolute;
-    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.contact {
+    .title {
+        font-size: 64px;
+        margin-bottom: 40px;
+    }
     
-}
+    &-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+        position: relative;
 
-h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 64px;
-    text-align: left;
-    margin-bottom: 40px;
-}
+        &__item {
+            background: #f2f6d3;
+            border-radius: 12px;
+            padding: 32px 16px;
+            width: 100%;
 
-ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    position: relative;
-    width: 100%;
-}
+            a, p {
+                color: #424436;
+                font-size: 40px;
+                font-weight: bold;
+            }
 
-li {
-    background: #f2f6d3;
-    border-radius: 5px;
-    padding: 32px 16px;
-    width: 100%;
-}
-
-.phone__styles,
-.address__styles,
-.socials__styles,
-.working__styles {
-    padding: 32px 0 0 0;
-    gap: 16px;
-    width: 100%;
-}
-
-.phone__styles {
-    width: 780px;
-    height: 150px;
-}
-
-.address__styles {
-    width: 780px;
-    height: 194px;
-}
-
-.socials__styles {
-    width: 548px;
-    height: 150px;
-}
-
-.working__styles {
-    width: 548px;
-    height: 194px;
-}
-
-h3 {
-    font-size: 20px;
-    color: #8b8b8b;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: normal;
-    margin: 16px;
-}
-
-p {
-    color: #424436;
-    font-size: 40px;
-    font-weight: bold;
-    margin: 16px;
+                
+            h3 {
+                font-size: 20px;
+                color: #8b8b8b;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: normal;
+            }
+        }
+    }
     
-}
 
-.social-icons {
-    display: flex;
-    gap: 16px;
-    padding-left: 32px;
 
-    a {
-        font-size: 40px;
-        color: #424436;
+    
+    .social-icons {
+        display: flex;
+        gap: 16px;
+    }
+
+    .map__styles{
+        width: 100%;
+        height:  360px; 
+        margin-top: 32px;
+        border: none;
+        border-radius: 12px;
     }
 }
-.map__styles{
-    width: 100%;
-    height:  360px; 
-    margin-top: 32px;
-    border: none;
-  border-radius: 12px;
+  
+  @media (max-width: 1000px) {
+    .title {
+      font-size: 32px;
+    }
+  
+    .contact-list {
+      grid-template-columns: 2fr 2fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .contact-list {
+      padding: 24px 20px;
+      grid-template-columns: 1fr;
+    }
 }
