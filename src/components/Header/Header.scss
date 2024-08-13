@@ -94,7 +94,7 @@
     .discount_menu {
       display: none;
     }
-    &-link {
+    .link__container {
       display: flex;
       gap: 32px;
     }
@@ -106,26 +106,8 @@
     display: flex;
     gap: 24px;
   }
-  @media (max-width: 1000px) {
-  }
   @media (max-width: 768px) {
-    &__list {
-      &-link {
-        display: flex;
-        gap: 15px;
-        .link {
-          font-size: 14px;
-        }
-      }
-    }
-  }
-  @media (max-width: 480px) {
     padding: 10px;
-    .content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
     &__logo {
       .logo {
         width: 44px;
@@ -150,10 +132,10 @@
         justify-content: center;
         border-radius: 4px;
         color: #fff;
+        margin-top: 20px;
       }
       &-link {
         position: absolute;
-        flex-direction: column;
         background-color: #f2f6d3;
         width: 282px;
         right: 0;
@@ -161,14 +143,21 @@
         height: 100%;
         padding: 50px 0 0 15px;
         z-index: 39;
+        flex-direction: column;
+        .link__container {
+          flex-direction: column;
+          margin-top: 20px;
+        }
         &-active {
           display: none;
         }
       }
     }
     &__cart {
-      margin: 0 10px 3px 150px;
       gap: 10px;
+      width: 100%;
+      margin: 20px;
+      justify-content: flex-end;
       .cart {
         width: 35px;
         height: 35px;
