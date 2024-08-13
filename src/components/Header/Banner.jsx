@@ -1,6 +1,8 @@
 import React from 'react'
 import './Banner.scss'
 import banner from '@/assets/headerImages/banner.svg'
+import Button from '../Button/Button'
+import { Link } from 'react-router-dom'
 
 const Banner = () => {
   return (
@@ -10,7 +12,9 @@ const Banner = () => {
         <div>
           <h1 className='title'>Amazing Discounts <span />on Garden Products!</h1>
         </div>
-        <button className='btn'>Check out</button>
+        <Link to={'/sales'}>
+          <Button className='btn-default-size'>Check out</Button>
+        </Link>
       </div>
     </header>
   )
