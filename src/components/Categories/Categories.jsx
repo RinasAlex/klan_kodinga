@@ -1,10 +1,46 @@
-import React from 'react'
-import './Categories.scss'
+import React, { useContext, useEffect } from "react";
+import "./Categories.scss";
+import CategoryCard from "./CategoryCard";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories } from "@/store/futures/categoriesSlice";
 
 const Categories = () => {
-  return (
-    <div>Categories</div>
-  )
-}
+  const dispatch = useDispatch(); // отправляем действия (actions) в хранилище Redux
+  const categoriesState = useSelector(
+    //извлекаем данные из состояния хранилища
+    (state) => state.categories.categoriesData
+    //ф-ция (state) указывает useSelector, какую часть состояния нужно извлечь.
+  );
+  //отправляем действие для получения категорий при монтировании компонента
+  useEffect(() => {
+    dispatch(getCategories()); //функция
+  }, [dispatch]); //масив
 
-export default Categories
+  return (
+    <div className="categories">
+      <div className="container">
+        <div className="container__position">
+          <h2 className="container__title">Categories</h2>
+          <div className="container__line"></div>
+          <Link to={`/categories`}>
+            <button className="container__btn">All categories</button>
+          </Link>
+        </div>
+
+        <div className="container__list">
+          {categoriesState.slice(0, 4).map((product) => (
+            <CategoryCard key={product.id} {...product} />
+          ))}
+        </div>
+        <div className="container__btn-2-position">
+          <Link to={`/categories`}>
+            <button className="container__btn-2">All categories</button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Categories;
