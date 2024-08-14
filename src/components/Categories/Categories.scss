@@ -98,8 +98,9 @@
 
     @media (max-width: 360px) {
       &__list {
-        // display: grid;
+        display: grid;
         grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
         width: 100%;
         gap: 20px;
       }
