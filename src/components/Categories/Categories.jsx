@@ -20,23 +20,27 @@ const Categories = () => {
   return (
     <div className="categories">
       <div className="container">
-        <h2 className="container__title">Categories</h2>
-
-        <div className="container__line"></div>
-        <Link to={`/categories`}>
-          <button className="container__btn">All categories</button>
-        </Link>
-      </div>
-      <div className="container__list">
-        {categoriesState.slice(0, 4).map((product) => (
-          <CategoryCard key={product.id} {...product} />
-        ))}
-      </div>
+        <div className="container__position">
+          <h2 className="container__title">Categories</h2>
+          <div className="container__line"></div>
           <Link to={`/categories`}>
-        <button className="container__btn-2">All categories</button>
-      </Link>
+            <button className="container__btn">All categories</button>
+          </Link>
+        </div>
+
+        <div className="container__list">
+          {categoriesState.slice(0, 4).map((product) => (
+            <CategoryCard key={product.id} {...product} />
+          ))}
+        </div>
+        <div className="container__btn-2-position">
+          <Link to={`/categories`}>
+            <button className="container__btn-2">All categories</button>
+          </Link>
+        </div>
       </div>
-     );
+    </div>
+  );
 };
 
 export default Categories;
