@@ -1,141 +1,5 @@
 @use "@/assets/styles/variables.scss" as nav;
 
-// .categories {
-//   padding: 73px 40px;
-//   max-width: 100%;
-//   background-color: nav.$color-light-1;
-
-//   .container {
-//     max-width: 1440px;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     position: relative;
-
-//     &__title {
-//       color: #424436;
-//       font-size: 64px;
-//       font-weight: 700;
-//       padding: 0px 10px 40px 0;
-//       margin-top: 7px;
-//     }
-//     &__line {
-//       border-top: 1px solid #dddddd;
-//       flex-grow: 1;
-//       margin-top: -15px;
-//     }
-
-//     &__btn {
-//       font-weight: 500;
-//       font-size: 16px;
-//       padding: 8px 16px;
-//       border: 1px solid #dddddd;
-//       border-radius: 6px;
-//       background-color: nav.$color-light-1;
-//       margin-bottom: 15px;
-//       padding-right: 10px;
-//     }
-
-//     &__btn-2 {
-//       text-decoration: none;
-//       display: none;
-//     }
-//     // }
-//     &__list {
-//       display: grid;
-//       grid-template-columns: repeat(4, 1fr);
-//       gap: 20px;
-//     }
-
-//     @media (max-width: 1000px) {
-//       // &__container {
-//       //   margin: 0 20px;
-//       // }
-//       &__list {
-//         display: grid;
-//         grid-template-columns: repeat(4, 1fr);
-//         height: 250px;
-//         width: 225px;
-//         gap: 20px;
-//       }
-
-//       &__title {
-//         font-size: 64px;
-//       }
-//     }
-//     @media (max-width: 768px) {
-//       &__list {
-//         display: grid;
-//         grid-template-columns: repeat(2, 1fr);
-//         height: 292px;
-//         width: 354px;
-//         gap: 20px;
-//       }
-//       &__line {
-//         max-width: 20%;
-//       }
-//       &__title {
-//         font-size: 56px;
-//       }
-//     }
-//     @media (max-width: 480px) {
-//       &__title {
-//         font-size: 48px;
-//       }
-//       &__list {
-//         display: grid;
-//         grid-template-columns: repeat(2, 1fr);
-//         // height: 260px;
-//         height: auto;
-//         width: 210px;
-//         gap: 20px;
-//       }
-
-//       // &__line {
-//       //   max-width: 10%;
-//       // }
-
-//       &__btn {
-//         font-size: 14px;
-//       }
-//     }
-//     @media (max-width: 360px) {
-
-//       &__list {
-//         display: grid;
-//         grid-template-columns: repeat(1, 1fr);
-//         height: 220px;
-//         width: 320px;
-//         gap: 20px;
-//       }
-//       &__title {
-//         font-size: 40px;
-//       }
-//       &__btn {
-//         display: none;
-//         text-decoration: none;
-//       }
-
-//       &__btn-2 {
-//         // display: block;
-//         display: block;
-//         font-weight: 500;
-//         font-size: 16px;
-//         padding: 8px 16px;
-//         border: 1px solid #dddddd;
-//         border-radius: 6px;
-//         background-color: nav.$color-light-1;
-//         margin-bottom: 15px;
-//         padding-right: 10px;
-//         margin-top: 24px;
-//       }
-//       &__line {
-//         display: none;
-//       }
-//     }
-//   }
-// }
-
 .categories {
   padding: 73px 40px;
   max-width: 100%;
@@ -144,7 +8,8 @@
   .container {
     max-width: 1440px;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    justify-content: center;
     align-items: center;
     position: relative;
 
@@ -183,10 +48,8 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
-  }
 
-  @media (max-width: 1000px) {
-    .container {
+    @media (max-width: 1000px) {
       &__list {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -194,15 +57,12 @@
         width: 225px;
         gap: 20px;
       }
-
       &__title {
         font-size: 64px;
       }
     }
-  }
 
-  @media (max-width: 768px) {
-    .container {
+    @media (max-width: 768px) {
       &__list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -219,10 +79,8 @@
         font-size: 56px;
       }
     }
-  }
 
-  @media (max-width: 480px) {
-    .container {
+    @media (max-width: 480px) {
       &__title {
         font-size: 48px;
       }
@@ -230,30 +88,20 @@
       &__list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        // height: 260px;
-        height: auto;
+        height: 260px;
         width: 210px;
         gap: 20px;
       }
-
-      // &__line {
-      //   max-width: 10%;
-      // }
 
       &__btn {
         font-size: 14px;
       }
     }
-  }
 
-  @media (max-width: 360px) {
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    @media (max-width: 360px) {
       &__list {
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         height: 220px;
         width: 320px;
         gap: 20px;
@@ -269,7 +117,6 @@
       }
 
       &__btn-2 {
-        // display: block;
         display: block;
         font-weight: 500;
         font-size: 16px;

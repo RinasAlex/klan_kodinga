@@ -27,16 +27,16 @@ const Categories = () => {
           <button className="container__btn">All categories</button>
         </Link>
       </div>
-      <div className="categories__list">
+      <div className="container__list">
         {categoriesState.slice(0, 4).map((product) => (
           <CategoryCard key={product.id} {...product} />
         ))}
       </div>
-      <Link to={`/categories`}>
+          <Link to={`/categories`}>
         <button className="container__btn-2">All categories</button>
       </Link>
-    </div>
-  );
+      </div>
+     );
 };
 
 export default Categories;
