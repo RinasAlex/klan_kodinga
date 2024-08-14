@@ -8,7 +8,6 @@
   .container {
     max-width: 1440px;
     display: flex;
-    // justify-content: space-between;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -86,7 +85,7 @@
       }
 
       &__list {
-        display: grid;
+        // display: grid;
         grid-template-columns: repeat(2, 1fr);
         height: 260px;
         width: 210px;
@@ -101,9 +100,11 @@
     @media (max-width: 360px) {
       &__list {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        height: 220px;
-        width: 320px;
+        grid-template-columns: repeat(1, 1fr);
+        // height: 220px;
+        // width: 320px;
+        width: 100%;
+        height: auto;
         gap: 20px;
       }
 
