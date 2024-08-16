@@ -1,0 +1,89 @@
+.discount__container {
+  padding: 40px;
+  background-color: #fffff1;
+  &_box {
+    background-color: #0b710b;
+    width: 100%;
+    padding: 32px 32px 0 32px;
+    border-radius: 10px;
+
+    h1 {
+      color: #fff;
+      font-size: 64px;
+      text-align: center;
+    }
+    .form__box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 30px;
+      .container__form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        row-gap: 32px;
+        width: 100%;
+        .container__inputs {
+          display: flex;
+          flex-direction: column;
+          row-gap: 16px;
+          width: 100%;
+          .input,
+          .btn {
+            padding: 16px 32px;
+            align-self: stretch;
+            border-radius: 10px;
+            border: 1px solid #fff;
+            font-size: 26px;
+          }
+          .input {
+            outline: none;
+            font-weight: 500;
+            color: #fff;
+            background-color: transparent;
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+            &::placeholder {
+              font-size: 26px;
+              color: #fff;
+            }
+          }
+          .btn {
+            color: black;
+            background-color: #fff;
+            font-weight: 600;
+            margin-bottom: 20px;
+            &:disabled {
+              opacity: 0.6;
+              cursor: auto;
+            }
+          }
+          .error__message {
+            color: red;
+            font-size: 10px;
+          }
+        }
+      }
+      .container__send {
+        width: 440px;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        border-radius: 12px;
+        padding: 0 29px;
+        box-shadow: 0 0 24px 6px #b1ffb1, 0 0 20px 4px #b1ffb1;
+        .text__send {
+          color: white;
+          font-size: 40px;
+          font-weight: 700;
+          line-height: 120%;
+          letter-spacing: 1.5px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
