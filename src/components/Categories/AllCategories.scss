@@ -1,0 +1,146 @@
+@use "@/assets/styles/variables.scss" as nav;
+
+.categories {
+  padding: 80px 40px;
+  width: 100%;
+  background-color: nav.$color-light-1;
+
+  .content {
+    max-width: 1440px;
+    margin: 0 auto;
+    // // object-fit : fill;
+    // object-fit: cover;
+
+    &__position-btn {
+      max-width: 254px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    &__btn-1 {
+      font-weight: 500;
+      font-size: 16px;
+      padding: 8px 16px;
+      color: #8b8b8b;
+      border: 1px solid #dddddd;
+      border-radius: 6px;
+      background-color: nav.$color-light-1;
+      margin-bottom: 15px;
+      padding-right: 10px;
+      gap: 10px;
+    }
+
+    &__line-position {
+      border-top: 1px solid #dddddd;
+      flex-grow: 1;
+      margin-top: -15px;
+    }
+
+    &__btn-2 {
+      font-weight: 500;
+      font-size: 16px;
+      padding: 8px 16px;
+      border: 1px solid #dddddd;
+      border-radius: 6px;
+      background-color: nav.$color-light-1;
+      margin-bottom: 15px;
+      padding-right: 10px;
+      color: #424436;
+    }
+
+    &__page-title {
+      color: #424436;
+      font-size: 64px;
+      font-weight: 700;
+      padding: 0px 10px 40px 0;
+      margin-top: 7px;
+      display: flex;
+    }
+
+    &__list-img {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+      gap: 30px;
+    }
+
+    @media (max-width: 1000px) {
+      &__list-img {
+        // display: grid;
+        // grid-template-columns: repeat(3, 2fr);
+        // width: 100%;
+        // gap: 21px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      &__page-title {
+        font-size: 56px;
+      }
+
+      &__list-img {
+        display: grid;
+        grid-template-columns: repeat(2, 3fr);
+        width: 100%;
+        gap: 20px;
+      }
+
+      &__title {
+        font-size: 56px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      &__title {
+        font-size: 48px;
+      }
+
+      &__list {
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        font-size: 18px;
+        line-height: 23.4px;
+        gap: 20px;
+      }
+
+      &__btn-1 {
+        display: none;
+      }
+
+      &__btn-2 {
+        display: none;
+      }
+
+      &__line-position {
+        display: none;
+      }
+    }
+
+    @media (max-width: 360px) {
+      &__title {
+        font-size: 40px;
+      }
+
+      &__list-img {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+      }
+
+      &__btn-1 {
+        display: none;
+      }
+
+      &__btn-2 {
+        display: none;
+      }
+
+      &__line-position {
+        display: none;
+      }
+    }
+  }
+}

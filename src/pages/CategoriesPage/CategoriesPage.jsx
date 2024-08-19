@@ -1,10 +1,13 @@
-import React from 'react'
-import './CategoriesPage.scss'
+import React, { useEffect } from "react";
+import "./CategoriesPage.scss";
+import AllCategories from "@/components/Categories/AllCategories";
 
 const CategoriesPage = () => {
   return (
-    <div>CategoriesPage</div>
-  )
-}
+ <div className="">
+   <AllCategories />
+ </div>
+  );
+};
 
-export default CategoriesPage
+export default CategoriesPage;

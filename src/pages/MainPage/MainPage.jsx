@@ -1,10 +1,15 @@
-import React from 'react'
-import './MainPage.scss'
+import React from "react";
+import "./MainPage.scss";
+import Categories from "@/components/Categories/Categories";
+import Banner from "@/components/Header/Banner";
 
 const MainPage = () => {
   return (
-    <div>MainPage</div>
-  )
-}
+    <>
+      <Banner />
+      <Categories />
+    </>
+  );
+};
 
-export default MainPage
+export default MainPage;
