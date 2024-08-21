@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import './AllSalesPage.scss'
-import ProductCard from '../../components/ProductCard/ProductCard'
+import ProductCard from '@/components/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux';
-import { filterSaleProducts, getProducts } from '../../store/futures/productSlice';
+import { filterSaleProducts } from '@/store/futures/productSlice';
 import { Link } from 'react-router-dom';
 
 const AllSalesPage = () => {
@@ -10,11 +10,9 @@ const AllSalesPage = () => {
   const { filteredProducts, loading } = useSelector(state => state.products);
 
   useEffect(() => {
-    dispatch(getProducts()).then(() => {
-      dispatch(filterSaleProducts()); 
-    });
-  }, [dispatch]);
-
+    dispatch(filterSaleProducts()); 
+    },[dispatch]);
+  
   if(loading){
     return "Loading ...."
   }

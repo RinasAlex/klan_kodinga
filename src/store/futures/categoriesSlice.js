@@ -3,6 +3,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   categoriesData: [],
   status: "",
+  categories: null,
+  loading: false,
+  error: ''
 };
 //выполняем запрос к серверу для получения всех категорий и  возвращает данные,
 //с помощью AsyncThunk
@@ -16,6 +19,18 @@ export const getCategories = createAsyncThunk(
     return data;
   }
 );
+
+export const fetchCategoriesById = createAsyncThunk(
+  "categories/fetchCategoriesById",
+  async (categoriesId) => {
+    const res = await fetch(`https://exam-server-5c4e.onrender.com/categories/${categoriesId}`);
+
+    const data = await res.json();
+
+    return data;
+  }
+)
+
 
 const categoriesSlice = createSlice({
   name: "categories",
@@ -34,7 +49,18 @@ const categoriesSlice = createSlice({
       })
       .addCase(getCategories.rejected, (state) => {
         state.status = "error";
-      });
+      })
+      .addCase(fetchCategoriesById.pending, state => {
+        state.loading = true;
+      })
+      .addCase(fetchCategoriesById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.categories = action.payload;
+      })
+      .addCase(fetchCategoriesById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
   },
 });
 
