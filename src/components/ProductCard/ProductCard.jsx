@@ -36,12 +36,12 @@ const ProductCard = ({ product: { image, id, title, price, discont_price } }) =>
         <div className="productCard__bottom-price-container">
           {discont_price && discont_price < price ? (
             <>
-              <span className='productCard__bottom-discont_price'>{discont_price}$</span>
+              <span className='productCard__bottom-discont_price'>${discont_price}</span>
 
-              <span className='productCard__bottom-price'>{price}$</span>
+              <span className='productCard__bottom-price1'>${price}</span>
             </>
           ) : (
-            <span className='productCard__bottom-price'>{price}$</span>
+            <span className='productCard__bottom-price2'>${price}</span>
           )}
         </div>
 
