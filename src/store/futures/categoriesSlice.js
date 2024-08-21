@@ -22,7 +22,6 @@ const categoriesSlice = createSlice({
   initialState, //начальное состояние
   reducers: {}, //пустой объект
 
-  //обработка различных состояний
   //метод builder, добавляет обработчик для действия getCategories.pending.
   extraReducers: (builder) => {
     builder

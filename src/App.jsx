@@ -8,6 +8,8 @@ import CartPage from "./pages/CartPage/CartPage";
 import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
 
 const App = () => {
+
+
   return (
     <>
       <Routes>

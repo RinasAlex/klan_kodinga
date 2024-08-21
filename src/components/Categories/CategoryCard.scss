@@ -1,14 +1,14 @@
 .categoryCard {
-  max-width: 316px;
   display: flex;
   flex-direction: column;
   gap: 32px;
 
   &__image img {
     display: block;
-    width: 316px;
     height: 350px;
     border-radius: 12px;
+    width: 100%;
+    object-fit: cover;
   }
 
   &__title {
