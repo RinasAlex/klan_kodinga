@@ -9,7 +9,6 @@ import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
 
 const App = () => {
 
-
   return (
     <>
       <Routes>

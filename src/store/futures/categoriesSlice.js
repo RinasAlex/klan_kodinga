@@ -16,6 +16,16 @@ export const getCategories = createAsyncThunk(
     return data;
   }
 );
+export const fetchProductsById = createAsyncThunk(
+  "products/fetchProductsById",
+  async (productId) => {
+    const res = await fetch(
+      `${import.meta.env.APP_API_URL}/products/${productId}`
+    );
+    const data = await res.json();
+    return data;
+  }
+);
 
 const categoriesSlice = createSlice({
   name: "categories",
