@@ -1,22 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import "./Categories.scss";
 import CategoryCard from "./CategoryCard";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "@/store/futures/categoriesSlice";
+import {  useSelector } from "react-redux";
 
 const Categories = () => {
-  const dispatch = useDispatch(); // отправляем действия (actions) в хранилище Redux
-  const categoriesState = useSelector(
+    const categoriesState = useSelector(
     //извлекаем данные из состояния хранилища
     (state) => state.categories.categoriesData
     //ф-ция (state) указывает useSelector, какую часть состояния нужно извлечь.
   );
   //отправляем действие для получения категорий при монтировании компонента
-  useEffect(() => {
-    dispatch(getCategories()); //функция
-  }, [dispatch]); //масив
-
+  
   return (
     <div className="categories">
       <div className="container">

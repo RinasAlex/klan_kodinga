@@ -6,20 +6,19 @@ import AllProductsPage from "./pages/AllProductsPage/AllProductsPage";
 import AllSalesPage from "./pages/AllSalesPage/AllSalesPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getProducts } from "./store/futures/productSlice";
+import { getCategories } from "./store/futures/categoriesSlice";
+import ProductPage from "./pages/ProductsPage/ProductPage";
+import ProductsFromCategory from "./pages/ProductsFromCategory/ProductsFromCategory";
 
 const App = () => {
-// const dispatch = useDispatch();
-// const {loading} = useSelector(state => state.products) 
+  const dispatch = useDispatch();
 
-// useEffect(() => {
-//   dispatch(getProducts())
-// }, [dispatch])
-
-// if(loading){
-//   return "Loading ...."
-// }
+  useEffect(() => {
+    dispatch(getCategories());
+    dispatch(getProducts());
+  }, []);
 
   return (
     <>
@@ -30,6 +29,9 @@ const App = () => {
           <Route path="/sales" element={<AllSalesPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/productPage/:id" element={<ProductPage />} />
+          <Route path="/categories/:categoryId" element={<ProductsFromCategory />} />
+          
         </Route>
       </Routes>
     </>
