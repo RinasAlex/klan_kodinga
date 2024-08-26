@@ -1,3 +1,32 @@
+<<<<<<< HEAD
+import React, { useEffect, useState } from 'react'
+import './ProductCard.scss'
+import { Link } from 'react-router-dom';
+import { IoIosHeartEmpty } from "react-icons/io";
+import { HiOutlineShoppingBag } from "react-icons/hi2"
+import { useDispatch, useSelector } from 'react-redux';
+import { setFavourite } from '../../store/futures/productSlice';
+
+const ProductCard = ({ product: { image, id, title, price, discont_price } }) => {
+  const dispatch = useDispatch();
+  const { product, favourite } = useSelector(state => state.products);
+
+  const [isFavourite, setIsFavourite] = useState(false);
+
+  useEffect(() => {
+    let favouriteFound = favourite.find(item => item === product?.id);
+
+    if (favouriteFound) {
+      setIsFavourite(true)
+    } else {
+      setIsFavourite(false)
+    }
+  }, [favourite, product])
+
+
+
+  const discountPercentage = Math.round(((price - discont_price) / price) * 100);
+=======
 import React from "react";
 import "./ProductCard.scss";
 import { Link, NavLink } from "react-router-dom";
@@ -10,6 +39,7 @@ const ProductCard = ({
   const discountPercentage = Math.round(
     ((price - discont_price) / price) * 100
   );
+>>>>>>> development
 
   return (
     <div className="productCard">
@@ -23,8 +53,13 @@ const ProductCard = ({
           )}
 
           <div className="productCard__top-icon">
+<<<<<<< HEAD
+            <IoIosHeartEmpty className={`productCard__top-icon-heart ${isFavourite ? "productCard__top-favourite-active" : ""}`} onClick={() => dispatch(setFavourite(id))} />
+            <HiOutlineShoppingBag className='productCard__top-icon-bag' />
+=======
             <img src={heart} alt="" className="productCard__top-icon-heart" />
             <img src={bag} alt="" className="productCard__top-icon-bag" />
+>>>>>>> development
           </div>
         </div>
       </div>

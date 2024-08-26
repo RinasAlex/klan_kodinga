@@ -30,19 +30,21 @@ const initialState = {
   products: [],
   cart: [],
   filteredProducts: [],
+  favourite: [],
   product: null,
   loading: false,
   error: "",
 };
+error: ''
+
+}
 
 export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
     filterSaleProducts: (state) => {
-      state.filteredProducts = state.products.filter(
-        (item) => item.discont_price != null
-      );
+      state.filteredProducts = state.products.filter((item) => item.discont_price != null);
     },
 
     incrementProduct: (state, action) => {
@@ -86,6 +88,50 @@ export const productSlice = createSlice({
     removeProduct: (state, action) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
     },
+
+    sortBy: (state, { payload }) => {
+      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.products;
+
+      if (payload.value === "price-low-high") {
+        state.filteredProducts = [...data].sort((a, b) => a.price - b.price);
+      } else if (payload.value === "price-high-low") {
+        state.filteredProducts = [...data].sort((a, b) => b.price - a.price);
+      } else {
+        state.filteredProducts = [...data].sort((a, b) => a.id - b.id);
+      }
+    },
+
+    filterByPrice: (state, { payload }) => {
+      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.products;
+
+      const { minPrice, maxPrice } = payload;
+
+      state.filteredProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+    },
+
+    setFavourite: (state, { payload }) => {
+      let foundFavourite = state.favourite.find(item => item === payload);
+
+      if (foundFavourite) {
+        state.favourite = state.favourite.filter(item => item !== payload);
+      } else {
+        state.favourite.push(payload)
+      }
+
+      localStorage.setItem("favourite", JSON.stringify(state.favourite))
+    },
+
+
+
+    getFavouriteFromLocalStorage: state => {
+      let favouriteStorage = JSON.parse(localStorage.getItem("favourite"));
+
+      if (favouriteStorage) {
+        state.favourite = [...favouriteStorage];
+      } else {
+        localStorage.setItem("favourite", JSON.stringify([]))
+      }
+    },
   },
 
   extraReducers: (builder) => {
@@ -96,6 +142,7 @@ export const productSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload;
+        state.sortedProducts = action.payload;
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.loading = false;
@@ -115,7 +162,14 @@ export const productSlice = createSlice({
   },
 });
 
-export const { filterSaleProducts, incrementProduct, decrementProduct } =
-  productSlice.actions;
+export const {
+  filterSaleProducts,
+  sortBy,
+  filterByPrice,
+  setFavourite,
+  getFavouriteFromLocalStorage,
+  incrementProduct,
+  decrementProduct
+} = productSlice.actions;
 
 export default productSlice.reducer;
