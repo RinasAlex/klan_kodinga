@@ -63,7 +63,7 @@ function Header() {
           <NavLink>
             <img className="heard" src={heart} alt="" />
           </NavLink>
-          <NavLink>
+          <NavLink to={"/cart"}>
             <img className="cart" src={cart} alt="" />
           </NavLink>
         </div>

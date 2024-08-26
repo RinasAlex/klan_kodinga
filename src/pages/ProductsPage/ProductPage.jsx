@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductsById } from "../../store/futures/productSlice";
+import productSlice, {
+  fetchProductsById,
+  incrementProduct,
+  decrementProduct,
+} from "../../store/futures/productSlice";
 import { NavLink, useLocation } from "react-router-dom";
 import "./ProductPage.scss";
 import heart from "../../assets/image/heart.png";
@@ -23,11 +27,19 @@ function ProductPage() {
     dispatch(fetchProductsById(state.id));
   }, []);
 
-  const { product, loading } = useSelector((state) => state.products);
-  console.log(product, state);
+  const { product, loading, cart } = useSelector((state) => state.products);
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  let productInCart = cart.filter((el) => el.id === state.id);
+  let [currentProduct] = productInCart;
+  const addToCart = (item) => {
+    dispatch(incrementProduct(item));
+  };
+  const counterDecrement = (item) => {
+    dispatch(decrementProduct(item));
+  };
 
   return (
     <div className="product__container">
@@ -65,23 +77,48 @@ function ProductPage() {
                     <img className="heart" src={heart} alt="" />
                   </div>
                   <div className="price__container">
-                    <p className="price">${item.discont_price}</p>
+                    <p className="price">
+                      $
+                      {currentProduct
+                        ? Math.floor(currentProduct.total_price * 100) / 100
+                        : Math.floor(item.price * 100) / 100}
+                    </p>
                     {item.discont_price ? (
-                      <p className="discount__price">${item.price}</p>
+                      <>
+                        <p className="discount__price">
+                          $
+                          {currentProduct
+                            ? currentProduct.total_price
+                            : item.price}
+                        </p>
+                        <div className="sale">{`- ${Math.ceil(
+                          100 - item.discont_price / (item.price / 100)
+                        )} %`}</div>
+                      </>
                     ) : null}
-                    {item.discont_price ? (
-                      <div className="sale">{`- ${Math.ceil(
-                        100 - item.discont_price / (item.price / 100)
-                      )} %`}</div>
-                    ) : null}
+                    {/* {item.discont_price ? (
+                    ) : null} */}
                   </div>
                   <p>{item.price_discont}</p>
                   <div className="counter__container">
                     <div className="counter__box">
-                      <button className="counter__btn">-</button>0
-                      <button className="counter__btn">+</button>
+                      <button
+                        onClick={() => counterDecrement(item)}
+                        className="counter__btn"
+                      >
+                        -
+                      </button>
+                      {currentProduct ? currentProduct.count : 1}
+                      <button
+                        onClick={() => addToCart(item)}
+                        className="counter__btn"
+                      >
+                        +
+                      </button>
                     </div>
-                    <button className="add__to">Add to cart</button>
+                    <button onClick={() => addToCart(item)} className="add__to">
+                      Add to cart
+                    </button>
                   </div>
                   <div className="description__container">
                     <h5>Discription</h5>
