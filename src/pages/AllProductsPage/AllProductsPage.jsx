@@ -1,9 +1,36 @@
 import React from 'react'
 import './AllProductsPage.scss'
+import { useSelector } from 'react-redux';
+import ProductCard from '../../components/ProductCard/ProductCard';
+import Filtration from '../../components/Filtration/Filtration';
 
 const AllProductsPage = () => {
+
+
+  const { products, loading } = useSelector(state => state.products);
+  if (loading) {
+    return "Loading ...."
+  }
+
   return (
-    <div>AllProductsPage</div>
+    <div className="allProducts">
+      <div className="container">
+        <div className="filterForm"></div>
+        <h2 className='container__title'>All products</h2>
+        <Filtration disabledDiscount={false} /> 
+
+        <div className="container__list">
+          {
+            products && products.map((product) =>
+              <ProductCard key={product.id} product={product} />)
+          }
+        </div>
+      </div>
+
+
+    </div>
+
+
   )
 }
 

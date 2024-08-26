@@ -1,0 +1,109 @@
+@use "@/assets/styles/variables.scss" as nav;
+
+.footer {
+
+    background-color: nav.$color-light-1;
+    width: 100%;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.contact {
+    .title {
+        font-size: 64px;
+        margin-bottom: 40px;
+        color: #424436;
+    }
+
+    &-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+        position: relative;
+
+        &__item {
+            background: #f2f6d3;
+            border-radius: 12px;
+            padding: 32px 16px;
+            width: 100%;
+
+            a,
+            p {
+                color: #424436;
+                font-size: 40px;
+                font-weight: bold;
+            }
+
+
+            h3 {
+                font-size: 20px;
+                color: #8b8b8b;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: normal;
+            }
+        }
+    }
+
+
+
+
+    .social-icons {
+        display: flex;
+        gap: 16px;
+    }
+
+    .map__styles {
+        width: 100%;
+        height: 360px;
+        margin-top: 32px;
+        border: none;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .title {
+        font-size: 32px;
+    }
+
+    .contact-list {
+        grid-template-columns: 2fr 2fr;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .title {
+        font-size: 56px;
+        padding-left: 20px;
+    }
+
+    .contact-list {
+        padding: 24px 20px;
+        grid-template-columns: 2fr 1fr;
+    }
+
+@media (max-width: 480px) {
+    .title{
+        font-size: 48px;
+
+    }
+    .contact-list{
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+ }
+@media (max-width: 360px) {
+    .title{
+        font-size: 40px;
+    }
+    .contact-list{
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+}

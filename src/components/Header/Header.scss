@@ -1,0 +1,186 @@
+.navbar__container {
+  width: 100%;
+  background-color: #fffff1;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  .navbar {
+    max-width: 1440px;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    margin: 0 auto;
+    z-index: 3;
+    border-bottom: 1px solid #dddddd;
+    &__logo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      .switch {
+        display: inline-block;
+        position: relative;
+        width: 60px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        &__input {
+          width: 0;
+          height: 0;
+          opacity: 0;
+        }
+        &__slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          border-radius: 34px;
+          background-color: #8b8b8b;
+          border: 1px solid #8b8b8b;
+
+          &::before {
+            content: "";
+            position: absolute;
+            cursor: pointer;
+            left: 3px;
+            bottom: 3px;
+            height: 26px;
+            width: 26px;
+            border-radius: 50%;
+            background-color: #fff;
+            transition: 0.4s;
+            z-index: 2;
+          }
+        }
+        .moon {
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          right: 7px;
+        }
+        .sun {
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          left: 7px;
+        }
+      }
+      .switch__input:checked ~ .switch__slider {
+        background-color: #fff;
+        &::before {
+          background-color: #8b8b8b;
+        }
+      }
+      .switch__input:checked ~ .switch__slider::before {
+        transform: translateX(26px);
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+      }
+    }
+    &__list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      .burger {
+        display: none;
+      }
+      .discount {
+        width: 151px;
+        height: 32px;
+        background-color: #92a234;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        color: #fff;
+      }
+      .discount_menu {
+        display: none;
+      }
+      .link__container {
+        display: flex;
+        gap: 32px;
+      }
+      .navlink {
+        color: #424436;
+      }
+    }
+    &__cart {
+      display: flex;
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      padding: 10px;
+      &__logo {
+        .logo {
+          width: 44px;
+          height: 44px;
+        }
+      }
+      &__list {
+        order: 1;
+        .burger {
+          display: block;
+        }
+        .discount {
+          display: none;
+        }
+        .discount_menu {
+          display: block;
+          width: 151px;
+          height: 32px;
+          background-color: #92a234;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+          color: #fff;
+          margin-top: 20px;
+        }
+        &-link {
+          position: absolute;
+          background-color: #f2f6d3;
+          width: 282px;
+          right: 0;
+          top: 0;
+          height: 100vh;
+          padding: 50px 0 0 15px;
+          z-index: 39;
+          flex-direction: column;
+          .link__container {
+            flex-direction: column;
+            margin-top: 20px;
+          }
+          &-active {
+            display: none;
+          }
+        }
+      }
+      &__cart {
+        gap: 10px;
+        width: 100%;
+        margin: 20px;
+        justify-content: flex-end;
+        .cart {
+          width: 35px;
+          height: 35px;
+        }
+        .heard {
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+    @media (max-width: 360px) {
+      &__list {
+        &-link {
+          width: 222px;
+        }
+      }
+    }
+  }
+}

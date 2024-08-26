@@ -1,0 +1,41 @@
+.burger {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.burger::before, .burger::after {
+  content: "";
+  position: absolute;
+  width: 87%;
+  border: 2px solid black;
+  transition: all 0.7s ease 0s;
+  z-index: 99;
+}
+.burger::before {
+  top: 0;
+}
+.burger::after {
+  bottom: 0;
+}
+.burger span {
+  width: 100%;
+  border: 2px solid black;
+  transform: scale(1);
+  position: absolute;
+  margin-top: 12px;
+}
+
+.active span {
+  transform: scale(0);
+}
+.active::before {
+  top: 50%;
+  transform: rotate(-45deg) translate(0, -50%);
+}
+.active::after {
+  bottom: 45%;
+  transform: rotate(45deg) translate(0, 50%);
+}/*# sourceMappingURL=Burger.css.map */

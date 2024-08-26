@@ -1,0 +1,106 @@
+@use "@/assets/styles/variables.scss" as nav;
+
+.allProducts {
+    width: 100%;
+    padding: 40px 40px 80px 40px;
+    background-color: nav.$color-light-1;
+
+    .container {
+        max-width: 1440px;
+        gap: 32px;
+        margin: 0 auto;
+
+        &__title {
+            font-weight: 700;
+            font-size: 64px;
+            color: #424436;
+            width: 100%;
+            // padding: 40px 0;
+        }
+
+        &__list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding-top: 40px;
+
+        }
+
+        @media (max-width: 1000px) {
+
+            // padding: 40px 20px 0 20px;
+            &__title {}
+
+
+            &__list {
+                // gap: 20px;
+                // display: grid;
+                // grid-template-columns: repeat(4, 1fr);
+                // width: 100%;
+                gap: 20px;
+                padding-top: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            &__list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                justify-content: center;
+                width: 100%;
+
+            }
+
+            &__title {
+                font-size: 56px;
+                // padding: 32px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            padding: 0 20px;
+
+            &__title {
+                font-size: 48px;
+                padding: 32px 0 24px 0;
+                // width: 440px;
+            }
+
+            &__list {
+
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                border: 1px;
+
+                // justify-content: center;
+                // width: 100%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            // padding: 0 20px 0 20px;
+
+
+            &__title {
+                // font-size: 40px;
+                // width: 320px;
+                font-size: 40px;
+                // padding: 32px 0 24px 0;
+                gap: 32px;
+                width: 320px;
+
+
+            }
+
+            &__list {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                justify-content: center;
+                width: 100%;
+                gap: 20px;
+                // grid-template-columns:repeat(1, 1fr);
+                // gap: 10px;
+
+            }
+        }
+    }
+}

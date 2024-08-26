@@ -1,0 +1,32 @@
+@use "@/assets/styles/variables.scss" as nav;
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    background-color: nav.$color-light-2;
+    font-size: 20px;
+    font-weight: 500;
+    height: 58px;
+    color: white;
+    cursor: pointer;
+
+    &-default-size {
+        padding: nav.$button-default-size;
+        width: 218px;
+
+    }
+
+    &-large-size {
+        padding: nav.$button-large-size;
+        width: 484px;
+    }
+
+    &-medium-size {
+        padding: nav.$button-large-size;
+        width: 316px;
+    }
+
+    &:hover{
+        background-color: rgba(nav.$color-dark-1, .5);
+    }
+}
