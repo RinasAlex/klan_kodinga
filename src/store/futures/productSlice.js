@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
@@ -16,31 +16,77 @@ export const getProducts = createAsyncThunk(
 export const fetchProductsById = createAsyncThunk(
   "products/fetchProductsById",
   async (productId) => {
-    const res = await fetch(`https://exam-server-5c4e.onrender.com/products/${productId}`);
+    const res = await fetch(
+      `https://exam-server-5c4e.onrender.com/products/${productId}`
+    );
 
     const data = await res.json();
 
     return data;
   }
-)
-
+);
 
 const initialState = {
   products: [],
+  cart: [],
   filteredProducts: [],
   favourite: [],
   product: null,
   loading: false,
-  error: ''
+  error: "",
+};
+error: ''
 
 }
 
 export const productSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState,
   reducers: {
     filterSaleProducts: (state) => {
-      state.filteredProducts = state.products.filter(item => item.discont_price != null)
+      state.filteredProducts = state.products.filter((item) => item.discont_price != null);
+    },
+
+    incrementProduct: (state, action) => {
+      const isUnique = state.cart.every((el) => action.payload.id !== el.id);
+      if (isUnique) {
+        state.cart.push({
+          ...action.payload,
+          count: 2,
+          total_price: action.payload.price,
+          discount_total_price: action.payload.discont_price,
+        });
+      } else {
+        state.cart = state.cart.map((el) => {
+          if (action.payload.id === el.id) {
+            return {
+              ...el,
+              count: ++el.count,
+              total_price: el.price * el.count,
+              discount_total_price: el.discont_price * el.count,
+            };
+          }
+          return el;
+        });
+      }
+    },
+
+    decrementProduct: (state, action) => {
+      state.cart = state.cart.map((el) => {
+        if (action.payload.id === el.id && el.count > 1) {
+          return {
+            ...el,
+            count: el.count - 1,
+            total_price: el.total_price - el.price,
+            discount_total_price: el.discount_total_price - el.discont_price,
+          };
+        }
+        return el;
+      });
+    },
+
+    removeProduct: (state, action) => {
+      state.cart = state.cart.filter((item) => item.id !== action.payload.id);
     },
 
     sortBy: (state, { payload }) => {
@@ -90,7 +136,7 @@ export const productSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(getProducts.pending, state => {
+      .addCase(getProducts.pending, (state) => {
         state.loading = true;
       })
       .addCase(getProducts.fulfilled, (state, action) => {
@@ -102,7 +148,7 @@ export const productSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(fetchProductsById.pending, state => {
+      .addCase(fetchProductsById.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchProductsById.fulfilled, (state, action) => {
@@ -112,17 +158,18 @@ export const productSlice = createSlice({
       .addCase(fetchProductsById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      })
+      });
   },
-})
+});
 
 export const {
   filterSaleProducts,
   sortBy,
   filterByPrice,
   setFavourite,
-  getFavouriteFromLocalStorage
+  getFavouriteFromLocalStorage,
+  incrementProduct,
+  decrementProduct
+} = productSlice.actions;
 
-} = productSlice.actions
-
-export default productSlice.reducer
+export default productSlice.reducer;

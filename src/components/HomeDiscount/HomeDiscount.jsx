@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import discountImg from "../../assets/discount/discount.svg";
 import "./HomeDiscount.scss";
+import { useDispatch } from "react-redux";
+import { sendDiscount } from "../../store/futures/categoriesSlice";
 
 function HomeDiscount() {
   const [sendingDiscount, setSendingDiscount] = useState(false);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -15,6 +18,7 @@ function HomeDiscount() {
 
   const onSubmit = (data) => {
     setSendingDiscount(true);
+    dispatch(sendDiscount(data));
     reset();
   };
   return (
@@ -23,7 +27,7 @@ function HomeDiscount() {
         <div className="discount__container_box">
           <h1>5% off on the first order</h1>
           <div className="form__box">
-            <img src={discountImg} alt="" />
+            <img className="img" src={discountImg} alt="" />
             {!sendingDiscount ? (
               <form
                 className="container__form"
@@ -80,7 +84,7 @@ function HomeDiscount() {
             ) : (
               <div className="container__send">
                 <p className="text__send">
-                  You have 5% discount on all products!
+                  The discount has been successfully sent by email
                 </p>
               </div>
             )}

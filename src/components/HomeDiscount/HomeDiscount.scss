@@ -1,11 +1,19 @@
 .discount__container {
   padding: 40px;
   background-color: #fffff1;
+  width: 100%;
   &_box {
-    background-color: #0b710b;
-    width: 100%;
+    background: rgb(135, 147, 61);
+    background: linear-gradient(
+      90deg,
+      rgba(135, 147, 61, 1) 40%,
+      rgba(85, 97, 11, 1) 70%
+    );
+    max-width: 1440px;
+    margin: 0 auto;
     padding: 32px 32px 0 32px;
     border-radius: 10px;
+    overflow: hidden;
 
     h1 {
       color: #fff;
@@ -82,6 +90,49 @@
           line-height: 120%;
           letter-spacing: 1.5px;
           text-align: center;
+        }
+      }
+    }
+    @media (max-width: 1000px) {
+      .form__box {
+        .img {
+          margin-left: -250px;
+        }
+      }
+    }
+    @media (max-width: 768px) {
+      .form__box {
+        .img {
+          margin-left: -462px;
+        }
+        h1 {
+          font-size: 56px;
+        }
+      }
+    }
+    @media (max-width: 480px) {
+      .form__box {
+        flex-direction: column;
+        border-radius: 10px;
+        .img {
+          order: 1;
+
+          margin-left: 0;
+          width: 400px;
+        }
+        h1 {
+          font-size: 48px;
+        }
+      }
+    }
+    @media (max-width: 360px) {
+      z-index: 99;
+      .form__box {
+        .img {
+          width: 200px;
+        }
+        h1 {
+          font-size: 40px;
         }
       }
     }

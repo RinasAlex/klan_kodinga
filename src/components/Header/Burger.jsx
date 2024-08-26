@@ -1,6 +1,5 @@
 import React from "react";
 import "./Burger.scss";
-import Nav from "./Nav";
 
 function Burger({ isToggle, setIsToggle }) {
   return (
