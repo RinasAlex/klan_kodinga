@@ -5,7 +5,7 @@ const initialState = {
   status: "",
   categories: null,
   loading: false,
-  error: ''
+  error: "",
 };
 //выполняем запрос к серверу для получения всех категорий и  возвращает данные,
 //с помощью AsyncThunk
@@ -23,14 +23,33 @@ export const getCategories = createAsyncThunk(
 export const fetchCategoriesById = createAsyncThunk(
   "categories/fetchCategoriesById",
   async (categoriesId) => {
-    const res = await fetch(`https://exam-server-5c4e.onrender.com/categories/${categoriesId}`);
+    const res = await fetch(
+      `https://exam-server-5c4e.onrender.com/categories/${categoriesId}`
+    );
 
     const data = await res.json();
 
     return data;
   }
-)
+);
 
+export const sendDiscount = createAsyncThunk("sale/send", async (userData) => {
+  try {
+    const res = await fetch(`https://exam-server-5c4e.onrender.com/sale/send`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 const categoriesSlice = createSlice({
   name: "categories",
@@ -50,7 +69,7 @@ const categoriesSlice = createSlice({
       .addCase(getCategories.rejected, (state) => {
         state.status = "error";
       })
-      .addCase(fetchCategoriesById.pending, state => {
+      .addCase(fetchCategoriesById.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchCategoriesById.fulfilled, (state, action) => {
@@ -60,7 +79,7 @@ const categoriesSlice = createSlice({
       .addCase(fetchCategoriesById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      })
+      });
   },
 });
 

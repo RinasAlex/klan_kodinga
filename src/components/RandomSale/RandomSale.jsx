@@ -1,27 +1,26 @@
 import React, { useEffect } from "react";
-import './RandomSale.scss'
+import "./RandomSale.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { filterSaleProducts } from "../../store/futures/productSlice";
 import ProductCard from "../ProductCard/ProductCard";
 
-
 const RandomSale = () => {
   const dispatch = useDispatch();
-  const { filteredProducts, products } = useSelector(state => state.products);
+  const { filteredProducts, products } = useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(filterSaleProducts());
   }, [products]);
 
   const getRandomProducts = (filteredProducts, count) => {
-    return filteredProducts && filteredProducts.length > 0 ? [...filteredProducts].sort(() => 0.5 - Math.random()).slice(0, count) : [];
-  }
+    return filteredProducts && filteredProducts.length > 0
+      ? [...filteredProducts].sort(() => 0.5 - Math.random()).slice(0, count)
+      : [];
+  };
 
   const productsRandom = getRandomProducts(filteredProducts, 4);
 
-  console.log(filteredProducts);
-  
   return (
     <div className="sale">
       <div className="container">
@@ -34,9 +33,10 @@ const RandomSale = () => {
         </div>
 
         <div className="container__list">
-          {
-            productsRandom && productsRandom.map(product => <ProductCard key={product.id} product={product} />)
-          }
+          {productsRandom &&
+            productsRandom.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
         </div>
         <div className="container__btn-2-position">
           <Link to={`/sales`}>
@@ -46,6 +46,6 @@ const RandomSale = () => {
       </div>
     </div>
   );
-}
+};
 
-export default RandomSale
+export default RandomSale;

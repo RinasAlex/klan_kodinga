@@ -9,6 +9,7 @@ import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
 import { useDispatch } from "react-redux";
 import { getProducts } from "./store/futures/productSlice";
 import { getCategories } from "./store/futures/categoriesSlice";
+import ProductPage from "./pages/ProductsPage/ProductPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getProducts());
-  }, [])
+  }, []);
 
   return (
     <>
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/sales" element={<AllSalesPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/productPage/:id" element={<ProductPage />} />
         </Route>
       </Routes>
     </>
