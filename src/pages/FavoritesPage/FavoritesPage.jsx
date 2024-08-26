@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
-import './AllSalesPage.scss'
-import ProductCard from '@/components/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux';
-import { filterSaleProducts } from '@/store/futures/productSlice';
+import { getFavouriteFromLocalStorage } from '../../store/futures/productSlice';
+import ProductCard from '../../components/ProductCard/ProductCard';
+import Filtration from '../../components/Filtration/Filtration';
 import { Link } from 'react-router-dom';
 
-const AllSalesPage = () => {
-  const dispatch = useDispatch();
-  const { filteredProducts, loading } = useSelector(state => state.products);
+const FavoritesPage = () => {
+  // const dispatch = useDispatch();
+  const { favourite, loading } = useSelector(state => state.products);
 
-  useEffect(() => {
-    dispatch(filterSaleProducts()); 
-    },[dispatch]);
-  
-  if(loading){
+  // useEffect(() => {
+  //   dispatch(getFavouriteFromLocalStorage()); 
+  //   },[]);
+
+  if (loading) {
     return "Loading ...."
   }
 
@@ -30,9 +30,10 @@ const AllSalesPage = () => {
           </Link>
         </div>
         <h2 className="content__page-title">Discounted items</h2>
+        <Filtration />
         <div className="content__list">
           {
-            filteredProducts && filteredProducts.map((product) => 
+            favourite && favourite.map((product) =>
               <ProductCard key={product.id} product={product} />)
           }
         </div>
@@ -41,5 +42,4 @@ const AllSalesPage = () => {
   );
 }
 
-export default AllSalesPage
-
+export default FavoritesPage
