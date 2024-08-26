@@ -1,4 +1,4 @@
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CategoryCard from "@/components/Categories/CategoryCard";
 import "./AllCategories.scss";
@@ -9,7 +9,7 @@ export default function CategoriesPage() {
     (state) => state.categories.categoriesData
   );
   const status = useSelector((state) => state.categories.status === "loading");
-  
+
   return (
     <div className="categories">
       <div className="content">

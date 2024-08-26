@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { getProducts } from "./store/futures/productSlice";
 import { getCategories } from "./store/futures/categoriesSlice";
 import ProductPage from "./pages/ProductsPage/ProductPage";
+import ProductsFromCategory from "./pages/ProductsFromCategory/ProductsFromCategory";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,8 @@ const App = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/productPage/:id" element={<ProductPage />} />
+          <Route path="/categories/:categoryId" element={<ProductsFromCategory />} />
+          
         </Route>
       </Routes>
     </>

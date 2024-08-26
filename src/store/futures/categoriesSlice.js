@@ -2,8 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   categoriesData: [],
+  filterProductsData: [],
   status: "",
-  categories: null,
+  category: null,
+  products: [],
   loading: false,
   error: "",
 };
@@ -74,7 +76,9 @@ const categoriesSlice = createSlice({
       })
       .addCase(fetchCategoriesById.fulfilled, (state, action) => {
         state.loading = false;
-        state.categories = action.payload;
+        state.category = action.payload.category;
+        state.products = action.payload.data;
+        // state.filterProductsData = action.payload.data;
       })
       .addCase(fetchCategoriesById.rejected, (state, action) => {
         state.loading = false;
