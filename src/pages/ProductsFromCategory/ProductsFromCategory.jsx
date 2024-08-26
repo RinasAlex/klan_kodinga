@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import "./ProductsFromCategory.scss";
 import SmallButton from "@/components/Button/SmallButton";
+import Filtration from "../../components/Filtration/Filtration";
 
 export default function ProductsFromCategory() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export default function ProductsFromCategory() {
           </Link>
         </div>
         <h2 className="container__title">{category?.title}</h2>
+        <Filtration disabledDiscount={false} /> 
 
         <div className="container__items">
           {products &&

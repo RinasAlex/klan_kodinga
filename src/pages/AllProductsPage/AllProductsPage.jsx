@@ -2,6 +2,7 @@ import React from 'react'
 import './AllProductsPage.scss'
 import { useSelector } from 'react-redux';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import Filtration from '../../components/Filtration/Filtration';
 
 const AllProductsPage = () => {
 
@@ -16,6 +17,7 @@ const AllProductsPage = () => {
       <div className="container">
         <div className="filterForm"></div>
         <h2 className='container__title'>All products</h2>
+        <Filtration disabledDiscount={false} /> 
 
         <div className="container__list">
           {

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Filtration.scss';
 import { useDispatch } from 'react-redux';
-import { filterByPrice, filterSaleProducts, sortBy } from '../../store/futures/productSlice';
-import { categoriesFilterByPrice, categoriesSortBy } from '../../store/futures/categoriesSlice';
+import { filterByPrice, filterSaleProducts, sortBy } from '@/store/futures/productSlice';
 
-const Filtration = ({ disabledDiscount, categoriesFilter, allProductsFilter }) => {
+
+const Filtration = ({ disabledDiscount }) => {
   const dispatch = useDispatch();
 
   const [minPrice, setMinPrice] = useState('');
@@ -12,18 +12,10 @@ const Filtration = ({ disabledDiscount, categoriesFilter, allProductsFilter }) =
   const [sortByValue, setSortByValue] = useState("default");
 
   useEffect(() => {
-    if (!categoriesFilter) {
-      if (minPrice !== '' && maxPrice !== '') {
-        dispatch(categoriesFilterByPrice({ minPrice: Number(minPrice), maxPrice: Number(maxPrice) }));
-      }
-      dispatch(categoriesSortBy({ value: sortByValue }));
-    } else if (!allProductsFilter) {
-      if (minPrice !== '' && maxPrice !== '') {
-        dispatch(filterByPrice({ minPrice: Number(minPrice), maxPrice: Number(maxPrice) }));
-      }
-      dispatch(sortBy({ value: sortByValue }));
-    
+    if (minPrice !== '' && maxPrice !== '') {
+      dispatch(filterByPrice({ minPrice: Number(minPrice), maxPrice: Number(maxPrice) }));
     }
+    dispatch(sortBy({ value: sortByValue }));
 
   }, [sortByValue, minPrice, maxPrice]);
 

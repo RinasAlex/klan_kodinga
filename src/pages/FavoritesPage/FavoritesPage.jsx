@@ -30,7 +30,8 @@ const FavoritesPage = () => {
           </Link>
         </div>
         <h2 className="content__page-title">Discounted items</h2>
-        <Filtration />
+        <Filtration disabledDiscount={false} />
+        
         <div className="content__list">
           {
             favourite && favourite.map((product) =>
