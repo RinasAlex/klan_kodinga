@@ -18,8 +18,6 @@ const AllSalesPage = () => {
     return "Loading ...."
   }
 
-
-
   return (
     <div className="categories">
       <div className="content">
@@ -33,13 +31,16 @@ const AllSalesPage = () => {
           </Link>
         </div>
         <h2 className="content__page-title">Discounted items</h2>
+        
         <Filtration disabledDiscount={true} />
+
         <div className="content__list">
           {
             filteredProducts && filteredProducts.map((product) => 
               <ProductCard key={product.id} product={product} />)
           }
         </div>
+        
       </div>
     </div>
   );
