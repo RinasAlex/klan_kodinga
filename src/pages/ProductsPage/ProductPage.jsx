@@ -65,9 +65,9 @@ function ProductPage() {
                     <img className="heart" src={heart} alt="" />
                   </div>
                   <div className="price__container">
-                    <p className="price">${item.price}</p>
+                    <p className="price">${item.discont_price}</p>
                     {item.discont_price ? (
-                      <p className="discount__price">${item.discont_price}</p>
+                      <p className="discount__price">${item.price}</p>
                     ) : null}
                     {item.discont_price ? (
                       <div className="sale">{`- ${Math.ceil(
