@@ -1,44 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductsById } from "../../store/futures/categoriesSlice";
+import { fetchCategoriesById } from "@/store/futures/categoriesSlice";
+import { Link, useParams } from "react-router-dom";
+import ProductCard from "@/components/ProductCard/ProductCard";
+import "./ProductsFromCategory.scss";
+import SmallButton from "@/components/Button/SmallButton";
 
 export default function ProductsFromCategory() {
   const dispatch = useDispatch();
-  
-  const { products} = useSelector((state) => state.products);
-
+  const { category, products } = useSelector((state) => state.categories);
+  const { categoryId } = useParams();
   useEffect(() => {
-    dispatch(fetchProductsById());
-      }, [products]);
+    dispatch(fetchCategoriesById(categoryId));
+  }, [dispatch, categoryId]);
 
   return (
     <div className="category">
       <div className="container">
         <div className="container__breadcrumbs">
           <Link to={`/`}>
-            <button className="container__breadcrumbs__main-page-btn">
-              Main page
-            </button>
+            <SmallButton className="primary">Main page</SmallButton>
           </Link>
-          <div className="container__line-position"></div>
+          <div className="container__breadcrumbs__line"></div>
           <Link to={`/categories`}>
-            <button className="container__breadcrumbs__categories-btn">
-              Categories
-            </button>
+            <SmallButton className="primary">Categories</SmallButton>
           </Link>
-          <div className="container__line-position-2"></div>
+          <div className="container__breadcrumbs__line"></div>
+
           <Link to={`/categories/${categoryId}`}>
-            <button className="container__breadcrumbs__tools-btn">
-              Tools and equipment
-            </button>
+            <SmallButton className="secondary-active">
+              {category?.title}
+            </SmallButton>
           </Link>
         </div>
-        <h2 className="container__title">Tools and equipment</h2>
-        <div className="container__sort">Price, discounted items, sorted</div>
+        <h2 className="container__title">{category?.title}</h2>
+
         <div className="container__items">
-          {categoriesState.map((product) => (
-            <CategoryCard key={product.id} {...product} />
-          ))}
+          {products &&
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
         </div>
       </div>
     </div>

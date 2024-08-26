@@ -13,11 +13,25 @@ export const getProducts = createAsyncThunk(
   }
 );
 
+export const fetchProductsById = createAsyncThunk(
+  "products/fetchProductsById",
+  async (productId) => {
+    const res = await fetch(`https://exam-server-5c4e.onrender.com/products/${productId}`);
+
+    const data = await res.json();
+
+    return data;
+  }
+)
+
+
 const initialState = {
   products: [],
-  error: '',
+  filteredProducts: [],
+  product: null,
   loading: false,
-  filteredProducts: []
+  error: ''
+  
 }
 
 export const productSlice = createSlice({
@@ -25,8 +39,8 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     filterSaleProducts: (state) => {
-       state.filteredProducts = state.products.filter(item => item.discont_price != null)
-  }
+      state.filteredProducts = state.products.filter(item => item.discont_price != null)
+    }
   },
 
   extraReducers: (builder) => {
@@ -39,6 +53,17 @@ export const productSlice = createSlice({
         state.products = action.payload;
       })
       .addCase(getProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(fetchProductsById.pending, state => {
+        state.loading = true;
+      })
+      .addCase(fetchProductsById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.product = action.payload;
+      })
+      .addCase(fetchProductsById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })

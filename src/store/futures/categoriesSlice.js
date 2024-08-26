@@ -2,7 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   categoriesData: [],
+  filterProductsData: [],
   status: "",
+  category: null,
+  products: [],
+  loading: false,
+  error: "",
 };
 //выполняем запрос к серверу для получения всех категорий и  возвращает данные,
 //с помощью AsyncThunk
@@ -16,13 +21,16 @@ export const getCategories = createAsyncThunk(
     return data;
   }
 );
-export const fetchProductsById = createAsyncThunk(
-  "products/fetchProductsById",
-  async (productId) => {
+
+export const fetchCategoriesById = createAsyncThunk(
+  "categories/fetchCategoriesById",
+  async (categoriesId) => {
     const res = await fetch(
-      `${import.meta.env.APP_API_URL}/products/${productId}`
+      `https://exam-server-5c4e.onrender.com/categories/${categoriesId}`
     );
+
     const data = await res.json();
+
     return data;
   }
 );
@@ -44,6 +52,19 @@ const categoriesSlice = createSlice({
       })
       .addCase(getCategories.rejected, (state) => {
         state.status = "error";
+      })
+      .addCase(fetchCategoriesById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchCategoriesById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.category = action.payload.category;
+        state.products = action.payload.data;
+        // state.filterProductsData = action.payload.data;
+      })
+      .addCase(fetchCategoriesById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
