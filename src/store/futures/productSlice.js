@@ -35,9 +35,6 @@ const initialState = {
   loading: false,
   error: "",
 };
-error: ''
-
-}
 
 export const productSlice = createSlice({
   name: "products",
