@@ -1,0 +1,53 @@
+@use "@/assets/styles/variables.scss" as nav;
+
+.filters {
+    display: flex;
+    align-items: center; 
+    gap: 40px; 
+    color: nav.$color-dark-text;
+    font-weight: 600;
+    font-size: 20px;
+
+    &__price {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .form-control {
+            width: 112px;
+            height: 36px;
+            padding: 8px 16px;
+            border-radius: nav.$border-radius-small;
+            border: 1px solid nav.$color-dark-2;
+            opacity: 1; 
+        }
+    }
+
+    &__discount {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .form-control-disc {
+            border-radius: nav.$border-radius-small;
+            border: 1px solid nav.$color-dark-2;
+            width: 36px;
+            height: 36px;
+            margin-right: 8px; 
+        }
+    }
+
+    &__sort {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .form-control-sort {
+            border-radius: nav.$border-radius-small;
+            border: 1px solid nav.$color-dark-2;
+            width: 200px;
+            height: 36px;
+            font-weight: 500;
+        }
+    }
+}
