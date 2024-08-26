@@ -35,6 +35,24 @@ export const fetchCategoriesById = createAsyncThunk(
   }
 );
 
+export const sendDiscount = createAsyncThunk("sale/send", async (userData) => {
+  try {
+    const res = await fetch(`https://exam-server-5c4e.onrender.com/sale/send`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 const categoriesSlice = createSlice({
   name: "categories",
   initialState, //начальное состояние
