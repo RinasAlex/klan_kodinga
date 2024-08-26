@@ -21,7 +21,7 @@ function Nav({ isToggle }) {
         </li>
         <li className="link">
           <NavLink className="navlink" to={"products"}>
-            All producst
+            All products
           </NavLink>
         </li>
         <li className="link">
