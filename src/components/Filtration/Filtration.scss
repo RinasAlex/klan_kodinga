@@ -2,52 +2,111 @@
 
 .filters {
     display: flex;
-    align-items: center; 
-    gap: 40px; 
+    align-items: center;
+    gap: 40px;
     color: nav.$color-dark-text;
     font-weight: 600;
     font-size: 20px;
 
-    &__price {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-
-        .form-control {
-            width: 112px;
-            height: 36px;
-            padding: 8px 16px;
-            border-radius: nav.$border-radius-small;
-            border: 1px solid nav.$color-dark-2;
-            opacity: 1; 
-        }
-    }
-
-    &__discount {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-
-        .form-control-disc {
-            border-radius: nav.$border-radius-small;
-            border: 1px solid nav.$color-dark-2;
-            width: 36px;
-            height: 36px;
-            margin-right: 8px; 
-        }
-    }
-
+    &__price,
+    &__discount,
     &__sort {
         display: flex;
         align-items: center;
         gap: 16px;
+    }
+
+    .form-control,
+    .form-control-disc,
+    .form-control-sort {
+        border-radius: nav.$border-radius-small;
+        border: 1px solid nav.$color-dark-2;
+        padding: 8px 16px;
+    }
+
+    .form-control {
+        width: 112px;
+        height: 36px;
+    }
+
+    .form-control-disc {
+        width: 36px;
+        height: 36px;
+        margin-right: 8px;
+    }
+
+    .form-control-sort {
+        width: 200px;
+        height: 36px;
+        font-weight: 500;
+    }
+
+    @media (max-width: 1000px) {
+        gap: 30px;
+
+        .form-control {
+            width: 100px;
+        }
 
         .form-control-sort {
-            border-radius: nav.$border-radius-small;
-            border: 1px solid nav.$color-dark-2;
-            width: 200px;
-            height: 36px;
-            font-weight: 500;
+            width: 180px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+
+        .form-control,
+        .form-control-sort {
+            width: 100%;
+        }
+
+        .form-control-sort {
+            width: 100%;
+        }
+
+        .form-control-disc {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        font-size: 18px;
+
+        .form-control,
+        .form-control-sort {
+            width: 100%;
+        }
+
+        .form-control-sort {
+            width: 100%;
+        }
+
+        .form-control-disc {
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        font-size: 16px;
+        gap: 10px;
+
+        .form-control,
+        .form-control-sort {
+            width: 100%;
+        }
+
+        .form-control-sort {
+            width: 100%;
+        }
+
+        .form-control-disc {
+            width: 24px;
+            height: 24px;
         }
     }
 }

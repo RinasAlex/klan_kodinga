@@ -37,7 +37,7 @@ const ProductCard = ({ product: { image, id, title, price, discont_price } }) =>
 
           <div className="productCard__top-icon">
 
-            <IoIosHeartEmpty className={`productCard__top-icon-heart ${isFavourite ? "productCard__top-favourite-active" : ""}`} onClick={() => dispatch(setFavourite(id))} />
+            <IoIosHeartEmpty className={`productCard__top-icon-heart ${isFavourite ? 'productCard__top-icon-heart-active' : ""}`} onClick={() => dispatch(setFavourite(id))} />
             <HiOutlineShoppingBag className='productCard__top-icon-bag' />
 
           </div>

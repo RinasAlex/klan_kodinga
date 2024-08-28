@@ -2,23 +2,21 @@ import React, { useEffect } from 'react'
 import './AllSalesPage.scss'
 import ProductCard from '@/components/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux';
-import { filterSaleProducts } from '@/store/futures/productSlice';
 import { Link } from 'react-router-dom';
 import Filtration from '@/components/Filtration/Filtration';
+import { filterByPrice, filterSaleProductsForPage, sortBy } from '@/store/futures/productSlice';
 
 const AllSalesPage = () => {
   const dispatch = useDispatch();
-  const {filteredProducts, loading, products } = useSelector(state => state.products);
+  const { filteredProducts, loading, products } = useSelector(state => state.products);
 
   useEffect(() => {
-    dispatch(filterSaleProducts()); 
-    },[products, dispatch]);
-  
-  if(loading){
+    dispatch(filterSaleProductsForPage());
+  }, [products, dispatch]);
+
+  if (loading) {
     return "Loading ...."
   }
-
-
 
   return (
     <div className="categories">
@@ -33,10 +31,16 @@ const AllSalesPage = () => {
           </Link>
         </div>
         <h2 className="content__page-title">Discounted items</h2>
-        <Filtration disabledDiscount={true} />
+
+        <Filtration
+          disabledDiscount={false}
+          filterByPrice={filterByPrice}
+          sortBy={sortBy}
+        />
+
         <div className="content__list">
           {
-            filteredProducts && filteredProducts.map((product) => 
+            filteredProducts && filteredProducts.map((product) =>
               <ProductCard key={product.id} product={product} />)
           }
         </div>

@@ -60,7 +60,7 @@ function Header() {
         </div>
 
         <div className="navbar__cart">
-          <NavLink>
+          <NavLink to={"/favourites"}>
             <img className="heard" src={heart} alt="" />
           </NavLink>
           <NavLink to={"/cart"}>

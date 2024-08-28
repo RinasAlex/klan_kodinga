@@ -40,9 +40,20 @@ export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    filterSaleProducts: (state) => {
+    filterSaleProductsForPage: (state) => {
       state.filteredProducts = state.products.filter((item) => item.discont_price != null);
     },
+
+    filterSaleProducts: (state, { payload }) => {
+
+      if (payload.value) {
+        state.filteredProducts = [...state.products].filter((item) => item.discont_price != null);
+      } else {
+        state.filteredProducts = state.products;
+      }
+
+    },
+
 
     incrementProduct: (state, action) => {
       const isUnique = state.cart.every((el) => action.payload.id !== el.id);
@@ -118,8 +129,6 @@ export const productSlice = createSlice({
       localStorage.setItem("favourite", JSON.stringify(state.favourite))
     },
 
-
-
     getFavouriteFromLocalStorage: state => {
       let favouriteStorage = JSON.parse(localStorage.getItem("favourite"));
 
@@ -160,6 +169,7 @@ export const productSlice = createSlice({
 });
 
 export const {
+  filterSaleProductsForPage,
   filterSaleProducts,
   sortBy,
   filterByPrice,

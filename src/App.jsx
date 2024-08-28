@@ -34,7 +34,7 @@ const App = () => {
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/productPage/:id" element={<ProductPage />} />
           <Route path="/categories/:categoryId" element={<ProductsFromCategory />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/favourites" element={<FavoritesPage />} />
 
         </Route>
       </Routes>
