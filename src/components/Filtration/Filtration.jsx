@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './Filtration.scss';
 import { useDispatch } from 'react-redux';
-import { filterByPrice, filterSaleProducts, sortBy } from '@/store/futures/productSlice';
 
 
-const Filtration = ({ disabledDiscount }) => {
+const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
   const dispatch = useDispatch();
 
   const [minPrice, setMinPrice] = useState('');
@@ -12,12 +11,12 @@ const Filtration = ({ disabledDiscount }) => {
   const [sortByValue, setSortByValue] = useState("default");
 
   useEffect(() => {
-    if (minPrice !== '' && maxPrice !== '') {
-      dispatch(filterByPrice({ minPrice: Number(minPrice), maxPrice: Number(maxPrice) }));
-    }
-    dispatch(sortBy({ value: sortByValue }));
+    let minPriceValue = (minPrice !== '' || minPrice > 0) ? minPrice : 0
+    let maxPriceValue = (maxPrice !== '' || maxPrice > 0) ? maxPrice : Infinity
 
-  }, [sortByValue, minPrice, maxPrice]);
+    dispatch(filterByPrice({ minPrice: Number(minPriceValue), maxPrice: Number(maxPriceValue) }))
+    dispatch(sortBy({ value: sortByValue }))
+  }, [sortByValue, minPrice, maxPrice, dispatch]);
 
   return (
     <div className='filters'>
@@ -42,7 +41,7 @@ const Filtration = ({ disabledDiscount }) => {
       </div>
 
       {
-        !disabledDiscount && (
+        typeof filterSale === 'function' && (
           <div className="filters__discount">
             <label htmlFor="">Discounted items</label>
 
@@ -51,9 +50,7 @@ const Filtration = ({ disabledDiscount }) => {
               className='form-control-disc'
               name='discount'
               onChange={(e) => {
-                if (e.target.checked) {
-                  dispatch(filterSaleProducts());
-                }
+                dispatch(filterSale({ value: e.target.checked }));
               }}
             />
           </div>

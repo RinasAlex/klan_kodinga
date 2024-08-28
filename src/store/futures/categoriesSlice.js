@@ -56,7 +56,38 @@ export const sendDiscount = createAsyncThunk("sale/send", async (userData) => {
 const categoriesSlice = createSlice({
   name: "categories",
   initialState, //начальное состояние
-  reducers: {}, //пустой объект
+  reducers: {
+    categoriesSortBy: (state, { payload }) => {
+      const data = state.filterProductsData.length > 0 ? state.filterProductsData : state.products;
+
+      if (payload.value === "price-low-high") {
+        state.filterProductsData = [...data].sort((a, b) => a.price - b.price);
+      } else if (payload.value === "price-high-low") {
+        state.filterProductsData = [...data].sort((a, b) => b.price - a.price);
+      } else {
+        state.filterProductsData = [...data].sort((a, b) => a.id - b.id);
+      }
+    },
+
+    categoriesFilterByPrice: (state, { payload }) => {
+      const data = state.filterProductsData.length > 0 ? state.filterProductsData : state.products;
+
+      const { minPrice, maxPrice } = payload;
+
+      state.filterProductsData = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+    },
+
+    categoriesFilterSale: (state, { payload }) => {
+
+      if (payload.value) {
+        state.filterProductsData = [...state.products].filter((item) => item.discont_price != null);
+      } else {
+        state.filterProductsData = state.products;
+      }
+
+    },
+
+  },
 
   //метод builder, добавляет обработчик для действия getCategories.pending.
   extraReducers: (builder) => {
@@ -78,7 +109,7 @@ const categoriesSlice = createSlice({
         state.loading = false;
         state.category = action.payload.category;
         state.products = action.payload.data;
-        // state.filterProductsData = action.payload.data;
+        state.filterProductsData = action.payload.data;
       })
       .addCase(fetchCategoriesById.rejected, (state, action) => {
         state.loading = false;
@@ -86,5 +117,12 @@ const categoriesSlice = createSlice({
       });
   },
 });
+
+export const {
+  categoriesSortBy,
+  categoriesFilterByPrice,
+  categoriesFilterSale
+} = categoriesSlice.actions;
+
 
 export default categoriesSlice.reducer;

@@ -40,8 +40,26 @@ export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    filterSaleProducts: (state) => {
+    filterSaleProductsForPage: (state) => {
       state.filteredProducts = state.products.filter((item) => item.discont_price != null);
+    },
+
+    filterSaleProducts: (state, { payload }) => {
+
+      if (payload.value) {
+        state.filteredProducts = [...state.products].filter((item) => item.discont_price != null);
+      } else {
+        state.filteredProducts = state.products;
+      }
+    },
+
+    filterSaleProductsFavourite: (state, { payload }) => {
+
+      if (payload.value) {
+        state.filteredProducts = [...state.favourite].filter((item) => item.discont_price != null);
+      } else {
+        state.filteredProducts = state.favourite;
+      }
     },
 
     incrementProduct: (state, action) => {
@@ -98,8 +116,28 @@ export const productSlice = createSlice({
       }
     },
 
+    sortByFavourite: (state, { payload }) => {
+      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.favourite;
+
+      if (payload.value === "price-low-high") {
+        state.filteredProducts = [...data].sort((a, b) => a.price - b.price);
+      } else if (payload.value === "price-high-low") {
+        state.filteredProducts = [...data].sort((a, b) => b.price - a.price);
+      } else {
+        state.filteredProducts = [...data].sort((a, b) => a.id - b.id);
+      }
+    },
+
     filterByPrice: (state, { payload }) => {
       const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.products;
+
+      const { minPrice, maxPrice } = payload;
+
+      state.filteredProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+    },
+
+    filterByPriceFavourite: (state, { payload }) => {
+      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.favourite;
 
       const { minPrice, maxPrice } = payload;
 
@@ -116,7 +154,7 @@ export const productSlice = createSlice({
       } else {
         // 3. Если нет, то добавляем
         let foundFavourite = state.products.find(item => item.id === payload);
-        
+
         // 4. Добавляем товар в избранное
         state.favourite.push(foundFavourite)
       }
@@ -134,6 +172,7 @@ export const productSlice = createSlice({
       }
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(getProducts.pending, (state) => {
@@ -163,9 +202,13 @@ export const productSlice = createSlice({
 });
 
 export const {
+  filterSaleProductsForPage,
   filterSaleProducts,
+  filterSaleProductsFavourite,
   sortBy,
+  sortByFavourite,
   filterByPrice,
+  filterByPriceFavourite,
   setFavourite,
   getFavouriteFromLocalStorage,
   incrementProduct,

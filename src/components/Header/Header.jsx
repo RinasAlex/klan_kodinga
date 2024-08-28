@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 function Header() {
   const [isToggle, setIsToggle] = useState(false);
-  const { favourite, loading } = useSelector(state => state.products);
+  const { favourite } = useSelector(state => state.products);
 
   return (
     <nav className="navbar__container">

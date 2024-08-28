@@ -1,7 +1,7 @@
 import React from "react";
 import "./CartPage.scss";
 import { useSelector } from "react-redux";
-import deleteBtn from "../../assets/image/delete.svg";
+import deleteBtn from "@/assets/image/delete.svg";
 import "./CartPage.scss";
 
 const CartPage = () => {

@@ -5,16 +5,22 @@ import { Link, useParams } from "react-router-dom";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import "./ProductsFromCategory.scss";
 import SmallButton from "@/components/Button/SmallButton";
-import Filtration from "../../components/Filtration/Filtration";
+import Filtration from "@/components/Filtration/Filtration";
+import { categoriesFilterByPrice, categoriesFilterSale, categoriesSortBy } from "@/store/futures/categoriesSlice";
+
 
 export default function ProductsFromCategory() {
   const dispatch = useDispatch();
-  const { category, products } = useSelector((state) => state.categories);
+  const { category, products, filterProductsData } = useSelector((state) => state.categories);
   const { categoryId } = useParams();
+
   useEffect(() => {
     dispatch(fetchCategoriesById(categoryId));
   }, [dispatch, categoryId]);
 
+
+  const data = filterProductsData.length > 0 ? filterProductsData : products;
+ 
   return (
     <div className="category">
       <div className="container">
@@ -35,11 +41,16 @@ export default function ProductsFromCategory() {
           </Link>
         </div>
         <h2 className="container__title">{category?.title}</h2>
-        <Filtration disabledDiscount={false} /> 
+
+        <Filtration
+          filterByPrice={categoriesFilterByPrice}   
+          sortBy={categoriesSortBy}
+          filterSale={categoriesFilterSale}
+        /> 
 
         <div className="container__items">
-          {products &&
-            products.map((product) => (
+          {data &&
+            data.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
         </div>
