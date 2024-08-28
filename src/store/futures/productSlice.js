@@ -107,18 +107,22 @@ export const productSlice = createSlice({
     },
 
     setFavourite: (state, { payload }) => {
-      let foundFavourite = state.favourite.find(item => item === payload);
 
-      if (foundFavourite) {
-        state.favourite = state.favourite.filter(item => item !== payload);
+      // 1. Проверяем есть ли товар в избранном
+      if (state.favourite.find(item => item.id === payload)) {
+
+        // 2. Если есть, то удаляем его
+        state.favourite = state.favourite.filter(item => item.id !== payload);
       } else {
-        state.favourite.push(payload)
+        // 3. Если нет, то добавляем
+        let foundFavourite = state.products.find(item => item.id === payload);
+        
+        // 4. Добавляем товар в избранное
+        state.favourite.push(foundFavourite)
       }
 
       localStorage.setItem("favourite", JSON.stringify(state.favourite))
     },
-
-
 
     getFavouriteFromLocalStorage: state => {
       let favouriteStorage = JSON.parse(localStorage.getItem("favourite"));
@@ -130,7 +134,6 @@ export const productSlice = createSlice({
       }
     },
   },
-
   extraReducers: (builder) => {
     builder
       .addCase(getProducts.pending, (state) => {
