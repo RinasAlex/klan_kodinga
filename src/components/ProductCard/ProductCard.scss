@@ -43,33 +43,6 @@
             font-size: 1rem;
         }
 
-        &-icon {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            gap: 10px;
-
-
-
-            &-heart,
-            &-bag {
-                width: 36px !important;
-                height: 36px !important;
-                cursor: pointer;
-                fill: nav.$color-light-1;
-
-                &:hover {
-                    opacity: 0.7;
-                }
-
-                &-active {
-                    fill: nav.$color-light-2;
-                }
-            }
-        }
-
         img {
             display: block;
             width: 100%;
@@ -120,5 +93,59 @@
             font-weight: 600;
             padding-right: 16px;
         }
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        gap: 10px;
+
+
+
+        &__favourite,
+        &__cart {
+            font-size: 36px;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+                &__favourite {
+                    &-active {
+                        color: #92A134;
+                    }
+                }
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        gap: 10px;
+
+
+
+        &__favourite,
+        &__cart {
+            font-size: 36px;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+                &__favourite {
+                    &-active {
+                        color: #92A134;
+                    }
+                }
     }
 }

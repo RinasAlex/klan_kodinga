@@ -51,9 +51,16 @@ export const productSlice = createSlice({
       } else {
         state.filteredProducts = state.products;
       }
-
     },
 
+    filterSaleProductsFavourite: (state, { payload }) => {
+
+      if (payload.value) {
+        state.filteredProducts = [...state.favourite].filter((item) => item.discont_price != null);
+      } else {
+        state.filteredProducts = state.favourite;
+      }
+    },
 
     incrementProduct: (state, action) => {
       const isUnique = state.cart.every((el) => action.payload.id !== el.id);
@@ -109,6 +116,18 @@ export const productSlice = createSlice({
       }
     },
 
+    sortByFavourite: (state, { payload }) => {
+      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.favourite;
+
+      if (payload.value === "price-low-high") {
+        state.filteredProducts = [...data].sort((a, b) => a.price - b.price);
+      } else if (payload.value === "price-high-low") {
+        state.filteredProducts = [...data].sort((a, b) => b.price - a.price);
+      } else {
+        state.filteredProducts = [...data].sort((a, b) => a.id - b.id);
+      }
+    },
+
     filterByPrice: (state, { payload }) => {
       const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.products;
 
@@ -117,13 +136,27 @@ export const productSlice = createSlice({
       state.filteredProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
     },
 
-    setFavourite: (state, { payload }) => {
-      let foundFavourite = state.favourite.find(item => item === payload);
+    filterByPriceFavourite: (state, { payload }) => {
+      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.favourite;
 
-      if (foundFavourite) {
-        state.favourite = state.favourite.filter(item => item !== payload);
+      const { minPrice, maxPrice } = payload;
+
+      state.filteredProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+    },
+
+    setFavourite: (state, { payload }) => {
+
+      // 1. Проверяем есть ли товар в избранном
+      if (state.favourite.find(item => item.id === payload)) {
+
+        // 2. Если есть, то удаляем его
+        state.favourite = state.favourite.filter(item => item.id !== payload);
       } else {
-        state.favourite.push(payload)
+        // 3. Если нет, то добавляем
+        let foundFavourite = state.products.find(item => item.id === payload);
+
+        // 4. Добавляем товар в избранное
+        state.favourite.push(foundFavourite)
       }
 
       localStorage.setItem("favourite", JSON.stringify(state.favourite))
@@ -171,8 +204,11 @@ export const productSlice = createSlice({
 export const {
   filterSaleProductsForPage,
   filterSaleProducts,
+  filterSaleProductsFavourite,
   sortBy,
+  sortByFavourite,
   filterByPrice,
+  filterByPriceFavourite,
   setFavourite,
   getFavouriteFromLocalStorage,
   incrementProduct,

@@ -7,9 +7,12 @@ import sun from "../../assets/headerImages/sun.svg";
 import moon from "../../assets/headerImages/moon.svg";
 import Burger from "./Burger";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Header() {
   const [isToggle, setIsToggle] = useState(false);
+  const { favourite } = useSelector(state => state.products);
+
   return (
     <nav className="navbar__container">
       <div className="navbar">
@@ -62,6 +65,8 @@ function Header() {
         <div className="navbar__cart">
           <NavLink to={"/favourites"}>
             <img className="heard" src={heart} alt="" />
+
+            <span>{favourite.length}</span>
           </NavLink>
           <NavLink to={"/cart"}>
             <img className="cart" src={cart} alt="" />
