@@ -4,7 +4,7 @@ import ProductCard from '@/components/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Filtration from '@/components/Filtration/Filtration';
-import { filterByPrice, filterSaleProductsForPage, sortBy } from '@/store/futures/productSlice';
+import { filterByPriceSale, sortBySale, filterSaleProductsForPage } from '@/store/futures/productSlice';
 
 const AllSalesPage = () => {
   const dispatch = useDispatch();
@@ -34,8 +34,8 @@ const AllSalesPage = () => {
 
         <Filtration
           disabledDiscount={false}
-          filterByPrice={filterByPrice}
-          sortBy={sortBy}
+          filterByPrice={filterByPriceSale}
+          sortBy={sortBySale}
         />
 
         <div className="content__list">

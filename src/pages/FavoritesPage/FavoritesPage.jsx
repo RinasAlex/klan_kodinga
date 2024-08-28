@@ -7,13 +7,13 @@ import { filterByPriceFavourite, filterSaleProductsFavourite, sortByFavourite } 
 
 const FavoritesPage = () => {
 
-  const { favourite, loading, filteredProducts } = useSelector(state => state.products);
+  const { favourite, loading, filteredProductsFavourite } = useSelector(state => state.products);
 
-  if (loading) {
+  if (loading) {  
     return "Loading ...."
   }
 
-  const data = filteredProducts.length > 0 ? filteredProducts : favourite;
+  const data = filteredProductsFavourite.length > 0 ? filteredProductsFavourite : favourite;
 
   return (
     <div className="categories">

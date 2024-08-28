@@ -30,6 +30,8 @@ const initialState = {
   products: [],
   cart: [],
   filteredProducts: [],
+  filteredAllProducts: [],
+  filteredProductsFavourite: [],
   favourite: [],
   product: null,
   loading: false,
@@ -47,18 +49,18 @@ export const productSlice = createSlice({
     filterSaleProducts: (state, { payload }) => {
 
       if (payload.value) {
-        state.filteredProducts = [...state.products].filter((item) => item.discont_price != null);
+        state.filteredAllProducts = [...state.products].filter((item) => item.discont_price != null);
       } else {
-        state.filteredProducts = state.products;
+        state.filteredAllProducts = state.products;
       }
     },
 
     filterSaleProductsFavourite: (state, { payload }) => {
 
       if (payload.value) {
-        state.filteredProducts = [...state.favourite].filter((item) => item.discont_price != null);
+        state.filteredProductsFavourite = [...state.favourite].filter((item) => item.discont_price != null);
       } else {
-        state.filteredProducts = state.favourite;
+        state.filteredProductsFavourite = state.favourite;
       }
     },
 
@@ -104,7 +106,7 @@ export const productSlice = createSlice({
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
     },
 
-    sortBy: (state, { payload }) => {
+    sortBySale: (state, { payload }) => {
       const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.products;
 
       if (payload.value === "price-low-high") {
@@ -113,22 +115,34 @@ export const productSlice = createSlice({
         state.filteredProducts = [...data].sort((a, b) => b.price - a.price);
       } else {
         state.filteredProducts = [...data].sort((a, b) => a.id - b.id);
+      }
+    },
+
+    sortByAllProducts: (state, { payload }) => {
+      const data = state.filteredAllProducts.length > 0 ? state.filteredAllProducts : state.products;
+
+      if (payload.value === "price-low-high") {
+        state.filteredAllProducts = [...data].sort((a, b) => a.price - b.price);
+      } else if (payload.value === "price-high-low") {
+        state.filteredAllProducts = [...data].sort((a, b) => b.price - a.price);
+      } else {
+        state.filteredAllProducts = [...data].sort((a, b) => a.id - b.id);
       }
     },
 
     sortByFavourite: (state, { payload }) => {
-      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.favourite;
+      const data = state.filteredProductsFavourite.length > 0 ? state.filteredProductsFavourite : state.favourite;
 
       if (payload.value === "price-low-high") {
-        state.filteredProducts = [...data].sort((a, b) => a.price - b.price);
+        state.filteredProductsFavourite = [...data].sort((a, b) => a.price - b.price);
       } else if (payload.value === "price-high-low") {
-        state.filteredProducts = [...data].sort((a, b) => b.price - a.price);
+        state.filteredProductsFavourite = [...data].sort((a, b) => b.price - a.price);
       } else {
-        state.filteredProducts = [...data].sort((a, b) => a.id - b.id);
+        state.filteredProductsFavourite = [...data].sort((a, b) => a.id - b.id);
       }
     },
 
-    filterByPrice: (state, { payload }) => {
+    filterByPriceSale: (state, { payload }) => {
       const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.products;
 
       const { minPrice, maxPrice } = payload;
@@ -136,12 +150,20 @@ export const productSlice = createSlice({
       state.filteredProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
     },
 
-    filterByPriceFavourite: (state, { payload }) => {
-      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.favourite;
+    filterByPriceAllProducts: (state, { payload }) => {
+      const data = state.filteredAllProducts.length > 0 ? state.filteredAllProducts : state.products;
 
       const { minPrice, maxPrice } = payload;
 
-      state.filteredProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+      state.filteredAllProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+    },
+
+    filterByPriceFavourite: (state, { payload }) => {
+      const data = state.filteredProductsFavourite.length > 0 ? state.filteredProductsFavourite : state.favourite;
+
+      const { minPrice, maxPrice } = payload;
+
+      state.filteredProductsFavourite = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
     },
 
     setFavourite: (state, { payload }) => {
@@ -181,7 +203,6 @@ export const productSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload;
-        state.sortedProducts = action.payload;
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.loading = false;
@@ -205,9 +226,11 @@ export const {
   filterSaleProductsForPage,
   filterSaleProducts,
   filterSaleProductsFavourite,
-  sortBy,
+  sortBySale,
+  sortByAllProducts,
   sortByFavourite,
-  filterByPrice,
+  filterByPriceSale,
+  filterByPriceAllProducts,
   filterByPriceFavourite,
   setFavourite,
   getFavouriteFromLocalStorage,
