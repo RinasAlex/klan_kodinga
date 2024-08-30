@@ -1,18 +1,18 @@
 import React from 'react'
 import './AllProductsPage.scss'
 import { useSelector } from 'react-redux';
-import ProductCard from '../../components/ProductCard/ProductCard';
-import Filtration from '../../components/Filtration/Filtration';
-import { filterByPrice, filterSaleProducts, sortBy } from '../../store/futures/productSlice';
+import ProductCard from '@/components/ProductCard/ProductCard';
+import Filtration from '@/components/Filtration/Filtration';
+import {filterSaleProducts, filterByPriceAllProducts, sortByAllProducts } from '@/store/futures/productSlice';
 
 const AllProductsPage = () => {
-  const { filteredProducts, loading, products } = useSelector(state => state.products);
+  const { filteredAllProducts, loading, products } = useSelector(state => state.products);
   
   if (loading) {
     return "Loading ...."
   }
 
-  const data = filteredProducts.length > 0 ? filteredProducts : products;
+  const data = filteredAllProducts.length > 0 ? filteredAllProducts : products;
  
   return (
     <div className="allProducts">
@@ -21,8 +21,8 @@ const AllProductsPage = () => {
         <h2 className='container__title'>All products</h2>
         <Filtration
           filterSale={filterSaleProducts}
-          filterByPrice={filterByPrice}
-          sortBy={sortBy} />
+          filterByPrice={filterByPriceAllProducts}
+          sortBy={sortByAllProducts} />
 
         <div className="container__list">
           {
