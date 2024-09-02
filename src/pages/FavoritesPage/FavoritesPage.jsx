@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { getFavouriteFromLocalStorage } from '../../store/futures/productSlice';
-import ProductCard from '../../components/ProductCard/ProductCard';
-import Filtration from '../../components/Filtration/Filtration';
+import React from 'react'
+import { useSelector } from 'react-redux';
+import ProductCard from '@/components/ProductCard/ProductCard';
+import Filtration from '@/components/Filtration/Filtration';
 import { Link } from 'react-router-dom';
+import { filterByPriceFavourite, filterSaleProductsFavourite, sortByFavourite } from '@/store/futures/productSlice';
 
 const FavoritesPage = () => {
-  // const dispatch = useDispatch();
-  const { favourite, loading } = useSelector(state => state.products);
 
-  // useEffect(() => {
-  //   dispatch(getFavouriteFromLocalStorage()); 
-  //   },[]);
+  const { favourite, loading, filteredProductsFavourite } = useSelector(state => state.products);
 
-  if (loading) {
+  if (loading) {  
     return "Loading ...."
   }
 
+  const data = filteredProductsFavourite.length > 0 ? filteredProductsFavourite : favourite;
+
+
+  console.log(data)
   return (
     <div className="categories">
       <div className="content">
@@ -25,17 +25,22 @@ const FavoritesPage = () => {
             <button className="content__btn-1">Main page</button>
           </Link>
           <div className="content__line-position"></div>
-          <Link to={`/sales`}>
-            <button className="content__btn-2">All sales</button>
+          <Link to={`/favourites`}>
+            <button className="content__btn-2">Liked products</button>
           </Link>
         </div>
-        <h2 className="content__page-title">Discounted items</h2>
-        <Filtration disabledDiscount={false} />
-        
-        <div className="content__list">
+        <h2 className="content__page-title">Liked products</h2>
+
+        <Filtration
+          filterSale={filterSaleProductsFavourite}
+          filterByPrice={filterByPriceFavourite}
+          sortBy={sortByFavourite}
+        />
+
+        <div className="container__items">
           {
-            favourite && favourite.map((product) =>
-              <ProductCard key={product.id} product={product} />)
+            data && data.map((product, id) =>
+              <ProductCard key={id} product={product} />)
           }
         </div>
       </div>

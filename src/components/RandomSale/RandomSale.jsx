@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./RandomSale.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { filterSaleProducts } from "../../store/futures/productSlice";
+import { filterSaleProductsForPage } from "@/store/futures/productSlice";
 import ProductCard from "../ProductCard/ProductCard";
 
 const RandomSale = () => {
@@ -10,7 +10,7 @@ const RandomSale = () => {
   const { filteredProducts, products } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(filterSaleProducts());
+    dispatch(filterSaleProductsForPage());
   }, [products]);
 
   const getRandomProducts = (filteredProducts, count) => {
@@ -32,7 +32,7 @@ const RandomSale = () => {
           </Link>
         </div>
 
-        <div className="container__list">
+        <div className="container__items">
           {productsRandom &&
             productsRandom.map((product) => (
               <ProductCard key={product.id} product={product} />
