@@ -1,0 +1,53 @@
+// @use "@/assets/styles/variables.scss" as nav;
+
+// .btn-small {
+//   font-weight: 500;
+//   font-size: 16px;
+//   padding: 8px 16px;
+
+//   border: 1px solid #dddddd;
+//   border-radius: 6px;
+//   background-color: nav.$color-light-1;
+//   cursor: pointer;
+//   margin-bottom: 15px;
+//   &.primary {
+//     color: #8b8b8b;
+//   }
+// }
+
+@use "@/assets/styles/variables.scss" as nav;
+.smallButton {
+
+    &__btn-small {
+        font-weight: 500;
+        font-size: 16px;
+        padding: 8px 16px;
+        border: 1px solid #dddddd;
+        border-radius: 6px;
+        background-color: nav.$color-light-1;
+        cursor: pointer;
+        margin-bottom: 15px;
+
+    &.primary {
+      color: #8b8b8b;
+    }
+
+    &.secondary {
+      color: #424436;
+    }
+
+    &:hover {
+      background-color: nav.$color-light-2; 
+      // цвет при наведении
+    }
+
+    // &:disabled {
+    //   background-color: #f0f0f0;
+    //   color: #a9a9a9;
+    //   cursor: not-allowed;
+    // }
+  }
+}
+
+
+

@@ -27,20 +27,20 @@
     &__line {
       border-top: 1px solid #dddddd;
       flex-grow: 1;
-      margin-top: -15px;
+      margin-bottom: 15px;
     }
 
-    &__btn {
-      font-weight: 500;
-      font-size: 16px;
-      padding: 8px 16px;
-      border: 1px solid #dddddd;
-      border-radius: 6px;
-      background-color: nav.$color-light-1;
-      margin-bottom: 15px;
-      padding-right: 10px;
-      color: #8B8B8B;
-    }
+    // &__btn {
+    //   font-weight: 500;
+    //   font-size: 16px;
+    //   padding: 8px 16px;
+    //   border: 1px solid #dddddd;
+    //   border-radius: 6px;
+    //   background-color: nav.$color-light-1;
+    //   margin-bottom: 15px;
+    //   padding-right: 10px;
+    //   color: #8B8B8B;
+    // }
     &__btn-2 {
       text-decoration: none;
       display: none;
