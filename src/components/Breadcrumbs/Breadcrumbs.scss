@@ -1,0 +1,35 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+
+  &-item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__line {
+    width: 16px;
+    border-top: 1px solid #dddddd;
+  }
+
+  &-link {
+    font-weight: 500;
+    font-size: 16px;
+    color: #8b8b8b;
+    border-radius: 6px;
+    border: 1px solid #dddddd;
+    padding: 8px 16px;
+
+    // третья ссылка
+    &-active {
+      color: #424436;
+      font-weight: 500;
+    }
+
+    &-label {
+      font-weight: 500;
+      font-size: 16px;
+      color: #424436;
+    }
+  }
+}

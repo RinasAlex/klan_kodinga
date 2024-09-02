@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CategoryCard from "@/components/Categories/CategoryCard";
 import "./AllCategories.scss";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
 export default function CategoriesPage() {
   const categoriesState = useSelector(
@@ -9,19 +10,22 @@ export default function CategoriesPage() {
     (state) => state.categories.categoriesData
   );
   const status = useSelector((state) => state.categories.status === "loading");
-
+  const breadcrumbs = [
+    {
+      label: "Main page",
+      link: "/",
+    },
+    {
+      label: "Categories",
+      link: "/categories",
+    }
+    
+  ];
   return (
     <div className="categories">
       <div className="content">
-        <div className="content__position-btn">
-          <Link to={`/`}>
-            <button className="content__btn-1">Main page</button>
-          </Link>
-          <div className="content__line-position"></div>
-          <Link to={`/categories`}>
-            <button className="content__btn-2">Categories</button>
-          </Link>
-        </div>
+        
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
         <h2 className="content__page-title">Categories</h2>
         <div className="content__list-img">
           {categoriesState.map((product) => (
