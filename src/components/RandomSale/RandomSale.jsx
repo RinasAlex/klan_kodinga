@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { filterSaleProductsForPage } from "@/store/futures/productSlice";
 import ProductCard from "../ProductCard/ProductCard";
+import SmallButton from "../Button/SmallButton/SmallButton";
 
 const RandomSale = () => {
   const dispatch = useDispatch();
@@ -24,12 +25,13 @@ const RandomSale = () => {
   return (
     <div className="sale">
       <div className="container">
+        
         <div className="container__item">
-          <h2 className="container__title">Sale</h2>
-          <div className="container__line"></div>
-          <Link to={"/sales"}>
-            <button className="container__btn">All sales</button>
-          </Link>
+        <SmallButton
+            path="/sales"
+            title="Sale"
+            children={"All sales"}
+          />
         </div>
 
         <div className="container__items">
