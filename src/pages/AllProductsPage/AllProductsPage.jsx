@@ -24,7 +24,7 @@ const AllProductsPage = () => {
           filterByPrice={filterByPriceAllProducts}
           sortBy={sortByAllProducts} />
 
-        <div className="container__list">
+        <div className="container__items">
           {
             data && data.map((product) =>
               <ProductCard key={product.id} product={product} />)

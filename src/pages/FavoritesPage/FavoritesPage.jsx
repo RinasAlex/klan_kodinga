@@ -15,6 +15,8 @@ const FavoritesPage = () => {
 
   const data = filteredProductsFavourite.length > 0 ? filteredProductsFavourite : favourite;
 
+
+  console.log(data)
   return (
     <div className="categories">
       <div className="content">
@@ -35,7 +37,7 @@ const FavoritesPage = () => {
           sortBy={sortByFavourite}
         />
 
-        <div className="content__list">
+        <div className="container__items">
           {
             data && data.map((product, id) =>
               <ProductCard key={id} product={product} />)

@@ -15,6 +15,7 @@ const ProductCard = ({ product: { image, id, title, price, discont_price } }) =>
 
   useEffect(() => {
     let favouriteFound = favourite.find(item => item.id === id);
+    // let favouriteFound = favourite.find(item => item === product?.id);
 
     if (favouriteFound) {
       setIsFavourite(true)
@@ -24,11 +25,15 @@ const ProductCard = ({ product: { image, id, title, price, discont_price } }) =>
   }, [favourite, product])
 
   const discountPercentage = Math.round(((price - discont_price) / price) * 100);
+
+    console.log(image, product)
   
   return (
     <div className="productCard">
       <div className="productCard__top">
-         <Link to={`/productPage/${id}`}>
+         {/* <Link to={`/productPage/${id}`}> */}
+         <Link to={`/productPage/${id}`} state={{ id: id, title: title }}>
+
           <img src={`https://exam-server-5c4e.onrender.com/${image}`} alt="" />
         </Link>
         <div className="productCard__top-container">
@@ -42,7 +47,7 @@ const ProductCard = ({ product: { image, id, title, price, discont_price } }) =>
               isFavourite ? (
                 <IoHeartSharp
                   className={'actions__favourite actions__favourite-active'}
-                onClick={() => dispatch(setFavourite(id))}
+                 onClick={() => dispatch(setFavourite(id))}
                 />
               ) : (
                   <IoHeartOutline
@@ -60,7 +65,8 @@ const ProductCard = ({ product: { image, id, title, price, discont_price } }) =>
 
       <div className="productCard__bottom">
         <h3 className="productCard__bottom-title">
-          <Link to={`/productPage/${id}} state={{ id: id, title: title }`}>{title}</Link>
+         {/* <Link to={`/productPage/${id}`} >{title}</Link> */}
+         <Link to={`/productPage/${id}`} state={{ id: id, title: title }}>{title}</Link>
         </h3>
 
         <div className="productCard__bottom-price-container">

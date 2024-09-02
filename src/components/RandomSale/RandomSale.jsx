@@ -32,7 +32,7 @@ const RandomSale = () => {
           </Link>
         </div>
 
-        <div className="container__list">
+        <div className="container__items">
           {productsRandom &&
             productsRandom.map((product) => (
               <ProductCard key={product.id} product={product} />
