@@ -3,7 +3,7 @@ import "./Categories.scss";
 import CategoryCard from "./CategoryCard";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import SmallButton from "../Button/SmallButton";
+import SmallButton from "../Button/SmallButton/SmallButton";
 
 const Categories = () => {
   const categoriesState = useSelector(
