@@ -18,14 +18,12 @@ export default function CategoriesPage() {
     {
       label: "Categories",
       link: "/categories",
-    }
-    
+    },
   ];
   return (
     <div className="categories">
       <div className="content">
-        
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
         <h2 className="content__page-title">Categories</h2>
         <div className="content__list-img">
           {categoriesState.map((product) => (
