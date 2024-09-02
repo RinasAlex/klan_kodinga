@@ -11,23 +11,26 @@ const Categories = () => {
     (state) => state.categories.categoriesData
     //ф-ция (state) указывает useSelector, какую часть состояния нужно извлечь.
   );
-  //отправляем действие для получения категорий при монтировании компонента
 
   return (
     <div className="categories">
       <div className="container">
         <div className="container__position">
-          <h2 className="container__title">Categories</h2>
-          <div className="smallButton__btn-line"></div>
-          <Link to={`/categories`}>
-            <SmallButton className="primary">All categories</SmallButton>
-          </Link>
+          <SmallButton
+            path="/categories"
+            title="Categories"
+            children={"All categories"}
+          />
         </div>
-
         <div className="container__list">
           {categoriesState.slice(0, 4).map((product) => (
             <CategoryCard key={product.id} {...product} />
           ))}
+        </div>
+        <div className="container__btn-2-position">
+          <Link to={`/categories`}>
+            <button className="container__btn-2">All categories</button>
+          </Link>
         </div>
       </div>
     </div>
