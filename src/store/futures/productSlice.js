@@ -187,6 +187,8 @@ export const productSlice = createSlice({
     getFavouriteFromLocalStorage: state => {
       let favouriteStorage = JSON.parse(localStorage.getItem("favourite"));
 
+      favouriteStorage = favouriteStorage.length > 0 && favouriteStorage.filter(item => item)
+
       if (favouriteStorage) {
         state.favourite = [...favouriteStorage];
       } else {

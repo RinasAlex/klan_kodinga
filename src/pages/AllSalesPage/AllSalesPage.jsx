@@ -38,7 +38,7 @@ const AllSalesPage = () => {
           sortBy={sortBySale}
         />
 
-        <div className="content__list">
+        <div className="container__items">
           {
             filteredProducts && filteredProducts.map((product) =>
               <ProductCard key={product.id} product={product} />)
