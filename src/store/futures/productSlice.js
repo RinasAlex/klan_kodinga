@@ -1,5 +1,48 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+export const sendDiscount = createAsyncThunk("sale/send", async (userData) => {
+  try {
+    const res = await fetch(`https://exam-server-5c4e.onrender.com/sale/send`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export const sendProducts = createAsyncThunk(
+  "order/send",
+  async (userProductsData) => {
+    console.log("userProductsData", userProductsData);
+    try {
+      const res = await fetch(
+        `https://exam-server-5c4e.onrender.com/order/send`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userProductsData),
+        }
+      );
+
+      const data = await res.json();
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const getProducts = createAsyncThunk(
   "products/getProducts",
   async () => {
@@ -41,31 +84,63 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     filterSaleProducts: (state) => {
-      state.filteredProducts = state.products.filter((item) => item.discont_price != null);
+      state.filteredProducts = state.products.filter(
+        (item) => item.discont_price != null
+      );
+    },
+
+    addProduct: (state, { payload }) => {
+      const isUnique = state.cart.every((el) => {
+        if (payload.product) {
+          return payload.product.id !== el.id;
+        }
+        return payload.id !== el.id;
+      });
+      if (isUnique) {
+        if (payload.product) {
+          state.cart.push({
+            ...payload.product,
+            count: payload.currentCount,
+            total_price: payload.product.price * payload.currentCount,
+            discount_total_price:
+              payload.product.discont_price * payload.currentCount,
+          });
+        } else {
+          console.log(payload.count);
+          state.cart.push({
+            ...payload,
+            count: 1,
+            total_price: payload.price,
+            discount_total_price: payload.discont_price,
+          });
+        }
+      }
+      localStorage.setItem("cart", JSON.stringify(state.cart));
+    },
+    getCartFromLocalStorage: (state, cart) => {
+      let cartStorage = JSON.parse(localStorage.getItem("cart"));
+
+      if (cartStorage) {
+        state.cart = [...cartStorage];
+      } else {
+        localStorage.setItem("cart", JSON.stringify([]));
+      }
+      console.log(cart);
     },
 
     incrementProduct: (state, action) => {
-      const isUnique = state.cart.every((el) => action.payload.id !== el.id);
-      if (isUnique) {
-        state.cart.push({
-          ...action.payload,
-          count: 2,
-          total_price: action.payload.price,
-          discount_total_price: action.payload.discont_price,
-        });
-      } else {
-        state.cart = state.cart.map((el) => {
-          if (action.payload.id === el.id) {
-            return {
-              ...el,
-              count: ++el.count,
-              total_price: el.price * el.count,
-              discount_total_price: el.discont_price * el.count,
-            };
-          }
-          return el;
-        });
-      }
+      state.cart = state.cart.map((el) => {
+        if (action.payload.id === el.id) {
+          return {
+            ...el,
+            count: ++el.count,
+            total_price: el.price * el.count,
+            discount_total_price: el.discont_price * el.count,
+          };
+        }
+        return el;
+      });
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
 
     decrementProduct: (state, action) => {
@@ -80,14 +155,22 @@ export const productSlice = createSlice({
         }
         return el;
       });
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
 
     removeProduct: (state, action) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
     },
 
+    clearCart: (state, action) => {
+      state.cart = [];
+    },
+
     sortBy: (state, { payload }) => {
-      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.products;
+      const data =
+        state.filteredProducts.length > 0
+          ? state.filteredProducts
+          : state.products;
 
       if (payload.value === "price-low-high") {
         state.filteredProducts = [...data].sort((a, b) => a.price - b.price);
@@ -99,34 +182,37 @@ export const productSlice = createSlice({
     },
 
     filterByPrice: (state, { payload }) => {
-      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.products;
+      const data =
+        state.filteredProducts.length > 0
+          ? state.filteredProducts
+          : state.products;
 
       const { minPrice, maxPrice } = payload;
 
-      state.filteredProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+      state.filteredProducts = data.filter(
+        (item) => item.price >= minPrice && item.price <= maxPrice
+      );
     },
 
     setFavourite: (state, { payload }) => {
-      let foundFavourite = state.favourite.find(item => item === payload);
+      let foundFavourite = state.favourite.find((item) => item === payload);
 
       if (foundFavourite) {
-        state.favourite = state.favourite.filter(item => item !== payload);
+        state.favourite = state.favourite.filter((item) => item !== payload);
       } else {
-        state.favourite.push(payload)
+        state.favourite.push(payload);
       }
 
-      localStorage.setItem("favourite", JSON.stringify(state.favourite))
+      localStorage.setItem("favourite", JSON.stringify(state.favourite));
     },
 
-
-
-    getFavouriteFromLocalStorage: state => {
+    getFavouriteFromLocalStorage: (state) => {
       let favouriteStorage = JSON.parse(localStorage.getItem("favourite"));
 
       if (favouriteStorage) {
         state.favourite = [...favouriteStorage];
       } else {
-        localStorage.setItem("favourite", JSON.stringify([]))
+        localStorage.setItem("favourite", JSON.stringify([]));
       }
     },
   },
@@ -155,6 +241,28 @@ export const productSlice = createSlice({
       .addCase(fetchProductsById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(sendProducts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(sendProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(action.payload);
+      })
+      .addCase(sendProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(sendDiscount.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(sendDiscount.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(action.payload);
+      })
+      .addCase(sendDiscount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
@@ -164,9 +272,13 @@ export const {
   sortBy,
   filterByPrice,
   setFavourite,
+  getCartFromLocalStorage,
   getFavouriteFromLocalStorage,
   incrementProduct,
-  decrementProduct
+  decrementProduct,
+  removeProduct,
+  addProduct,
+  clearCart,
 } = productSlice.actions;
 
 export default productSlice.reducer;

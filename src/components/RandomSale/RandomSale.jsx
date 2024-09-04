@@ -18,7 +18,7 @@ const RandomSale = () => {
       ? [...filteredProducts].sort(() => 0.5 - Math.random()).slice(0, count)
       : [];
   };
-
+  console.log(filteredProducts);
   const productsRandom = getRandomProducts(filteredProducts, 4);
 
   return (
@@ -35,7 +35,7 @@ const RandomSale = () => {
         <div className="container__list">
           {productsRandom &&
             productsRandom.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.id} currentProduct={product} />
             ))}
         </div>
         <div className="container__btn-2-position">

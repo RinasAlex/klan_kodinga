@@ -1,37 +1,31 @@
-import React from 'react'
-import './AllProductsPage.scss'
-import { useSelector } from 'react-redux';
-import ProductCard from '../../components/ProductCard/ProductCard';
-import Filtration from '../../components/Filtration/Filtration';
+import React from "react";
+import "./AllProductsPage.scss";
+import { useSelector } from "react-redux";
+import ProductCard from "../../components/ProductCard/ProductCard";
+import Filtration from "../../components/Filtration/Filtration";
 
 const AllProductsPage = () => {
-
-
-  const { products, loading } = useSelector(state => state.products);
+  const { products, loading } = useSelector((state) => state.products);
   if (loading) {
-    return "Loading ...."
+    return "Loading ....";
   }
 
   return (
     <div className="allProducts">
       <div className="container">
         <div className="filterForm"></div>
-        <h2 className='container__title'>All products</h2>
-        <Filtration disabledDiscount={false} /> 
+        <h2 className="container__title">All products</h2>
+        <Filtration disabledDiscount={false} />
 
         <div className="container__list">
-          {
-            products && products.map((product) =>
-              <ProductCard key={product.id} product={product} />)
-          }
+          {products &&
+            products.map((product) => (
+              <ProductCard key={product.id} currentProduct={product} />
+            ))}
         </div>
       </div>
-
-
     </div>
+  );
+};
 
-
-  )
-}
-
-export default AllProductsPage
+export default AllProductsPage;

@@ -35,12 +35,12 @@ export default function ProductsFromCategory() {
           </Link>
         </div>
         <h2 className="container__title">{category?.title}</h2>
-        <Filtration disabledDiscount={false} /> 
+        <Filtration disabledDiscount={false} />
 
         <div className="container__items">
           {products &&
             products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.id} currentProduct={product} />
             ))}
         </div>
       </div>
