@@ -6,7 +6,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi2"
 import { useDispatch, useSelector } from 'react-redux';
 import { setFavourite } from '../../store/futures/productSlice';
 
-const ProductCard = ({ product: { image, id, title, price, discont_price } }) => {
+const ProductCard = ({ product: { image, id, title, price, discont_price }, isCartHidden }) => {
   const dispatch = useDispatch();
 
   const { product, favourite } = useSelector(state => state.products);
@@ -15,7 +15,6 @@ const ProductCard = ({ product: { image, id, title, price, discont_price } }) =>
 
   useEffect(() => {
     let favouriteFound = favourite.find(item => item.id === id);
-    // let favouriteFound = favourite.find(item => item === product?.id);
 
     if (favouriteFound) {
       setIsFavourite(true)
@@ -26,13 +25,12 @@ const ProductCard = ({ product: { image, id, title, price, discont_price } }) =>
 
   const discountPercentage = Math.round(((price - discont_price) / price) * 100);
 
-    console.log(image, product)
+
   
   return (
     <div className="productCard">
       <div className="productCard__top">
-         {/* <Link to={`/productPage/${id}`}> */}
-         <Link to={`/productPage/${id}`} state={{ id: id, title: title }}>
+         <Link to={`/productPage/${id}`}>
 
           <img src={`https://exam-server-5c4e.onrender.com/${image}`} alt="" />
         </Link>
@@ -56,8 +54,12 @@ const ProductCard = ({ product: { image, id, title, price, discont_price } }) =>
                   />
               )
             }
+
+            {
+              !isCartHidden && <HiOutlineShoppingBag className='actions__cart' />
+            }
             
-            <HiOutlineShoppingBag className='actions__cart' />
+            
 
           </div>
         </div>
@@ -65,8 +67,7 @@ const ProductCard = ({ product: { image, id, title, price, discont_price } }) =>
 
       <div className="productCard__bottom">
         <h3 className="productCard__bottom-title">
-         {/* <Link to={`/productPage/${id}`} >{title}</Link> */}
-         <Link to={`/productPage/${id}`} state={{ id: id, title: title }}>{title}</Link>
+         <Link to={`/productPage/${id}`} >{title}</Link>
         </h3>
 
         <div className="productCard__bottom-price-container">

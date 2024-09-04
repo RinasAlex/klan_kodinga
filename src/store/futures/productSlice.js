@@ -65,26 +65,36 @@ export const productSlice = createSlice({
     },
 
     incrementProduct: (state, action) => {
-      const isUnique = state.cart.every((el) => action.payload.id !== el.id);
-      if (isUnique) {
-        state.cart.push({
-          ...action.payload,
-          count: 2,
-          total_price: action.payload.price,
-          discount_total_price: action.payload.discont_price,
-        });
-      } else {
-        state.cart = state.cart.map((el) => {
-          if (action.payload.id === el.id) {
-            return {
-              ...el,
-              count: ++el.count,
-              total_price: el.price * el.count,
-              discount_total_price: el.discont_price * el.count,
-            };
-          }
-          return el;
-        });
+      // const isUnique = state.cart.every((el) => action.payload.id !== el.id);
+
+      // if (isUnique) {
+      //   state.cart.push({
+      //     ...action.payload,
+      //     count: 2,
+      //     total_price: action.payload.price,
+      //     discount_total_price: action.payload.discont_price,
+      //   });
+      // } else {
+      //   state.cart = state.cart.map((el) => {
+      //     if (action.payload.id === el.id) {
+      //       return {
+      //         ...el,
+      //         count: ++el.count,
+      //         total_price: el.price * el.count,
+      //         discount_total_price: el.discont_price * el.count,
+      //       };
+      //     }
+      //     return el;
+      //   });
+      // }
+
+      const findProduct = state.cart.find((el) => action.payload.id === el.id);
+
+
+      if(findProduct){
+
+      }else {
+        state.cart.push({...action.payload, count: 1})
       }
     },
 
@@ -173,6 +183,9 @@ export const productSlice = createSlice({
 
         // 2. Если есть, то удаляем его
         state.favourite = state.favourite.filter(item => item.id !== payload);
+
+         // 2. Если есть, то удаляем его
+         state.filteredProductsFavourite = state.filteredProductsFavourite.filter(item => item.id !== payload);
       } else {
         // 3. Если нет, то добавляем
         let foundFavourite = state.products.find(item => item.id === payload);
@@ -215,7 +228,7 @@ export const productSlice = createSlice({
       })
       .addCase(fetchProductsById.fulfilled, (state, action) => {
         state.loading = false;
-        state.product = action.payload;
+        state.product = action.payload[0];
       })
       .addCase(fetchProductsById.rejected, (state, action) => {
         state.loading = false;

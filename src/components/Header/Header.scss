@@ -110,10 +110,13 @@
         justify-content: center;
         border-radius: 4px;
         color: #fff;
+        cursor: pointer;
+        border: none;
       }
 
       .discount_menu {
         display: none;
+        cursor: pointer;
       }
 
       .link__container {
