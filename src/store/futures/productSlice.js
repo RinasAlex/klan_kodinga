@@ -73,6 +73,8 @@ const initialState = {
   products: [],
   cart: [],
   filteredProducts: [],
+  filteredAllProducts: [],
+  filteredProductsFavourite: [],
   favourite: [],
   product: null,
   loading: false,
@@ -83,10 +85,26 @@ export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    filterSaleProducts: (state) => {
-      state.filteredProducts = state.products.filter(
-        (item) => item.discont_price != null
-      );
+    filterSaleProductsForPage: (state) => {
+      state.filteredProducts = state.products.filter((item) => item.discont_price != null);
+    },
+
+    filterSaleProducts: (state, { payload }) => {
+
+      if (payload.value) {
+        state.filteredAllProducts = [...state.products].filter((item) => item.discont_price != null);
+      } else {
+        state.filteredAllProducts = state.products;
+      }
+    },
+
+    filterSaleProductsFavourite: (state, { payload }) => {
+
+      if (payload.value) {
+        state.filteredProductsFavourite = [...state.favourite].filter((item) => item.discont_price != null);
+      } else {
+        state.filteredProductsFavourite = state.favourite;
+      }
     },
 
     addProduct: (state, { payload }) => {
@@ -166,11 +184,8 @@ export const productSlice = createSlice({
       state.cart = [];
     },
 
-    sortBy: (state, { payload }) => {
-      const data =
-        state.filteredProducts.length > 0
-          ? state.filteredProducts
-          : state.products;
+    sortBySale: (state, { payload }) => {
+      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.products;
 
       if (payload.value === "price-low-high") {
         state.filteredProducts = [...data].sort((a, b) => a.price - b.price);
@@ -181,11 +196,32 @@ export const productSlice = createSlice({
       }
     },
 
-    filterByPrice: (state, { payload }) => {
-      const data =
-        state.filteredProducts.length > 0
-          ? state.filteredProducts
-          : state.products;
+    sortByAllProducts: (state, { payload }) => {
+      const data = state.filteredAllProducts.length > 0 ? state.filteredAllProducts : state.products;
+
+      if (payload.value === "price-low-high") {
+        state.filteredAllProducts = [...data].sort((a, b) => a.price - b.price);
+      } else if (payload.value === "price-high-low") {
+        state.filteredAllProducts = [...data].sort((a, b) => b.price - a.price);
+      } else {
+        state.filteredAllProducts = [...data].sort((a, b) => a.id - b.id);
+      }
+    },
+
+    sortByFavourite: (state, { payload }) => {
+      const data = state.filteredProductsFavourite.length > 0 ? state.filteredProductsFavourite : state.favourite;
+
+      if (payload.value === "price-low-high") {
+        state.filteredProductsFavourite = [...data].sort((a, b) => a.price - b.price);
+      } else if (payload.value === "price-high-low") {
+        state.filteredProductsFavourite = [...data].sort((a, b) => b.price - a.price);
+      } else {
+        state.filteredProductsFavourite = [...data].sort((a, b) => a.id - b.id);
+      }
+    },
+
+    filterByPriceSale: (state, { payload }) => {
+      const data = state.filteredProducts.length > 0 ? state.filteredProducts : state.products;
 
       const { minPrice, maxPrice } = payload;
 
@@ -194,20 +230,63 @@ export const productSlice = createSlice({
       );
     },
 
-    setFavourite: (state, { payload }) => {
-      let foundFavourite = state.favourite.find((item) => item === payload);
+    filterByPriceAllProducts: (state, { payload }) => {
+      const data = state.filteredAllProducts.length > 0 ? state.filteredAllProducts : state.products;
 
-      if (foundFavourite) {
-        state.favourite = state.favourite.filter((item) => item !== payload);
+      const { minPrice, maxPrice } = payload;
+
+      state.filteredAllProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+    },
+
+    filterByPriceFavourite: (state, { payload }) => {
+      const data = state.filteredProductsFavourite.length > 0 ? state.filteredProductsFavourite : state.favourite;
+
+      const { minPrice, maxPrice } = payload;
+
+      state.filteredProductsFavourite = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+    },
+
+    filterByPriceAllProducts: (state, { payload }) => {
+      const data = state.filteredAllProducts.length > 0 ? state.filteredAllProducts : state.products;
+
+      const { minPrice, maxPrice } = payload;
+
+      state.filteredAllProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+    },
+
+    filterByPriceFavourite: (state, { payload }) => {
+      const data = state.filteredProductsFavourite.length > 0 ? state.filteredProductsFavourite : state.favourite;
+
+      const { minPrice, maxPrice } = payload;
+
+      state.filteredProductsFavourite = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+    },
+
+    setFavourite: (state, { payload }) => {
+
+      // 1. Проверяем есть ли товар в избранном
+      if (state.favourite.find(item => item.id === payload)) {
+
+        // 2. Если есть, то удаляем его
+        state.favourite = state.favourite.filter(item => item.id !== payload);
+
+         // 2. Если есть, то удаляем его
+         state.filteredProductsFavourite = state.filteredProductsFavourite.filter(item => item.id !== payload);
       } else {
-        state.favourite.push(payload);
+        // 3. Если нет, то добавляем
+        let foundFavourite = state.products.find(item => item.id === payload);
+
+        // 4. Добавляем товар в избранное
+        state.favourite.push(foundFavourite)
       }
 
       localStorage.setItem("favourite", JSON.stringify(state.favourite));
     },
 
-    getFavouriteFromLocalStorage: (state) => {
+    getFavouriteFromLocalStorage: state => {
       let favouriteStorage = JSON.parse(localStorage.getItem("favourite"));
+
+      favouriteStorage = favouriteStorage.length > 0 && favouriteStorage.filter(item => item)
 
       if (favouriteStorage) {
         state.favourite = [...favouriteStorage];
@@ -225,7 +304,6 @@ export const productSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload;
-        state.sortedProducts = action.payload;
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.loading = false;
@@ -236,7 +314,7 @@ export const productSlice = createSlice({
       })
       .addCase(fetchProductsById.fulfilled, (state, action) => {
         state.loading = false;
-        state.product = action.payload;
+        state.product = action.payload[0];
       })
       .addCase(fetchProductsById.rejected, (state, action) => {
         state.loading = false;
@@ -268,9 +346,15 @@ export const productSlice = createSlice({
 });
 
 export const {
+  filterSaleProductsForPage,
   filterSaleProducts,
-  sortBy,
-  filterByPrice,
+  filterSaleProductsFavourite,
+  sortBySale,
+  sortByAllProducts,
+  sortByFavourite,
+  filterByPriceSale,
+  filterByPriceAllProducts,
+  filterByPriceFavourite,
   setFavourite,
   getCartFromLocalStorage,
   getFavouriteFromLocalStorage,

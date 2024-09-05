@@ -36,12 +36,10 @@ const App = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/productPage/:id" element={<ProductPage />} />
-          <Route
-            path="/categories/:categoryId"
-            element={<ProductsFromCategory />}
-          />
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/categories/:categoryId" element={<ProductsFromCategory />} />
+          <Route path="/favourites" element={<FavoritesPage />} />
           <Route path="/cartEmpty" element={<CartPageEmpty />} />
+
         </Route>
       </Routes>
     </>

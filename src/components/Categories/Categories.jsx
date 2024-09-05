@@ -2,27 +2,26 @@ import React from "react";
 import "./Categories.scss";
 import CategoryCard from "./CategoryCard";
 import { Link } from "react-router-dom";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import SmallButton from "../Button/SmallButton/SmallButton";
 
 const Categories = () => {
-    const categoriesState = useSelector(
+  const categoriesState = useSelector(
     //извлекаем данные из состояния хранилища
     (state) => state.categories.categoriesData
     //ф-ция (state) указывает useSelector, какую часть состояния нужно извлечь.
   );
-  //отправляем действие для получения категорий при монтировании компонента
-  
+
   return (
     <div className="categories">
       <div className="container">
         <div className="container__position">
-          <h2 className="container__title">Categories</h2>
-          <div className="container__line"></div>
-          <Link to={`/categories`}>
-            <button className="container__btn">All categories</button>
-          </Link>
+          <SmallButton
+            path="/categories"
+            title="Categories"
+            children={"All categories"}
+          />
         </div>
-
         <div className="container__list">
           {categoriesState.slice(0, 4).map((product) => (
             <CategoryCard key={product.id} {...product} />

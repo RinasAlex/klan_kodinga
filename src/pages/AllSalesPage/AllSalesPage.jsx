@@ -1,23 +1,21 @@
-import React, { useEffect } from "react";
-import "./AllSalesPage.scss";
-import ProductCard from "@/components/ProductCard/ProductCard";
-import { useDispatch, useSelector } from "react-redux";
-import { filterSaleProducts } from "@/store/futures/productSlice";
-import { Link } from "react-router-dom";
-import Filtration from "@/components/Filtration/Filtration";
+import React, { useEffect } from 'react'
+import './AllSalesPage.scss'
+import ProductCard from '@/components/ProductCard/ProductCard'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Filtration from '@/components/Filtration/Filtration';
+import { filterByPriceSale, sortBySale, filterSaleProductsForPage } from '@/store/futures/productSlice';
 
 const AllSalesPage = () => {
   const dispatch = useDispatch();
-  const { filteredProducts, loading, products } = useSelector(
-    (state) => state.products
-  );
+  const { filteredProducts, loading, products } = useSelector(state => state.products);
 
   useEffect(() => {
-    dispatch(filterSaleProducts());
+    dispatch(filterSaleProductsForPage());
   }, [products, dispatch]);
 
   if (loading) {
-    return "Loading ....";
+    return "Loading ...."
   }
 
   return (
@@ -33,16 +31,22 @@ const AllSalesPage = () => {
           </Link>
         </div>
         <h2 className="content__page-title">Discounted items</h2>
-        <Filtration disabledDiscount={true} />
-        <div className="content__list">
-          {filteredProducts &&
-            filteredProducts.map((product) => (
-              <ProductCard key={product.id} currentProduct={product} />
-            ))}
+
+        <Filtration
+          disabledDiscount={false}
+          filterByPrice={filterByPriceSale}
+          sortBy={sortBySale}
+        />
+
+        <div className="container__items">
+          {
+            filteredProducts && filteredProducts.map((product) =>
+              <ProductCard key={product.id} product={product} />)
+          }
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default AllSalesPage;
+export default AllSalesPage

@@ -27,14 +27,13 @@
       line-height: 70.4px;
       font-weight: 700;
       color: #424436;
-      margin-top: 40px;
+      margin-top: 20px;
       display: flex;
     }
 
     &__items {
       margin-top: 40px;
       display: grid;
-      // grid-template-columns: repeat(4, 1fr);
       grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
       gap: 32px;
     }
@@ -42,7 +41,6 @@
     @media (max-width: 1000px) {
       &__items {
         display: grid;
-        // grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
         width: 100%;
@@ -69,19 +67,18 @@
         line-height: 52.8px;
       }
 
-      &__breadcrumbs {
+      .breadcrumbs {
         &__line {
           display: none;
         }
-        .primary,
-        .secondary-active {
+        &-link,
+        &-link-active {
           display: none;
         }
       }
       &__items {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        // grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
         gap: 20px;
         width: 100%;
       }
@@ -100,13 +97,10 @@
       &__items {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        // justify-content: center;
-        // align-items: center;
-        // width: 100%;
         gap: 20px;
       }
-      .primary,
-      .secondary-active {
+      &-link,
+      &-link-active {
         display: none;
       }
     }
