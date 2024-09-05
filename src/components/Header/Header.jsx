@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./Header.scss";
 import logo from "@/assets/headerImages/logo.svg";
 import heart from "@/assets/headerImages/heart.svg";
-import cart from "@/assets/headerImages/cart.svg";
 import sun from "@/assets/headerImages/sun.svg";
 import moon from "@/assets/headerImages/moon.svg";
+import cartBag from "@/assets/headerImages/cart.svg";
 import Burger from "./Burger";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -15,6 +15,8 @@ function Header() {
   const [showModal, setShowModal] = useState(false);
 
   const { favourite } = useSelector(state => state.products);
+
+  const { cart } = useSelector((state) => state.products);
 
   return (
     <nav className="navbar__container">
@@ -78,8 +80,9 @@ function Header() {
 
             <span>{favourite.length}</span>
           </NavLink>
-          <NavLink to={"/cart"}>
-            <img className="cart" src={cart} alt="" />
+          <NavLink className="cart__container" to={"/cart"}>
+            <img className="cart" src={cartBag} alt="" />
+            <p className="length">{cart.length}</p>
           </NavLink>
         </div>
       </div>

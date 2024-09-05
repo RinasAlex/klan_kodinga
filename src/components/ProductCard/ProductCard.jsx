@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2"
 import { useDispatch, useSelector } from 'react-redux';
-import { setFavourite } from '../../store/futures/productSlice';
+import { addProduct, setFavourite } from '../../store/futures/productSlice';
 
 const ProductCard = ({ product: { image, id, title, price, discont_price }, isCartHidden }) => {
   const dispatch = useDispatch();
@@ -17,14 +17,17 @@ const ProductCard = ({ product: { image, id, title, price, discont_price }, isCa
     let favouriteFound = favourite.find(item => item.id === id);
 
     if (favouriteFound) {
-      setIsFavourite(true)
+      setIsFavourite(true);
     } else {
-      setIsFavourite(false)
+      setIsFavourite(false);
     }
-  }, [favourite, product])
+  }, [favourite, product]);
 
   const discountPercentage = Math.round(((price - discont_price) / price) * 100);
 
+  const addToCart = (item) => {
+    dispatch(addProduct(item));
+  };
 
   
   return (
@@ -56,7 +59,7 @@ const ProductCard = ({ product: { image, id, title, price, discont_price }, isCa
             }
 
             {
-              !isCartHidden && <HiOutlineShoppingBag className='actions__cart' />
+              !isCartHidden && <HiOutlineShoppingBag className='actions__cart' onClick={() => addToCart(currentProduct)} />
             }
             
             

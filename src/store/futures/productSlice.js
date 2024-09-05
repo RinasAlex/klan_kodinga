@@ -1,5 +1,48 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+export const sendDiscount = createAsyncThunk("sale/send", async (userData) => {
+  try {
+    const res = await fetch(`https://exam-server-5c4e.onrender.com/sale/send`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export const sendProducts = createAsyncThunk(
+  "order/send",
+  async (userProductsData) => {
+    console.log("userProductsData", userProductsData);
+    try {
+      const res = await fetch(
+        `https://exam-server-5c4e.onrender.com/order/send`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userProductsData),
+        }
+      );
+
+      const data = await res.json();
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const getProducts = createAsyncThunk(
   "products/getProducts",
   async () => {
@@ -64,38 +107,58 @@ export const productSlice = createSlice({
       }
     },
 
-    incrementProduct: (state, action) => {
-      // const isUnique = state.cart.every((el) => action.payload.id !== el.id);
-
-      // if (isUnique) {
-      //   state.cart.push({
-      //     ...action.payload,
-      //     count: 2,
-      //     total_price: action.payload.price,
-      //     discount_total_price: action.payload.discont_price,
-      //   });
-      // } else {
-      //   state.cart = state.cart.map((el) => {
-      //     if (action.payload.id === el.id) {
-      //       return {
-      //         ...el,
-      //         count: ++el.count,
-      //         total_price: el.price * el.count,
-      //         discount_total_price: el.discont_price * el.count,
-      //       };
-      //     }
-      //     return el;
-      //   });
-      // }
-
-      const findProduct = state.cart.find((el) => action.payload.id === el.id);
-
-
-      if(findProduct){
-
-      }else {
-        state.cart.push({...action.payload, count: 1})
+    addProduct: (state, { payload }) => {
+      const isUnique = state.cart.every((el) => {
+        if (payload.product) {
+          return payload.product.id !== el.id;
+        }
+        return payload.id !== el.id;
+      });
+      if (isUnique) {
+        if (payload.product) {
+          state.cart.push({
+            ...payload.product,
+            count: payload.currentCount,
+            total_price: payload.product.price * payload.currentCount,
+            discount_total_price:
+              payload.product.discont_price * payload.currentCount,
+          });
+        } else {
+          console.log(payload.count);
+          state.cart.push({
+            ...payload,
+            count: 1,
+            total_price: payload.price,
+            discount_total_price: payload.discont_price,
+          });
+        }
       }
+      localStorage.setItem("cart", JSON.stringify(state.cart));
+    },
+    getCartFromLocalStorage: (state, cart) => {
+      let cartStorage = JSON.parse(localStorage.getItem("cart"));
+
+      if (cartStorage) {
+        state.cart = [...cartStorage];
+      } else {
+        localStorage.setItem("cart", JSON.stringify([]));
+      }
+      console.log(cart);
+    },
+
+    incrementProduct: (state, action) => {
+      state.cart = state.cart.map((el) => {
+        if (action.payload.id === el.id) {
+          return {
+            ...el,
+            count: ++el.count,
+            total_price: el.price * el.count,
+            discount_total_price: el.discont_price * el.count,
+          };
+        }
+        return el;
+      });
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
 
     decrementProduct: (state, action) => {
@@ -110,10 +173,15 @@ export const productSlice = createSlice({
         }
         return el;
       });
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
 
     removeProduct: (state, action) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
+    },
+
+    clearCart: (state, action) => {
+      state.cart = [];
     },
 
     sortBySale: (state, { payload }) => {
@@ -157,7 +225,25 @@ export const productSlice = createSlice({
 
       const { minPrice, maxPrice } = payload;
 
-      state.filteredProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+      state.filteredProducts = data.filter(
+        (item) => item.price >= minPrice && item.price <= maxPrice
+      );
+    },
+
+    filterByPriceAllProducts: (state, { payload }) => {
+      const data = state.filteredAllProducts.length > 0 ? state.filteredAllProducts : state.products;
+
+      const { minPrice, maxPrice } = payload;
+
+      state.filteredAllProducts = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
+    },
+
+    filterByPriceFavourite: (state, { payload }) => {
+      const data = state.filteredProductsFavourite.length > 0 ? state.filteredProductsFavourite : state.favourite;
+
+      const { minPrice, maxPrice } = payload;
+
+      state.filteredProductsFavourite = data.filter(item => item.price >= minPrice && item.price <= maxPrice)
     },
 
     filterByPriceAllProducts: (state, { payload }) => {
@@ -194,7 +280,7 @@ export const productSlice = createSlice({
         state.favourite.push(foundFavourite)
       }
 
-      localStorage.setItem("favourite", JSON.stringify(state.favourite))
+      localStorage.setItem("favourite", JSON.stringify(state.favourite));
     },
 
     getFavouriteFromLocalStorage: state => {
@@ -205,7 +291,7 @@ export const productSlice = createSlice({
       if (favouriteStorage) {
         state.favourite = [...favouriteStorage];
       } else {
-        localStorage.setItem("favourite", JSON.stringify([]))
+        localStorage.setItem("favourite", JSON.stringify([]));
       }
     },
   },
@@ -233,6 +319,28 @@ export const productSlice = createSlice({
       .addCase(fetchProductsById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(sendProducts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(sendProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(action.payload);
+      })
+      .addCase(sendProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(sendDiscount.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(sendDiscount.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(action.payload);
+      })
+      .addCase(sendDiscount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
@@ -248,9 +356,13 @@ export const {
   filterByPriceAllProducts,
   filterByPriceFavourite,
   setFavourite,
+  getCartFromLocalStorage,
   getFavouriteFromLocalStorage,
   incrementProduct,
-  decrementProduct
+  decrementProduct,
+  removeProduct,
+  addProduct,
+  clearCart,
 } = productSlice.actions;
 
 export default productSlice.reducer;
