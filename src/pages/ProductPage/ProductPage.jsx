@@ -18,6 +18,7 @@ function ProductPage() {
   const [readMore, setReadMore] = useState(false);
   const [productInCart, setProductInCart] = useState(false);
   let [count, setCount] = useState(1);
+  let [modal, setModal] = useState(false);
 
   const styleDiscription = {
     display: readMore ? "block" : "-webkit-box",
@@ -58,6 +59,8 @@ function ProductPage() {
       setCount(--count);
     }
   };
+  const openModal = () => setModal(true);
+  const closeModal = () => setModal(false);
 
   const price = product
     ? Math.floor(product?.total_price * 100) / 100
@@ -93,10 +96,21 @@ function ProductPage() {
             </div>
             <div className="product__box">
               <img
+                onClick={openModal}
                 className="product__img"
                 src={`https://exam-server-5c4e.onrender.com/${product?.image}`}
                 alt=""
               />
+              <div
+                onClick={closeModal}
+                className={modal ? "modal__container__img" : "close__window"}
+              >
+                <img
+                  className="modal__window__img"
+                  src={`https://exam-server-5c4e.onrender.com/${product?.image}`}
+                  alt=""
+                />
+              </div>
               <div className="info__container">
                 <div className="title__heart">
                   <h3 className="title">{product?.title}</h3>
@@ -105,17 +119,14 @@ function ProductPage() {
                 <div className="price__container">
                   {product?.discont_price ? (
                     <>
-                      <p className="price">
-                        {" "}
-                        $ {product.discont_price * count}
-                      </p>
+                      <p className="price"> ${product.discont_price * count}</p>
                       <p className="discount__price">
-                        $ {product?.price * count}
+                        ${product?.price * count}
                       </p>
                       <div className="sale">-${salePercent}%</div>
                     </>
                   ) : (
-                    <p className="price"> $ {product.price * count} </p>
+                    <p className="price"> ${product.price * count} </p>
                   )}
                 </div>
                 <p>{product.price_discont}</p>
