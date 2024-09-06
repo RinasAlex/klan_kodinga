@@ -4,6 +4,7 @@ import productSlice, {
   fetchProductsById,
   incrementProduct,
   decrementProduct,
+  addProduct,
 } from "../../store/futures/productSlice";
 import { NavLink, useParams } from "react-router-dom";
 import "./ProductPage.scss";
@@ -16,6 +17,7 @@ function ProductPage() {
 
   const [readMore, setReadMore] = useState(false);
   const [productInCart, setProductInCart] = useState(false);
+  let [count, setCount] = useState(1);
 
   const styleDiscription = {
     display: readMore ? "block" : "-webkit-box",
@@ -44,15 +46,17 @@ function ProductPage() {
   if (loading) {
     return <div>Loading...</div>;
   }
-
-  // let [currentProduct] = productInCart;
-
   const addToCart = (item) => {
-    dispatch(incrementProduct(item));
+    dispatch(addProduct({ product: item, count }));
   };
 
-  const counterDecrement = (item) => {
-    dispatch(decrementProduct(item));
+  const counterIncrement = () => {
+    setCount(++count);
+  };
+  const counterDecrement = () => {
+    if (count > 0) {
+      setCount(--count);
+    }
   };
 
   const price = product
@@ -101,28 +105,27 @@ function ProductPage() {
                 <div className="price__container">
                   {product?.discont_price ? (
                     <>
-                      <p className="price"> $ {product.discont_price} </p>
-                      <p className="discount__price">$ {product?.price}</p>
+                      <p className="price">
+                        {" "}
+                        $ {product.discont_price * count}
+                      </p>
+                      <p className="discount__price">
+                        $ {product?.price * count}
+                      </p>
                       <div className="sale">-${salePercent}%</div>
                     </>
                   ) : (
-                    <p className="price"> $ {product.price} </p>
+                    <p className="price"> $ {product.price * count} </p>
                   )}
                 </div>
                 <p>{product.price_discont}</p>
                 <div className="counter__container">
                   <div className="counter__box">
-                    <button
-                      onClick={() => counterDecrement(product)}
-                      className="counter__btn"
-                    >
+                    <button onClick={counterDecrement} className="counter__btn">
                       -
                     </button>
-                    {product ? product.count : 1}
-                    <button
-                      onClick={() => addToCart(product)}
-                      className="counter__btn"
-                    >
+                    {count}
+                    <button onClick={counterIncrement} className="counter__btn">
                       +
                     </button>
                   </div>
