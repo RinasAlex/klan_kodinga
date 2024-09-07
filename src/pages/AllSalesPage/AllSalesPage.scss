@@ -18,45 +18,45 @@
     }
 
     &__btn-1 {
-      font-weight: 500;
-      font-size: 16px;
-      padding: 8px 16px;
-      color: #8b8b8b;
-      border: 1px solid #dddddd;
-      border-radius: 6px;
+      font-weight: nav.$font-weight-medium;
+      font-size: nav.$button-default-font-size;
+      padding: nav.$button-small-size;
+      color: nav.$color-dark-3;
+      border: 1px solid nav.$color-dark-4;
+      border-radius: nav.$border-radius-small;
       background-color: nav.$color-light-1;
       margin-bottom: 15px;
       padding-right: 10px;
-      gap: 10px;
+      gap: nav.$content-size-gap-smallest;
     }
 
     &__line-position {
-      border-top: 1px solid #dddddd;
+      border-top: 1px solid nav.$color-dark-4;
       flex-grow: 1;
-      margin-top: -15px;
+      margin-bottom: 15px;
     }
 
     &__btn-2 {
-      font-weight: 500;
-      font-size: 16px;
-      padding: 8px 16px;
-      border: 1px solid #dddddd;
-      border-radius: 6px;
+      font-weight: nav.$font-weight-medium;
+      font-size: nav.$button-default-font-size;
+      padding: nav.$button-small-size;
+      border: 1px solid nav.$color-dark-4;
+      border-radius: nav.$border-radius-small;
       background-color: nav.$color-light-1;
       margin-bottom: 15px;
       padding-right: 10px;
-      color: #424436;
+      color: nav.$color-dark-2;
     }
 
     &__page-title {
-      color: #424436;
-      font-size: 64px;
-      font-weight: 700;
+      color: nav.$color-dark-2;
+      font-size: nav.$font-size-title-big;
+      font-weight: nav.$font-weight-bold;
       padding: 0px 10px 40px 0;
       margin-top: 7px;
       display: flex;
     }
-    
+
     &__list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
@@ -65,13 +65,13 @@
 
     @media (max-width: 768px) {
       &__page-title {
-        font-size: 56px;
+        font-size: nav.$font-size-title-medium;
       }
     }
 
     @media (max-width: 480px) {
       &__title {
-        font-size: 48px;
+        font-size: nav.$font-size-title-deafult;
       }
 
       &__btn-1 {
@@ -89,7 +89,7 @@
 
     @media (max-width: 360px) {
       &__title {
-        font-size: 40px;
+        font-size: nav.$font-size-title-smallest;
       }
 
       &__btn-1 {

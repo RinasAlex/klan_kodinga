@@ -14,9 +14,9 @@
     .cart_product__container {
       display: flex;
       width: 100%;
-      border: 1px solid #dddddd;
+      border: 1px solid nav.$color-dark-4;
       column-gap: 32px;
-      border-radius: 12px;
+      border-radius: nav.$item-radius-big;
       .img {
         width: 200px;
         height: 180px;
@@ -25,14 +25,14 @@
       .info__container {
         display: flex;
         flex-direction: column;
-        gap: 32px;
+        gap: nav.$content-size-gap-large;
         padding: 32px 32px 32px 0;
         .title__box {
           display: flex;
           justify-content: space-between;
           .title {
-            font-size: 20px;
-            font-weight: 500;
+            font-size: nav.$font-size-content-big;
+            font-weight: nav.$font-weight-medium;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -44,41 +44,41 @@
         }
         .price__container {
           display: flex;
-          gap: 32px;
+          gap: nav.$content-size-gap-large;
           justify-content: space-between;
           .counter__container {
             display: flex;
 
             align-items: center;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
+            border: 1px solid nav.$color-dark-4;
+            border-radius: nav.$item-radius-small;
             width: 164px;
             height: 58px;
             justify-content: space-between;
             font-size: 20px;
-            font-weight: 600;
+            font-weight: nav.$font-weight-default;
             .counter__btn {
               height: 58px;
               padding: 8px 15px;
               background-color: transparent;
-              border: 1px solid #dddddd;
+              border: 1px solid nav.$color-dark-4;
               border-radius: 5px;
               font-size: 30px;
-              color: #8b8b8b;
+              color: nav.$color-dark-3;
             }
           }
           .price__box {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: nav.$content-size-gap-small;
             .price {
-              font-size: 40px;
-              font-weight: 600;
+              font-size: nav.$font-size-title-smallest;
+              font-weight: nav.$font-weight-default;
             }
             .discount__price {
-              font-weight: 500;
-              font-size: 20px;
-              color: #8b8b8b;
+              font-weight: nav.$font-weight-medium;
+              font-size: nav.$font-size-content-big;
+              color: nav.$color-dark-3;
               text-decoration: line-through;
             }
           }

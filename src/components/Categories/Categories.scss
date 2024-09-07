@@ -21,7 +21,7 @@
     &__list {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: nav.$content-size-gap-default;
     }
 
     @media (max-width: 1000px) {
@@ -29,7 +29,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         width: 100%;
-        gap: 20px;
+        gap: nav.$content-size-gap-default;
       }
     }
 
@@ -38,7 +38,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         width: 100%;
-        gap: 20px;
+        gap: nav.$content-size-gap-default;
       }
     }
 
@@ -46,7 +46,7 @@
       &__list {
         grid-template-columns: repeat(2, 1fr);
         width: 100%;
-        gap: 20px;
+        gap: nav.$content-size-gap-default;
       }
     }
 
@@ -56,7 +56,7 @@
         grid-template-columns: repeat(1, 1fr);
         justify-content: center;
         width: 100%;
-        gap: 20px;
+        gap: nav.$content-size-gap-default;
       }
 
       &__btn-2-position {
@@ -69,11 +69,11 @@
         justify-content: center;
         align-items: center;
 
-        font-weight: 500;
-        font-size: 16px;
-        padding: 12px 24px;
-        border: 1px solid #dddddd;
-        border-radius: 6px;
+        font-weight: nav.$font-weight-medium;
+        font-size: nav.$button-default-font-size;
+        padding: nav.$button-medium-size;
+        border: 1px solid nav.$color-dark-4;
+        border-radius: nav.$border-radius-small;
         background-color: nav.$color-light-1;
         margin-top: 24px;
       }

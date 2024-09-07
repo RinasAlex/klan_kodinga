@@ -2,7 +2,7 @@
 
 .product__container {
   padding: 40px;
-  background-color: #fffff1;
+  background-color: nav.$color-light-1;
   width: 100%;
   .container__box {
     display: flex;
@@ -21,13 +21,13 @@
         border-radius: 7px;
       }
       .link__main {
-        border: 1px solid #dddddd;
-        color: #8b8b8b;
+        border: 1px solid nav.$color-dark-4;
+        color: nav.$color-dark-3;
         padding: 5px 10px;
         border-radius: 7px;
       }
       .feature {
-        border-bottom: 1px solid #dddddd;
+        border-bottom: 1px solid nav.$color-dark-4;
         width: 16px;
       }
     }
@@ -41,7 +41,7 @@
         .product__img {
           width: 780px;
           height: 572px;
-          border-radius: 12px;
+          border-radius: nav.$item-radius-big;
         }
         .info__container {
           display: flex;
@@ -53,8 +53,8 @@
             justify-content: space-between;
             align-items: center;
             .title {
-              font-size: 40px;
-              font-weight: 700;
+              font-size: nav.$font-size-title-smallest;
+              font-weight: nav.$font-weight-bold;
             }
             .heart {
               width: 48px;
@@ -66,13 +66,13 @@
             align-items: center;
             gap: 32px;
             .price {
-              font-size: 64px;
-              font-weight: 700;
+              font-size: nav.$font-size-title-big;
+              font-weight: nav.$font-weight-bold;
             }
             .discount__price {
               text-decoration: line-through;
               font-size: 20px;
-              color: #8b8b8b;
+              color: nav.$color-dark-3;
               margin-top: 18px;
             }
             .sale {
@@ -80,7 +80,7 @@
               padding: 4px 8px;
               border: none;
               background-color: nav.$color-light-3;
-              color: #fff;
+              color: nav.$color-light-4;
               border-radius: 5px;
               text-align: center;
               margin-bottom: 20px;
@@ -91,37 +91,37 @@
             .counter__box {
               display: flex;
               align-items: center;
-              border: 1px solid #dddddd;
+              border: 1px solid nav.$color-dark-4;
               border-radius: 5px;
               width: 164px;
               height: 58px;
               justify-content: space-between;
               font-size: 20px;
-              font-weight: 600;
+              font-weight: nav.$font-weight-default;
               .counter__btn {
                 height: 58px;
                 padding: 8px 15px;
                 background-color: transparent;
-                border: 1px solid #dddddd;
+                border: 1px solid nav.$color-dark-4;
                 border-radius: 5px;
                 font-size: 30px;
-                color: #8b8b8b;
+                color: nav.$color-dark-3;
               }
             }
             .add__to {
               padding: 16px 32px;
               background-color: nav.$color-light-2;
-              color: #fff;
+              color: nav.$color-light-4;
               border: none;
-              border-radius: 6px;
+              border-radius: nav.$border-radius-small;
               margin-left: 32px;
               font-size: 20px;
-              font-weight: 600;
+              font-weight: nav.$font-weight-default;
             }
             .counter {
               width: 96px;
               height: 58px;
-              border: 1px solid #dddddd;
+              border: 1px solid nav.$color-dark-4;
               align-items: center;
               display: flex;
               justify-content: center;
@@ -131,20 +131,20 @@
             max-width: 548px;
             h5 {
               font-size: 20px;
-              font-weight: 600;
+              font-weight: nav.$font-weight-default;
             }
             .description {
               -webkit-box-orient: vertical;
               font-size: 16px;
-              font-weight: 400;
-              color: #424436;
+              font-weight: nav.$font-weight-normal;
+              color: nav.$color-dark-2;
               overflow: hidden;
               -webkit-line-clamp: 3;
             }
             .read__more {
               font-size: 16px;
-              font-weight: 500;
-              color: #424436;
+              font-weight: nav.$font-weight-medium;
+              color: nav.$color-dark-2;
               text-decoration: underline;
             }
           }
@@ -155,20 +155,20 @@
       display: none;
       h5 {
         font-size: 20px;
-        font-weight: 600;
+        font-weight: nav.$font-weight-default;
       }
       .description {
         -webkit-box-orient: vertical;
         font-size: 16px;
-        font-weight: 400;
-        color: #424436;
+        font-weight: nav.$font-weight-normal;
+        color: nav.$color-dark-2;
         overflow: hidden;
         -webkit-line-clamp: 3;
       }
       .read__more {
         font-size: 16px;
-        font-weight: 500;
-        color: #424436;
+        font-weight: nav.$font-weight-medium;
+        color: nav.$color-dark-2;
         text-decoration: underline;
       }
     }
