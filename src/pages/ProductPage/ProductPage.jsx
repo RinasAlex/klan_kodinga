@@ -34,7 +34,7 @@ function ProductPage() {
   }, [id]);
 
   useEffect(() => {
-    let productInCart = cart.filter((el) => el.id === product.id);
+    let productInCart = cart.find((el) => el.id === id);
 
     if (productInCart) {
       setProductInCart(true);
