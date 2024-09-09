@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import productSlice, {
+import {
   fetchProductsById,
-  incrementProduct,
-  decrementProduct,
   addProduct,
 } from "../../store/futures/productSlice";
 import { NavLink, useParams } from "react-router-dom";
@@ -12,11 +10,22 @@ import heart from "../../assets/image/heart.png";
 
 function ProductPage() {
   const { id } = useParams();
+  const [category, setCategory] = useState("");
 
-  const { product, loading, cart } = useSelector((state) => state.products);
+  const { product, loading } = useSelector((state) => state.products);
+
+  const categoriesState = useSelector(
+    (state) => state.categories.categoriesData
+  );
+
+  useEffect(() => {
+    let cauntCategory = categoriesState.find(
+      (el) => el.id == product?.categoryId
+    );
+    setCategory(cauntCategory);
+  }, [product]);
 
   const [readMore, setReadMore] = useState(false);
-  const [productInCart, setProductInCart] = useState(false);
   let [count, setCount] = useState(1);
   let [modal, setModal] = useState(false);
 
@@ -33,16 +42,6 @@ function ProductPage() {
   useEffect(() => {
     dispatch(fetchProductsById(id));
   }, [id]);
-
-  useEffect(() => {
-    let productInCart = cart.filter((el) => el.id === product.id);
-
-    if (productInCart) {
-      setProductInCart(true);
-    } else {
-      setProductInCart(false);
-    }
-  }, [product]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -62,10 +61,6 @@ function ProductPage() {
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
 
-  const price = product
-    ? Math.floor(product?.total_price * 100) / 100
-    : Math.floor(product?.price * 100) / 100;
-
   const getSalePercent = (discountPrice, currentPrice) => {
     return Math.ceil(100 - discountPrice / (currentPrice / 100));
   };
@@ -83,8 +78,9 @@ function ProductPage() {
             Category
           </NavLink>
           <div className="feature"></div>
-          {/* <NavLink to={"/"} className="link__main">
-          </NavLink> */}
+          <NavLink to={"/"} className="link__main">
+            {category?.title}
+          </NavLink>
           <div className="feature"></div>
           <p className="link">{product?.title}</p>
         </div>
@@ -119,14 +115,20 @@ function ProductPage() {
                 <div className="price__container">
                   {product?.discont_price ? (
                     <>
-                      <p className="price"> ${product.discont_price * count}</p>
+                      <p className="price">
+                        {" "}
+                        ${(product.discont_price * count).toFixed(2)}
+                      </p>
                       <p className="discount__price">
-                        ${product?.price * count}
+                        ${(product?.price * count).toFixed(2)}
                       </p>
                       <div className="sale">-${salePercent}%</div>
                     </>
                   ) : (
-                    <p className="price"> ${product.price * count} </p>
+                    <p className="price">
+                      {" "}
+                      ${(product.price * count).toFixed(2)}{" "}
+                    </p>
                   )}
                 </div>
                 <p>{product.price_discont}</p>

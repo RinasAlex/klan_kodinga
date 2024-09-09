@@ -35,7 +35,6 @@ const CartPage = () => {
     }
     return el.total_price;
   });
-  console.log(cart);
 
   useEffect(() => {
     dispatch(getCartFromLocalStorage());
