@@ -16,6 +16,7 @@ import ProductPage from "./pages/ProductPage/ProductPage";
 import ProductsFromCategory from "./pages/ProductsFromCategory/ProductsFromCategory";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import CartPageEmpty from "./pages/CartPage/CartPageEmpty";
+import PageNotFound from "./pages/ErrorPage/PageNotFound";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/categories/:categoryId" element={<ProductsFromCategory />} />
           <Route path="/favourites" element={<FavoritesPage />} />
           <Route path="/cartEmpty" element={<CartPageEmpty />} />
+          <Route path="*" element={<PageNotFound />} />
 
         </Route>
       </Routes>
