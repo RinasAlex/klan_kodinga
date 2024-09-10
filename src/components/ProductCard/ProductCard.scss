@@ -1,22 +1,22 @@
 @use "@/assets/styles/variables.scss" as nav;
 
 @mixin fill($color) {
-    background-color: nav.$color;
+  background-color: nav.$color;
 }
 
 .productCard {
-    border: 1px solid nav.$color-light-6;
-    border-radius: nav.$item-radius-default;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    background-color: nav.$color-light-4;
-    width: 100%;
+  border: 1px solid nav.$color-light-6;
+  border-radius: nav.$item-radius-default;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  background-color: nav.$color-light-4;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 
   &:hover {
     transform: translateY(-5px);
@@ -35,37 +35,35 @@
       padding: 5px;
     }
 
-        &-sale {
-            color: nav.$color-light-4;
-            background-color: orange;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: nav.$font-weight-bold;
-            font-size: 1rem;
-        }
-
-        img {
-            display: block;
-            width: 100%;
-            object-fit: cover;
-            // height: 280px;
-        }
+    &-sale {
+      color: nav.$color-light-4;
+      background-color: orange;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: nav.$font-weight-bold;
+      font-size: 1rem;
     }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
 
   &__bottom {
     padding: 15px;
 
-        &-title a {
-            font-size: nav.$font-size-content-big;
-            font-weight: nav.$font-weight-medium;
-            line-height: 26px;
-            color: nav.$color-dark-5;
-            min-height: 80px;
-            display: block;
-
+    &-title a {
+      font-size: nav.$font-size-content-big;
+      font-weight: nav.$font-weight-medium;
+      line-height: 26px;
+      color: nav.$color-dark-5;
+      min-height: 60px;
+      display: block;
 
       &:hover {
         opacity: 0.7;
@@ -73,32 +71,31 @@
     }
 
     &-price-container {
-      margin-top: 10px;
       padding-right: 60px;
     }
 
-        &-price1 {
-            font-size: nav.$font-size-content-big;
-            font-weight: nav.$font-weight-medium;
-            color: nav.$color-dark-3;
-            text-decoration: line-through;
-            margin-right: 10px;
-        }
-
-        &-price2 {
-            font-size: nav.$font-size-title-smallest;
-            color: nav.$color-dark-2;
-            font-weight: nav.$font-weight-default;
-            // padding-right: 16px;
-        }
-
-        &-discont_price {
-            font-size: 40px;
-            color: nav.$color-dark-2;
-            font-weight: nav.$font-weight-default;
-            padding-right: 16px;
-        }
+    &-price1 {
+      font-size: nav.$font-size-content-big;
+      font-weight: nav.$font-weight-medium;
+      color: nav.$color-dark-3;
+      text-decoration: line-through;
+      margin-right: 10px;
     }
+
+    &-price2 {
+      font-size: nav.$font-size-title-smallest;
+      color: nav.$color-dark-2;
+      font-weight: nav.$font-weight-default;
+      // padding-right: 16px;
+    }
+
+    &-discont_price {
+      font-size: 40px;
+      color: nav.$color-dark-2;
+      font-weight: nav.$font-weight-default;
+      padding-right: 16px;
+    }
+  }
 
   .actions {
     display: flex;
@@ -118,37 +115,37 @@
       }
     }
 
-                &__favourite {
-                    &-active {
-                        color: nav.$color-light-7;
-                    }
-                }
+    &__favourite {
+      &-active {
+        color: nav.$color-light-7;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    gap: 10px;
+
+
+
+    &__favourite,
+    &__cart {
+      font-size: 36px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.7;
+      }
     }
 
-    .actions {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        gap: 10px;
-
-
-
-        &__favourite,
-        &__cart {
-            font-size: 36px;
-            cursor: pointer;
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-
-                &__favourite {
-                    &-active {
-                        color: nav.$color-light-7;
-                    }
-                }
+    &__favourite {
+      &-active {
+        color: nav.$color-light-7;
+      }
     }
+  }
 }
