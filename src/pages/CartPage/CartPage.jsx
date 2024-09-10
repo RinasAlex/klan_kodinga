@@ -105,7 +105,7 @@ const CartPage = () => {
                                 : Math.floor(item.discont_price * 100) / 100}
                             </span>
 
-                            <span className="discont_price">
+                            <span className="discount__price">
                               $
                               {item
                                 ? Math.floor(item.total_price * 100) / 100

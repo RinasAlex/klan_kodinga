@@ -1,20 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import './ProductCard.scss'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import "./ProductCard.scss";
+import { Link } from "react-router-dom";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
-import { HiOutlineShoppingBag } from "react-icons/hi2"
-import { useDispatch, useSelector } from 'react-redux';
-import { addProduct, setFavourite } from '../../store/futures/productSlice';
+import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addProduct,
+  removeProduct,
+  setFavourite,
+} from "../../store/futures/productSlice";
 
-const ProductCard = ({ product: { image, id, title, price, discont_price }, isCartHidden }) => {
+const ProductCard = ({
+  product: { image, id, title, price, discont_price, count },
+  isCartHidden,
+}) => {
   const dispatch = useDispatch();
 
-  const { product, favourite } = useSelector(state => state.products);
+  const { product, favourite } = useSelector((state) => state.products);
 
   const [isFavourite, setIsFavourite] = useState(false);
+  const [productInCart, setProductInCart] = useState({});
 
   useEffect(() => {
-    let favouriteFound = favourite.find(item => item.id === id);
+    let favouriteFound = favourite.find((item) => item.id === id);
 
     if (favouriteFound) {
       setIsFavourite(true);
@@ -23,18 +31,24 @@ const ProductCard = ({ product: { image, id, title, price, discont_price }, isCa
     }
   }, [favourite, product]);
 
-  const discountPercentage = Math.round(((price - discont_price) / price) * 100);
+  const discountPercentage = Math.round(
+    ((price - discont_price) / price) * 100
+  );
 
   const addToCart = (item) => {
-    dispatch(addProduct(item));
+    setProductInCart((prev) => ({
+      ...prev,
+      [item.id]: !prev[item.id],
+    }));
+    !productInCart[item.id]
+      ? dispatch(addProduct(item))
+      : dispatch(removeProduct(item));
   };
 
-  
   return (
     <div className="productCard">
       <div className="productCard__top">
-         <Link to={`/productPage/${id}`}>
-
+        <Link to={`/productPage/${id}`}>
           <img src={`https://exam-server-5c4e.onrender.com/${image}`} alt="" />
         </Link>
         <div className="productCard__top-container">
@@ -43,34 +57,40 @@ const ProductCard = ({ product: { image, id, title, price, discont_price }, isCa
           )}
 
           <div className="actions">
+            {isFavourite ? (
+              <IoHeartSharp
+                className={"actions__favourite actions__favourite-active"}
+                onClick={() => dispatch(setFavourite(id))}
+              />
+            ) : (
+              <IoHeartOutline
+                className={`actions__favourite`}
+                onClick={() => dispatch(setFavourite(id))}
+              />
+            )}
 
-            {
-              isFavourite ? (
-                <IoHeartSharp
-                  className={'actions__favourite actions__favourite-active'}
-                 onClick={() => dispatch(setFavourite(id))}
-                />
-              ) : (
-                  <IoHeartOutline
-                    className={`actions__favourite`}
-                    onClick={() => dispatch(setFavourite(id))}
-                  />
-              )
-            }
-
-            {
-              !isCartHidden && <HiOutlineShoppingBag className='actions__cart' onClick={() => addToCart(currentProduct)} />
-            }
-            
-            
-
+            {!isCartHidden && (
+              <HiOutlineShoppingBag
+                className="actions__cart"
+                onClick={() =>
+                  addToCart({
+                    image,
+                    id,
+                    title,
+                    price,
+                    discont_price,
+                    count,
+                  })
+                }
+              />
+            )}
           </div>
         </div>
       </div>
 
       <div className="productCard__bottom">
         <h3 className="productCard__bottom-title">
-         <Link to={`/productPage/${id}`} >{title}</Link>
+          <Link to={`/productPage/${id}`}>{title}</Link>
         </h3>
 
         <div className="productCard__bottom-price-container">
@@ -86,8 +106,8 @@ const ProductCard = ({ product: { image, id, title, price, discont_price }, isCa
             <span className="productCard__bottom-price2">${price}</span>
           )}
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 
