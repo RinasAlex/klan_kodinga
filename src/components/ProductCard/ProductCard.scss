@@ -13,22 +13,27 @@
     background-color: nav.$color-light-4;
     width: 100%;
 
-    &:hover {
-        transform: translateY(-5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &__top {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
     }
-
-    &__top {
-        width: 100%;
-        height: auto;
-        overflow: hidden;
-        position: relative;
-
-        &-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px;
-        }
 
         &-sale {
             color: nav.$color-light-4;
@@ -45,13 +50,13 @@
         img {
             display: block;
             width: 100%;
-            height: 200px;
-            object-fit:cover;
+            object-fit: cover;
+            // height: 280px;
         }
     }
 
-    &__bottom {
-        padding: 15px;
+  &__bottom {
+    padding: 15px;
 
         &-title a {
             font-size: nav.$font-size-content-big;
@@ -61,15 +66,16 @@
             min-height: 80px;
             display: block;
 
-            &:hover {
-                opacity: 0.7;
-            }
-        }
 
-        &-price-container {
-            margin-top: 10px;
-            padding-right: 60px;
-        }
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    &-price-container {
+      margin-top: 10px;
+      padding-right: 60px;
+    }
 
         &-price1 {
             font-size: nav.$font-size-content-big;
@@ -94,25 +100,23 @@
         }
     }
 
-    .actions {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        gap: 10px;
+  .actions {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    gap: 10px;
 
+    &__favourite,
+    &__cart {
+      font-size: 36px;
+      cursor: pointer;
 
-
-        &__favourite,
-        &__cart {
-            font-size: 36px;
-            cursor: pointer;
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
+      &:hover {
+        opacity: 0.7;
+      }
+    }
 
                 &__favourite {
                     &-active {

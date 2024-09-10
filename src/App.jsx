@@ -7,11 +7,17 @@ import AllSalesPage from "./pages/AllSalesPage/AllSalesPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
 import { useDispatch } from "react-redux";
-import { getFavouriteFromLocalStorage, getProducts } from "./store/futures/productSlice";
+import {
+  getCartFromLocalStorage,
+  getFavouriteFromLocalStorage,
+  getProducts,
+} from "./store/futures/productSlice";
 import { getCategories } from "./store/futures/categoriesSlice";
-import ProductPage from "./pages/ProductsPage/ProductPage";
+import ProductPage from "./pages/ProductPage/ProductPage";
 import ProductsFromCategory from "./pages/ProductsFromCategory/ProductsFromCategory";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import CartPageEmpty from "./pages/CartPage/CartPageEmpty";
+import PageNotFound from "./pages/ErrorPage/PageNotFound";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,9 +25,9 @@ const App = () => {
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getProducts());
-    dispatch(getFavouriteFromLocalStorage())
-  }, [])
-
+    dispatch(getFavouriteFromLocalStorage());
+    dispatch(getCartFromLocalStorage());
+  }, []);
 
   return (
     <>
@@ -33,8 +39,13 @@ const App = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/productPage/:id" element={<ProductPage />} />
-          <Route path="/categories/:categoryId" element={<ProductsFromCategory />} />
+          <Route
+            path="/categories/:categoryId"
+            element={<ProductsFromCategory />}
+          />
           <Route path="/favourites" element={<FavoritesPage />} />
+          <Route path="/cartEmpty" element={<CartPageEmpty />} />
+          <Route path="*" element={<PageNotFound />} />
 
         </Route>
       </Routes>
