@@ -8,51 +8,51 @@
   display: contents;
 
   &__title {
-    color: #424436;
-    font-size: 64px;
-    font-weight: 700;
+    color: nav.$color-dark-2;
+    font-size: nav.$font-size-title-big;
+    font-weight: nav.$font-weight-bold;
     padding: 0 auto 40px;
     margin-bottom: 40px;
   }
 
   &__btn-line {
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid nav.$color-dark-4;
     flex-grow: 1;
     margin-bottom: 30px;
     margin-left: 10px;
   }
 
   &__btn-small {
-    font-weight: 500;
-    font-size: 16px;
-    padding: 8px 16px;
-    border: 1px solid #dddddd;
-    border-radius: 6px;
+    font-weight: nav.$font-weight-medium;
+    font-size: nav.$button-default-font-size;
+    padding: nav.$button-small-size;
+    border: 1px solid nav.$color-dark-4;
+    border-radius: nav.$border-radius-small;
     background-color: nav.$color-light-1;
     cursor: pointer;
     margin-bottom: 30px;
-    color: #8b8b8b;
+    color: nav.$color-dark-3;
 
     &:hover {
       background-color: nav.$color-light-2;
-      color: #ffffff;
+      color: nav.$color-light-4;
     }
   }
   @media (max-width: 768px) {
     &__title {
-      font-size: 56px;
+      font-size: nav.$font-size-title-medium;
     }
     @media (max-width: 480px) {
       &__title {
-        font-size: 42px;
+        font-size: nav.$font-size-title-small;
       }
       &__btn-small {
-        font-size: 14px;
+        font-size: nav.$button-small-font-size;
       }
 
       @media (max-width: 360px) {
         &__title {
-          font-size: 40px;
+          font-size: nav.$font-size-title-smallest;
         }
         &__btn-line {
           display: none;

@@ -1,3 +1,5 @@
+@use "@/assets/styles/variables.scss" as nav;
+
 .burger {
   width: 28px;
   height: 28px;
@@ -10,7 +12,7 @@
     content: "";
     position: absolute;
     width: 87%;
-    border: 2px solid black;
+    border: 2px solid nav.$color-dark-2;
     transition: all 0.7s ease 0s;
     z-index: 99;
   }
@@ -22,7 +24,7 @@
   }
   span {
     width: 100%;
-    border: 2px solid black;
+    border: 2px solid nav.$color-dark-2;
     transform: scale(1);
     position: absolute;
     margin-top: 12px;
