@@ -145,7 +145,6 @@ export const productSlice = createSlice({
       } else {
         localStorage.setItem("cart", JSON.stringify([]));
       }
-      console.log(cart);
     },
 
     incrementProduct: (state, action) => {
@@ -326,7 +325,7 @@ export const productSlice = createSlice({
       let favouriteStorage = JSON.parse(localStorage.getItem("favourite"));
 
       favouriteStorage =
-        favouriteStorage.length > 0 && favouriteStorage.filter((item) => item);
+        favouriteStorage?.length > 0 && favouriteStorage.filter((item) => item);
 
       if (favouriteStorage) {
         state.favourite = [...favouriteStorage];

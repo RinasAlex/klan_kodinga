@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, setFavourite } from "../../store/futures/productSlice";
+import {
+  addProduct,
+  removeProduct,
+  setFavourite,
+} from "../../store/futures/productSlice";
 
 const ProductCard = ({
   product: { image, id, title, price, discont_price, count },
@@ -15,6 +19,7 @@ const ProductCard = ({
   const { product, favourite } = useSelector((state) => state.products);
 
   const [isFavourite, setIsFavourite] = useState(false);
+  const [productInCart, setProductInCart] = useState({});
 
   useEffect(() => {
     let favouriteFound = favourite.find((item) => item.id === id);
@@ -30,9 +35,15 @@ const ProductCard = ({
     ((price - discont_price) / price) * 100
   );
 
-  // const addToCart = (product) => {
-  //   dispatch(addProduct(product));
-  // };
+  const addToCart = (item) => {
+    setProductInCart((prev) => ({
+      ...prev,
+      [item.id]: !prev[item.id],
+    }));
+    !productInCart[item.id]
+      ? dispatch(addProduct(item))
+      : dispatch(removeProduct(item));
+  };
 
   return (
     <div className="productCard">
@@ -62,16 +73,14 @@ const ProductCard = ({
               <HiOutlineShoppingBag
                 className="actions__cart"
                 onClick={() =>
-                  dispatch(
-                    addProduct({
-                      image,
-                      id,
-                      title,
-                      price,
-                      discont_price,
-                      count,
-                    })
-                  )
+                  addToCart({
+                    image,
+                    id,
+                    title,
+                    price,
+                    discont_price,
+                    count,
+                  })
                 }
               />
             )}

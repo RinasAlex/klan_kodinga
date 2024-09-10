@@ -8,6 +8,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
 import { useDispatch } from "react-redux";
 import {
+  getCartFromLocalStorage,
   getFavouriteFromLocalStorage,
   getProducts,
 } from "./store/futures/productSlice";
@@ -25,6 +26,7 @@ const App = () => {
     dispatch(getCategories());
     dispatch(getProducts());
     dispatch(getFavouriteFromLocalStorage());
+    dispatch(getCartFromLocalStorage());
   }, []);
 
   return (
@@ -37,7 +39,10 @@ const App = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/productPage/:id" element={<ProductPage />} />
-          <Route path="/categories/:categoryId" element={<ProductsFromCategory />} />
+          <Route
+            path="/categories/:categoryId"
+            element={<ProductsFromCategory />}
+          />
           <Route path="/favourites" element={<FavoritesPage />} />
           <Route path="/cartEmpty" element={<CartPageEmpty />} />
           <Route path="*" element={<PageNotFound />} />
