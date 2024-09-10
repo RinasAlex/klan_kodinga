@@ -101,6 +101,10 @@
         top: 10px;
         right: 10px;
         gap: 10px;
+        color: black;
+       
+        
+
 
 
 
@@ -130,12 +134,13 @@
         gap: 10px;
 
 
-
+    
         &__favourite,
         &__cart {
             font-size: 36px;
             cursor: pointer;
-
+            fill: white;
+            
             &:hover {
                 opacity: 0.7;
             }
@@ -143,7 +148,7 @@
 
                 &__favourite {
                     &-active {
-                        color: #92A134;
+                        fill: #92A134;
                     }
                 }
     }
