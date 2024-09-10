@@ -1,7 +1,7 @@
 @use "@/assets/styles/variables.scss" as nav;
 
 @mixin fill($color) {
-    background-color: $color;
+  background-color: $color;
 }
 
 .productCard {
@@ -18,34 +18,34 @@
     justify-content: space-between;
     height: 100%;
 
-    &:hover {
-        transform: translateY(-5px);
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &__top {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
     }
 
-    &__top {
-        width: 100%;
-        height: auto;
-        overflow: hidden;
-        position: relative;
-
-        &-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px;
-        }
-
-        &-sale {
-            color: white;
-            background-color: orange;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1rem;
-        }
+    &-sale {
+      color: white;
+      background-color: orange;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
 
         img {
             display: block;
@@ -55,8 +55,8 @@
         }
     }
 
-    &__bottom {
-        padding: 15px;
+  &__bottom {
+    padding: 15px;
 
         &-title a {
             font-size: 20px;
@@ -67,63 +67,61 @@
             display: block;
 
 
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-
-        &-price-container {
-            margin-top: 10px;
-            padding-right: 60px;
-        }
-
-        &-price1 {
-            font-size: 20px;
-            font-weight: 500;
-            color: #8B8B8B;
-            text-decoration: line-through;
-            margin-right: 10px;
-        }
-
-        &-price2 {
-            font-size: 40px;
-            color: #424436;
-            font-weight: 600;
-            // padding-right: 16px;
-        }
-
-        &-discont_price {
-            font-size: 40px;
-            color: #424436;
-            font-weight: 600;
-            padding-right: 16px;
-        }
+      &:hover {
+        opacity: 0.7;
+      }
     }
 
-    .actions {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        gap: 10px;
-
-
-
-        &__favourite,
-        &__cart {
-            font-size: 36px;
-            cursor: pointer;
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-
-        &__favourite {
-            &-active {
-                color: #92A134;
-            }
-        }
+    &-price-container {
+      margin-top: 10px;
+      padding-right: 60px;
     }
+
+    &-price1 {
+      font-size: 20px;
+      font-weight: 500;
+      color: #8b8b8b;
+      text-decoration: line-through;
+      margin-right: 10px;
+    }
+
+    &-price2 {
+      font-size: 40px;
+      color: #424436;
+      font-weight: 600;
+      // padding-right: 16px;
+    }
+
+    &-discont_price {
+      font-size: 40px;
+      color: #424436;
+      font-weight: 600;
+      padding-right: 16px;
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    gap: 10px;
+
+    &__favourite,
+    &__cart {
+      font-size: 36px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    &__favourite {
+      &-active {
+        color: #92a134;
+      }
+    }
+  }
 }

@@ -4,6 +4,7 @@ import "./OrderModal.scss";
 
 function OrderModal({ sendingOrder, setSendingOrder }) {
   const closeWindow = () => setSendingOrder(false);
+
   return (
     <div className={sendingOrder ? "modal__container" : "close__window"}>
       <div className="modal__window">

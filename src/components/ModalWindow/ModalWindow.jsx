@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import './ModalWindow.scss'
-import { useDispatch, useSelector } from 'react-redux';
-import ProductCard from '../ProductCard/ProductCard';
-
+import React, { useEffect, useState } from "react";
+import "./ModalWindow.scss";
+import { useDispatch, useSelector } from "react-redux";
+import ProductCard from "../ProductCard/ProductCard";
+import { addProduct } from "../../store/futures/productSlice";
 
 const ModalWindow = ({ onClose }) => {
-
   const { products } = useSelector((state) => state.products);
 
-  const [product, setProduct ] = useState(null)
+  const [product, setProduct] = useState(null);
 
+  const dispatch = useDispatch();
 
   const onCloseButtonClick = () => {
     if (onClose) {
-      onClose()
+      onClose();
     }
-  }
+  };
 
   const getRandomProducts = (products, count) => {
     return products && products.length > 0
@@ -23,36 +23,44 @@ const ModalWindow = ({ onClose }) => {
       : [];
   };
 
-  useEffect(()=>{
-
+  useEffect(() => {
     let currentItem = getRandomProducts(products, 1)[0];
 
-    let data = {...currentItem, price:currentItem.price , discont_price:  currentItem.price / 2 };
+    let data = {
+      ...currentItem,
+      price: currentItem.price,
+      discont_price: currentItem.price / 2,
+    };
 
-    console.log(data)
-    setProduct(data)
-  },[])
-
+    console.log(data);
+    setProduct(data);
+  }, []);
 
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <div className='modal__content'>
-          <div className='modal__content_title'>
+        <div className="modal__content">
+          <div className="modal__content_title">
             <h3>50% discount on product of the day!</h3>
-            <button className="modal-close" onClick={onCloseButtonClick}>x</button>
+            <button className="modal-close" onClick={onCloseButtonClick}>
+              x
+            </button>
           </div>
 
-          <div className='modal__content_item'>
-            {product &&  <ProductCard product={product} isCartHidden={true}/>}
+          <div className="modal__content_item">
+            {product && <ProductCard product={product} isCartHidden={true} />}
           </div>
 
-          <button className='modal__content_cart'>Add to cart</button>
+          <button
+            onClick={() => dispatch(addProduct(product))}
+            className="modal__content_cart"
+          >
+            Add to cart
+          </button>
         </div>
-
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ModalWindow
+export default ModalWindow;
