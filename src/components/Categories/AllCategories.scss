@@ -60,8 +60,8 @@
     }
 
     @media (max-width: 360px) {
-      &__title {
-        font-size: nav.$font-size-title-smallest;
+      &__page-title {
+        font-size: 36px;
       }
 
       &__list-img {
