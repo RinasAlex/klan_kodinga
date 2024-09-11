@@ -4,32 +4,35 @@ import { Link } from "react-router-dom";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addProduct,
-  removeProduct,
-  setFavourite,
-} from "../../store/futures/productSlice";
+import { addProduct, removeProduct, setFavourite } from "../../store/futures/productSlice";
 
 const ProductCard = ({
-  product: { image, id, title, price, discont_price, count },
-  isCartHidden,
+  product: { image, id, title, price, discont_price, count }
 }) => {
   const dispatch = useDispatch();
 
-  const { product, favourite } = useSelector((state) => state.products);
+  const { product, favourite, cart } = useSelector((state) => state.products);
 
   const [isFavourite, setIsFavourite] = useState(false);
+  const [isCartHidden, setIsCartHidden] = useState(false);
   const [productInCart, setProductInCart] = useState({});
 
   useEffect(() => {
     let favouriteFound = favourite.find((item) => item.id === id);
+    let cartFound = cart.find((item) => item.id === id);
 
     if (favouriteFound) {
       setIsFavourite(true);
     } else {
       setIsFavourite(false);
     }
-  }, [favourite, product]);
+
+    if (cartFound) {
+      setIsCartHidden(true);
+    } else {
+      setIsCartHidden(false);
+    }
+  }, [favourite, product, cart]);
 
   const discountPercentage = Math.round(
     ((price - discont_price) / price) * 100
@@ -57,33 +60,27 @@ const ProductCard = ({
           )}
 
           <div className="actions">
-            {isFavourite ? (
-              <IoHeartSharp
-                className={"actions__favourite actions__favourite-active"}
-                onClick={() => dispatch(setFavourite(id))}
-              />
-            ) : (
-              <IoHeartOutline
-                className={`actions__favourite`}
-                onClick={() => dispatch(setFavourite(id))}
-              />
-            )}
 
-            {!isCartHidden && (
+            <IoHeartSharp
+              className={`actions__favourite ${isFavourite ? "actions__favourite-active" : ""}`}
+              onClick={() => dispatch(setFavourite(id))}
+              style={{ stroke: "black", strokeWidth: "24" }}
+            />
+
+            {/* {!isCartHidden && (
               <HiOutlineShoppingBag
-                className="actions__cart"
-                onClick={() =>
-                  addToCart({
-                    image,
-                    id,
-                    title,
-                    price,
-                    discont_price,
-                    count,
-                  })
-                }
+              className={`actions__cart ${productInCart ? "actions__cart-active": ""}`}
+                onClick={() => 
+                  addToCart({image, id, title, price, discont_price, count }) }
               />
-            )}
+            )} */}
+
+
+            <HiOutlineShoppingBag
+              className={`actions__cart ${isCartHidden ? "actions__cart-active" : ""}`}
+              onClick={() =>
+                addToCart({ image, id, title, price, discont_price, count })}
+            />
           </div>
         </div>
       </div>

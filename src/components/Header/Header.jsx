@@ -75,14 +75,15 @@ function Header() {
         </div>
 
         <div className="navbar__cart">
-          <NavLink to={"/favourites"}>
-            <img className="heard" src={heart} alt="" />
-
-            <span>{favourite.length}</span>
-          </NavLink>
+        <div className="navbar__heart">
+            <NavLink to={"/favourites"} className="style__icons">
+              <img className="heard" src={heart} alt="" />
+              <span className="count" >{favourite.length}</span>
+            </NavLink>
+          </div>
           <NavLink className="cart__container" to={"/cart"}>
             <img className="cart" src={cartBag} alt="" />
-            <p className="length">{cart.length}</p>
+            <span className="length">{cart.length}</span>
           </NavLink>
         </div>
       </div>
@@ -91,3 +92,7 @@ function Header() {
 }
 
 export default Header;
+
+
+
+
