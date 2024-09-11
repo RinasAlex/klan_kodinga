@@ -27,9 +27,8 @@
                 width: 100%;
                 margin-top: 32px;
                 text-align: center;
-                max-width: 600px;
-                margin: 0 auto;
-                
+                align-items: center;
+    
                 &__errorTitle {
                     font-family: Montserrat;
                     font-size: 64px;
@@ -41,15 +40,21 @@
     
                 &__errorText {
                     margin-top: 16px;
+                    margin-left: 45px;
+                    display: flex;
+                    align-items: center;
                     text-align: center;
                     font-weight: 500;
                     font-size: 20px;
                     color: #8B8B8B;
-        
+                    max-width: 600px;
+                    /* Ограничение ширины текста */
                     line-height: 26px;
                     /* Добавлено межстрочное расстояние */
                     white-space: normal;
                     /* Позволяет переносу текста */
+    
+    
     
                 }
     
