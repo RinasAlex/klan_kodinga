@@ -2,7 +2,7 @@
 
 .navbar__container {
   width: 100%;
-  background-color: #fffff1;
+  background-color: nav.$nav-bg-color;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -16,7 +16,7 @@
     top: 0;
     margin: 0 auto;
     z-index: 3;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid nav.$color-dark-4;
 
     &__logo {
       display: flex;
@@ -45,8 +45,8 @@
           bottom: 0;
           right: 0;
           border-radius: 34px;
-          background-color: #8b8b8b;
-          border: 1px solid #8b8b8b;
+          background-color: nav.$color-dark-3;
+          border: 1px solid nav.$color-dark-3;
 
           &::before {
             content: "";
@@ -57,7 +57,7 @@
             height: 26px;
             width: 26px;
             border-radius: 50%;
-            background-color: #fff;
+            background-color: nav.$color-light-4;
             transition: 0.4s;
             z-index: 2;
           }
@@ -78,15 +78,15 @@
         }
       }
 
-      .switch__input:checked~.switch__slider {
-        background-color: #fff;
+      .switch__input:checked ~ .switch__slider {
+        background-color: nav.$color-light-4;
 
         &::before {
-          background-color: #8b8b8b;
+          background-color: nav.$color-dark-3;
         }
       }
 
-      .switch__input:checked~.switch__slider::before {
+      .switch__input:checked ~ .switch__slider::before {
         transform: translateX(26px);
         -webkit-transform: translateX(26px);
         -ms-transform: translateX(26px);
@@ -97,7 +97,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: nav.$content-size-gap-little;
 
       .burger {
         display: none;
@@ -106,31 +106,54 @@
       .discount {
         width: 151px;
         height: 32px;
-        background-color: #92a234;
+        background-color: nav.$color-light-2;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 4px;
-        color: #fff;
+        color: nav.$color-light-4;
+        border: none;
+        cursor: pointer;
       }
 
       .discount_menu {
         display: none;
+        cursor: pointer;
       }
 
       .link__container {
         display: flex;
-        gap: 32px;
+        gap: nav.$content-size-gap-large;
       }
 
       .navlink {
-        color: #424436;
+        color: nav.$color-dark-2;
       }
     }
 
     &__cart {
       display: flex;
       gap: 24px;
+      .cart__container {
+        position: relative;
+
+        .length {
+          width: 26px;
+          height: 26px;
+          position: absolute;
+          margin-top: -45px;
+          margin-right: 40px;
+          background: nav.$color-light-2;
+          color: white;
+          border-radius: 50%;
+          padding: 7px 8px;
+          font-size: 12px;
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
     }
 
 
@@ -218,18 +241,18 @@
           display: block;
           width: 151px;
           height: 32px;
-          background-color: #92a234;
+          background-color: nav.$color-light-2;
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 4px;
-          color: #fff;
+          color: nav.$color-light-4;
           margin-top: 20px;
         }
 
         &-link {
           position: absolute;
-          background-color: #f2f6d3;
+          background-color: nav.$color-light-5;
           width: 282px;
           right: 0;
           top: 0;
@@ -250,7 +273,7 @@
       }
 
       &__cart {
-        gap: 10px;
+        gap: nav.$content-size-gap-smallest;
         width: 100%;
         margin: 20px;
         justify-content: flex-end;

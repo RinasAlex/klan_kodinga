@@ -1,6 +1,8 @@
+@use "@/assets/styles/variables.scss" as nav;
+
 .discount__container {
   padding: 40px;
-  background-color: #fffff1;
+  background-color: nav.$color-light-1;
   width: 100%;
   &_box {
     background: rgb(135, 147, 61);
@@ -16,7 +18,7 @@
     overflow: hidden;
 
     h1 {
-      color: #fff;
+      color: nav.$color-light-1;
       font-size: 64px;
       text-align: center;
     }
@@ -38,16 +40,16 @@
           width: 100%;
           .input,
           .btn {
-            padding: 16px 32px;
+            padding: nav.$button-large-size;
             align-self: stretch;
             border-radius: 10px;
-            border: 1px solid #fff;
+            border: 1px solid nav.$color-light-4;
             font-size: 26px;
           }
           .input {
             outline: none;
-            font-weight: 500;
-            color: #fff;
+            font-weight: nav.$font-weight-medium;
+            color: nav.$color-light-4;
             background-color: transparent;
             &::-webkit-outer-spin-button,
             &::-webkit-inner-spin-button {
@@ -56,13 +58,13 @@
             }
             &::placeholder {
               font-size: 26px;
-              color: #fff;
+              color: nav.$color-light-4;
             }
           }
           .btn {
-            color: black;
-            background-color: #fff;
-            font-weight: 600;
+            color: nav.$color-dark-2;
+            background-color: nav.$color-light-4;
+            font-weight: nav.$font-weight-default;
             margin-bottom: 20px;
             &:disabled {
               opacity: 0.6;
@@ -80,13 +82,13 @@
         height: 300px;
         display: flex;
         align-items: center;
-        border-radius: 12px;
+        border-radius: nav.$item-radius-big;
         padding: 0 29px;
         box-shadow: 0 0 24px 6px #b1ffb1, 0 0 20px 4px #b1ffb1;
         .text__send {
-          color: white;
+          color: nav.$color-light-4;
           font-size: 40px;
-          font-weight: 700;
+          font-weight: nav.$font-weight-bold;
           line-height: 120%;
           letter-spacing: 1.5px;
           text-align: center;

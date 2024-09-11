@@ -1,27 +1,29 @@
+@use "@/assets/styles/variables.scss" as nav;
+
 .categoryCard {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: nav.$content-size-gap-large;
 
   &__image img {
     display: block;
     height: 350px;
-    border-radius: 12px;
+    border-radius: nav.$border-radius-big;
     width: 100%;
     object-fit: cover;
   }
 
   &__title {
-    font-size: 20px;
-    font-weight: 500;
+    font-size: nav.$font-size-content-big;
+    font-weight: nav.$font-weight-medium;
     line-height: 26px;
     align-items: center;
-    color: #282828;
+    color: nav.$color-dark-5;
     text-align: center;
   }
   @media (max-width: 480px) {
     &__title {
-      font-size: 18px;
+      font-size: nav.$font-size-content-default;
       line-height: 23, 4px;
     }
   }

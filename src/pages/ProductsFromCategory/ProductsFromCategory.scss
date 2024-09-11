@@ -15,7 +15,7 @@
       align-items: center;
 
       &__line {
-        border-top: 1px solid #dddddd;
+        border-top: 1px solid nav.$color-dark-4;
         flex-grow: 1;
         max-width: 16px;
         margin-bottom: 15px;
@@ -23,10 +23,10 @@
     }
 
     &__title {
-      font-size: 64px;
+      font-size: nav.$font-size-title-big;
       line-height: 70.4px;
-      font-weight: 700;
-      color: #424436;
+      font-weight: nav.$font-weight-bold;
+      color: nav.$color-dark-2;
       margin-top: 20px;
       display: flex;
     }
@@ -35,14 +35,14 @@
       margin-top: 40px;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
-      gap: 32px;
+      gap: nav.$content-size-gap-large;
     }
 
     @media (max-width: 1000px) {
       &__items {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
+        gap: nav.$content-size-gap-default;
         width: 100%;
       }
     }
@@ -50,20 +50,20 @@
     @media (max-width: 768px) {
       margin: 20px;
       &__title {
-        font-size: 56px;
+        font-size: nav.$font-size-title-medium;
       }
 
       &__items {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: nav.$content-size-gap-default;
         width: 100%;
       }
     }
 
     @media (max-width: 480px) {
       &__title {
-        font-size: 48px;
+        font-size: nav.$font-size-title-deafult;
         line-height: 52.8px;
       }
 
@@ -79,14 +79,14 @@
       &__items {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: nav.$content-size-gap-default;
         width: 100%;
       }
     }
 
     @media (max-width: 360px) {
       &__title {
-        font-size: 40px;
+        font-size: nav.$font-size-title-smallest;
         line-height: 44px;
       }
 
@@ -97,7 +97,7 @@
       &__items {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        gap: 20px;
+        gap: nav.$content-size-gap-default;
       }
       &-link,
       &-link-active {

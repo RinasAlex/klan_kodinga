@@ -50,4 +50,3 @@ const AllSalesPage = () => {
 }
 
 export default AllSalesPage
-
