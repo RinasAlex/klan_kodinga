@@ -7,16 +7,32 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
+
 ul {
   list-style: none;
 }
+
 a {
   text-decoration: none;
 }
+
 body {
   background-color: nav.$color-light-1;
+  color: nav.$color-dark-2;
 }
 
+body.dark{
+  background-color: nav.$color-dark-2;
+  color: nav.$color-light-1;
+}
+
+.dark-text {
+  color: #fff!important;
+}
+
+.bg-dark {
+  background-color: #424436!important;
+}
 
 .container__items {
   margin-top: 40px;

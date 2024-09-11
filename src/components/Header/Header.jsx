@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Header.scss";
 import logo from "@/assets/headerImages/logo.svg";
 import heart from "@/assets/headerImages/heart.svg";
@@ -9,24 +9,29 @@ import Burger from "./Burger";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ModalWindow from "../ModalWindow/ModalWindow";
+import { ThemeContext } from "../ThemeProvider/ThemeProvider";
 
 function Header() {
   const [isToggle, setIsToggle] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const {theme, setTheme} = useContext(ThemeContext);
 
   const { favourite } = useSelector(state => state.products);
-
   const { cart } = useSelector((state) => state.products);
 
+  const changeTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  }
+
   return (
-    <nav className="navbar__container">
+    <nav className={`navbar__container ${theme === "dark" ? "bg-dark" : "bg-light" }`}>
       <div className="navbar">
         <div className="navbar__logo">
           <NavLink to="/">
             <img className="logo" src={logo} alt="" />
           </NavLink>
           <label className="switch">
-            <input className="switch__input" type="checkbox" />
+            <input className="switch__input" type="checkbox" onClick={changeTheme}/>
             <span className="switch__slider"></span>
             <img className="sun" src={sun} alt="" />
             <img className="moon" src={moon} alt="" />
@@ -51,22 +56,22 @@ function Header() {
 
             <ul className="link__container">
               <li className="link">
-                <NavLink className="navlink" to={"/"}>
+                <NavLink className={`navlink ${theme === "dark" ? "dark-text" : ""}`} to={"/"}>
                   Main Page
                 </NavLink>
               </li>
               <li className="link">
-                <NavLink className="navlink" to={"categories"}>
+                <NavLink className={`navlink ${theme === "dark" ? "dark-text" : ""}`} to={"categories"}>
                   Categories
                 </NavLink>
               </li>
               <li className="link">
-                <NavLink className="navlink" to={"products"}>
+                <NavLink className={`navlink ${theme === "dark" ? "dark-text" : ""}`} to={"products"}>
                   All products
                 </NavLink>
               </li>
               <li className="link">
-                <NavLink className="navlink" to={"sales"}>
+                <NavLink className={`navlink ${theme === "dark" ? "dark-text" : ""}`} to={"sales"}>
                   All sales
                 </NavLink>
               </li>
@@ -78,11 +83,11 @@ function Header() {
           <NavLink to={"/favourites"}>
             <img className="heard" src={heart} alt="" />
 
-            <span>{favourite.length}</span>
+            <span className={`${theme === "dark" ? "dark-text" : ""}`}>{favourite.length}</span>
           </NavLink>
           <NavLink className="cart__container" to={"/cart"}>
             <img className="cart" src={cartBag} alt="" />
-            <p className="length">{cart.length}</p>
+            <p className={`length ${theme === "dark" ? "dark-text" : ""}`}>{cart.length}</p>
           </NavLink>
         </div>
       </div>
