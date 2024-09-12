@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import './Footer.scss'
-import inst from "@/assets/footerImages/inst.png"
-import wu from "@/assets/footerImages/wu.png"
+import { FaInstagram } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../ThemeProvider/ThemeProvider'
 
@@ -23,11 +23,11 @@ const Footer = () => {
             <li className={`contact-list__item ${theme === "dark" ? "bg-dark_darker" : "bg-light"}`}>
               <h3>Socials</h3>
               <div className="social-icons">
-                <Link to="https://www.instagram.com/" target='_blank'>
-                  <img src={inst} alt="" />
+                <Link to="https://www.instagram.com/" target='_blank' className={`${theme === "dark" ? "dark-text" : ""}`}>
+                  <FaInstagram />
                 </Link>
-                <Link to="https://web.whatsapp.com/" target='_blank'>
-                  <img src={wu} alt="" />
+                <Link to="https://web.whatsapp.com/" target='_blank' className={`${theme === "dark" ? "dark-text" : ""}`}>
+                <FaWhatsapp />
                 </Link>
               </div>
 
