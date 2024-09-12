@@ -1,6 +1,8 @@
+@use "@/assets/styles/variables.scss" as nav;
+
 .first__container {
   padding: 40px;
-  background-color: var(--color-backround);
+  background-color: nav.$color-light-1;
   margin: 0 auto;
   max-width: 1440px;
   .blok__title_btn {
@@ -9,7 +11,6 @@
     margin-bottom: 40px;
     .title__cart {
       font-size: 64px;
-
       padding-right: 32px;
       white-space: nowrap;
     }
@@ -22,7 +23,7 @@
       text-align: center;
       border: 1px solid #8b8b8b;
       padding: 8px 16px;
-      border-radius: 7px;
+      border-radius: nav.$item-radius-small;
       cursor: pointer;
       white-space: nowrap;
     }
@@ -41,11 +42,10 @@
         width: 100%;
         border: 1px solid #dddddd;
         column-gap: 32px;
-        border-radius: 12px;
+        border-radius: nav.$item-radius-big;
         background-color: #fff;
         .img {
           width: 200px;
-
           border-radius: 12px 0 0 12px;
         }
         .info__container {
@@ -77,7 +77,7 @@
               display: flex;
 
               align-items: center;
-              border: 1px solid #dddddd;
+              border: 1px solid nav.$color-dark-4;
               border-radius: 5px;
               width: 164px;
               height: 58px;
@@ -88,10 +88,10 @@
                 height: 58px;
                 padding: 8px 15px;
                 background-color: transparent;
-                border: 1px solid #dddddd;
+                border: 1px solid nav.$color-dark-4;
                 border-radius: 5px;
                 font-size: 30px;
-                color: #8b8b8b;
+                color: nav.$color-dark-3;
               }
             }
             .price__box {
@@ -104,9 +104,9 @@
                 padding-right: 0;
               }
               .discount__price {
-                font-weight: 500;
+                font-weight: nav.$font-weight-medium;
                 font-size: 20px;
-                color: #8b8b8b;
+                color: nav.$color-dark-3;
                 text-decoration: line-through;
               }
             }
@@ -115,22 +115,22 @@
       }
     }
     .order__container {
-      background-color: #f2f6d3;
+      background-color: nav.$color-light-5;
       padding: 32px 20px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      border-radius: 12px;
+      border-radius: nav.$border-radius-big;
       max-height: 582px;
       h3 {
         font-size: 40px;
         font-weight: 700;
-        color: #424436;
+        color: nav.$color-dark-2;
       }
       .items {
         font-size: 40px;
         font-weight: 500;
-        color: #8b8b8b;
+        color: nav.$color-dark-3;
       }
       .total__items {
         display: flex;
@@ -139,13 +139,13 @@
         .total__price {
           font-size: 64px;
           font-weight: 700;
-          color: #424436;
+          color: nav.$color-dark-2;
         }
       }
       .input {
-        color: #8b8b8b;
+        color: nav.$color-dark-3;
         &::placeholder {
-          color: #8b8b8b;
+          color: nav.$color-dark-3;
         }
       }
     }
@@ -187,7 +187,7 @@
             .price__container {
               display: flex;
               flex-direction: row;
-              gap: 32px;
+              gap: nav.$content-size-gap-large;
             }
           }
         }
@@ -205,13 +205,13 @@
     .cart__container {
       .products__container {
         .cart_product__container {
-          column-gap: 10px;
+          column-gap: nav.$content-size-gap-smallest;
 
           .info__container {
-            gap: 12px;
+            gap: nav.$content-size-gap-little;
             .title__box {
               .title {
-                font-size: 18px;
+                font-size: nav.$font-size-content-default;
                 max-width: 150px;
               }
             }
@@ -242,14 +242,14 @@
     .cart__container {
       .products__container {
         .cart_product__container {
-          column-gap: 10px;
+          column-gap: nav.$content-size-gap-smallest;
           .img {
             width: 116px;
             height: 183px;
           }
           .info__container {
             padding: 20px 5px;
-            gap: 12px;
+            gap: nav.$content-size-gap-little;
 
             .title__box {
               .title {
