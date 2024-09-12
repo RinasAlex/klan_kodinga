@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProductsById,
   addProduct,
-} from "../../store/futures/productSlice";
+} from "@/store/futures/productSlice";
 import { NavLink, useParams } from "react-router-dom";
 import "./ProductPage.scss";
-import heart from "../../assets/image/heart.png";
+import heart from "@/assets/image/heart.png";
 
 function ProductPage() {
   const { id } = useParams();

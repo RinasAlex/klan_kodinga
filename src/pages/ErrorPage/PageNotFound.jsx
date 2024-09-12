@@ -1,7 +1,7 @@
 import React from 'react'
 import './PageNotFound.scss'
-import four from '../../assets/image/four.png'
-import zero from '../../assets/image/zero.png'
+import four from '@/assets/image/four.png'
+import zero from '@/assets/image/zero.png'
 import { Link } from 'react-router-dom'
 
 export default function PageNotFound(){

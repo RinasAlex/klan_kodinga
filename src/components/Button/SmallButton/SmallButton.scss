@@ -2,13 +2,11 @@
 
 .smallButton {
   max-width: 1440px;
-  background-color: nav.$color-light-1;
   justify-content: space-around;
   align-items: center;
   display: contents;
 
   &__title {
-    color: nav.$color-dark-2;
     font-size: nav.$font-size-title-big;
     font-weight: nav.$font-weight-bold;
     padding: 0 auto 40px;

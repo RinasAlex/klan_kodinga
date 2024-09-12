@@ -13,7 +13,7 @@ const SmallButton = ({
       <h2 className="smallButton__title">{title}</h2>
       <div className="smallButton__btn-line"></div>
       <Link to={path}>
-        <button className={`smallButton__btn-small ${className}`} {...props}>
+        <button className={`smallButton__btn-small ${className} `} {...props}>
           {children}
         </button>
       </Link>

@@ -18,6 +18,8 @@
     z-index: 3;
     border-bottom: 1px solid nav.$color-dark-4;
 
+   
+
     &__logo {
       display: flex;
       align-items: center;
@@ -293,3 +295,12 @@
     }
   }
 }
+
+
+
+// .dark {
+//   .navbar__container .navbar__list .navlink {
+//     color: #fff;
+//   }
+// }
+

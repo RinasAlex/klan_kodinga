@@ -56,6 +56,7 @@
 
   &__bottom {
     padding: 15px;
+    border-top: 1px solid nav.$color-dark-4;
 
     &-title a {
       font-size: nav.$font-size-content-big;

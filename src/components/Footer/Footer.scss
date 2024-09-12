@@ -1,7 +1,6 @@
 @use "@/assets/styles/variables.scss" as nav;
 
 .footer {
-  background-color: nav.$color-light-1;
   width: 100%;
 }
 
@@ -14,7 +13,6 @@
   .title {
     font-size: nav.$font-size-title-big;
     margin-bottom: 40px;
-    color: nav.$color-dark-2;
   }
 
   &-list {
