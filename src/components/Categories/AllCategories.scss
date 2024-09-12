@@ -1,10 +1,9 @@
 @use "@/assets/styles/variables.scss" as nav;
 
 .categories {
-  padding: 80px 40px;
+  padding: 40px 40px;
   width: 100%;
-  // background-color: nav.$color-light-1;
-
+  
   .content {
     max-width: 1440px;
     margin: 0 auto;
@@ -14,7 +13,7 @@
       font-size: nav.$font-size-title-big;
       font-weight: nav.$font-weight-bold;
       padding: 0px 10px 40px 0;
-      margin-top: 7px;
+      margin-top: 40px;
       display: flex;
     }
 
@@ -60,8 +59,8 @@
     }
 
     @media (max-width: 360px) {
-      &__title {
-        font-size: nav.$font-size-title-smallest;
+      &__page-title {
+        font-size: 36px;
       }
 
       &__list-img {

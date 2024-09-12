@@ -3,14 +3,13 @@
 .categories {
   padding: 80px 40px;
   max-width: 100%;
-  // background-color: nav.$color-light-1;
-
+  
   .container {
     max-width: 1440px;
     &__position {
       display: flex;
-      justify-content: center;
       align-items: center;
+     
     }
 
     &__btn-2 {
@@ -51,6 +50,8 @@
     }
 
     @media (max-width: 360px) {
+
+
       &__list {
         display: grid;
         grid-template-columns: repeat(1, 1fr);

@@ -18,13 +18,18 @@
     font-weight: nav.$font-weight-medium;
     line-height: 26px;
     align-items: center;
-    color: nav.$color-dark-5;
     text-align: center;
-  }
+  
   @media (max-width: 480px) {
     &__title {
       font-size: nav.$font-size-content-default;
       line-height: 23, 4px;
     }
   }
+  @media (max-width: 360px) {
+    &__title {
+      font-size: nav.$font-size-title-smallest;
+    }
+  }
+}
 }

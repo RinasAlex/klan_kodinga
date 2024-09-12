@@ -21,17 +21,21 @@ body {
   color: nav.$color-dark-2;
 }
 
-body.dark{
+body.dark {
   background-color: nav.$color-dark-2;
   color: nav.$color-light-1;
 }
 
 .dark-text {
-  color: #fff!important;
+  color: nav.$color-light-1 !important;
 }
 
 .bg-dark {
-  background-color: #424436!important;
+  background-color: nav.$color-dark-2 !important;
+}
+
+.bg-dark_darker {
+  background-color: nav.$color-dark-8 !important;
 }
 
 .container__items {

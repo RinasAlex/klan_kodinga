@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useSelector } from 'react-redux';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import Filtration from '@/components/Filtration/Filtration';
 import { Link } from 'react-router-dom';
 import { filterByPriceFavourite, filterSaleProductsFavourite, sortByFavourite } from '@/store/futures/productSlice';
+import { ThemeContext } from '@/components/ThemeProvider/ThemeProvider';
 
 const FavoritesPage = () => {
-
+  const {theme} = useContext(ThemeContext);
   const { favourite, loading, filteredProductsFavourite } = useSelector(state => state.products);
 
   if (loading) {  
@@ -29,7 +30,7 @@ const FavoritesPage = () => {
             <button className="content__btn-2">Liked products</button>
           </Link>
         </div>
-        <h2 className="content__page-title">Liked products</h2>
+        <h2 className={`content__page-title ${theme === "dark" ? "dark-text" : ""}`}>Liked products</h2>
 
         <Filtration
           filterSale={filterSaleProductsFavourite}

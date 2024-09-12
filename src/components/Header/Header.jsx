@@ -80,14 +80,15 @@ function Header() {
         </div>
 
         <div className="navbar__cart">
-          <NavLink to={"/favourites"}>
-            <img className="heard" src={heart} alt="" />
-
-            <span className={`${theme === "dark" ? "dark-text" : ""}`}>{favourite.length}</span>
-          </NavLink>
+        <div className="navbar__heart">
+            <NavLink to={"/favourites"} className="style__icons">
+              <img className="heard" src={heart} alt="" />
+              <span className={`count ${theme === "dark" ? "dark-text" : ""}`}>{favourite.length}</span>
+            </NavLink>
+          </div>
           <NavLink className="cart__container" to={"/cart"}>
             <img className="cart" src={cartBag} alt="" />
-            <p className={`length ${theme === "dark" ? "dark-text" : ""}`}>{cart.length}</p>
+            <span className={`length ${theme === "dark" ? "dark-text" : ""}`}>{cart.length}</span>
           </NavLink>
         </div>
       </div>
@@ -96,3 +97,7 @@ function Header() {
 }
 
 export default Header;
+
+
+
+

@@ -140,25 +140,86 @@
         position: relative;
 
         .length {
+          width: 26px;
+          height: 26px;
           position: absolute;
-          left: 0px;
-          top: 4px;
-          background-color: nav.$color-light-2;
-          color: #fff;
-          font-size: 11px;
-          font-weight: 600;
-          // width: 23px;
-          // height: 23px;
+          margin-top: -45px;
+          margin-right: 40px;
+          background: nav.$color-light-2;
+          color: white;
           border-radius: 50%;
-          text-align: center;
+          padding: 7px 8px;
+          font-size: 12px;
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
           align-items: center;
-          padding: 4px 7px;
+        }
+      }
+    }
+
+
+    .navbar__heart {
+
+      // .style__icons {
+      //   position: relative;
+
+      // .heard{
+      //   width: 36px; 
+      //   height: 36px;
+      // }
+
+      .count {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        margin-top: -45px;
+        margin-right: 40px;
+        background: nav.$color-light-2;
+        color: white;
+        border-radius: 50%;
+        padding: 7px 8px;
+        font-size: 12px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+
+      }
+    }
+
+    // }
+    @media (max-width: 1000px) {
+
+      .navbar__heart {
+        .style__icons {
+          position: relative;
+        }
+
+        .count {
+          width: 23.8px;
+          height: 23.8px;
         }
       }
     }
 
     @media (max-width: 768px) {
       padding: 10px;
+
+      .navbar__cart {
+        .navbar__heart {
+          .count {
+            
+            width: 24px;
+            height: 24px;
+            font-weight: 600;
+            font-size: 11px;
+            margin-top: -45px;
+            margin-right: 50px;
+          }
+        }
+      }
 
       &__logo {
         .logo {
@@ -219,16 +280,10 @@
         margin: 20px;
         justify-content: flex-end;
 
-        .cart {
-          width: 35px;
-          height: 35px;
-        }
-
-        .heard {
-          width: 35px;
-          height: 35px;
-        }
+    
       }
+
+
     }
 
     @media (max-width: 360px) {
