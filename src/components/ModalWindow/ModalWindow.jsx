@@ -29,10 +29,9 @@ const ModalWindow = ({ onClose }) => {
     let data = {
       ...currentItem,
       price: currentItem.price,
-      discont_price: currentItem.price / 2,
+      discont_price: (currentItem.price / 2).toFixed(2),
     };
-
-    console.log(data);
+    
     setProduct(data);
   }, []);
 
