@@ -108,7 +108,7 @@
 
     .form__box {
       .container__form {
-        margin-right: 20px;
+        // margin-right: 20px;
       }
       .img {
         margin-left: -462px;
@@ -121,7 +121,7 @@
   @media (max-width: 480px) {
     padding: 0 20px 20px 20px;
     &_box {
-      padding: 12px 8px 0 22px;
+      padding: 12px 15px 0 22px;
     }
     .form__box {
       flex-direction: column;
