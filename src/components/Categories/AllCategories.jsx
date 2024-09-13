@@ -25,7 +25,7 @@ export default function CategoriesPage() {
       <div className="content">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <h2 className="content__page-title">Categories</h2>
-        <div className="content__list-img">
+        <div className="content__list">
           {categoriesState.map((product) => (
             <CategoryCard key={product.id} {...product} />
           ))}

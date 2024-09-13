@@ -28,9 +28,11 @@
     top: 60px;
     left: 0;
 
+
     .title {
       font-size: 96px;
       color: nav.$color-light-4;
+      
 
       span {
         display: inline-block;
@@ -70,3 +72,96 @@
     }
   }
 }
+
+// @use "@/assets/styles/variables.scss" as nav;
+
+// .banner {
+//   width: 100%;
+//   height: auto;
+//   background-color: nav.$color-light-1; 
+//   padding: 40px 0;
+
+//   .container {
+//     max-width: 1440px;
+//     margin: 0 auto;
+//     padding: 0 20px;
+//   }
+
+//   .content {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     flex-wrap: wrap;
+
+//     @media (max-width: 768px) {
+//       flex-direction: column;
+//       align-items: center;
+//     }
+//   }
+
+//   &__image {
+//     width: 50%;
+//     height: auto;
+
+//     @media (max-width: 768px) {
+//       width: 100%;
+//       margin-bottom: 20px;
+//     }
+//   }
+
+//   &__content {
+//     max-width: 50%;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+
+//     @media (max-width: 768px) {
+//       max-width: 100%;
+//       align-items: center;
+//       text-align: center;
+//     }
+//   }
+
+//   .title {
+//     font-size: 48px;
+//     font-weight: nav.$font-weight-bold;
+//     color: nav.$color-dark-1;
+//     margin-bottom: 20px;
+//     line-height: 1.2;
+
+//     span {
+//       color: nav.$color-light-4; // Color for the highlighted text (e.g., "on Garden Products!")
+//     }
+
+//     @media (max-width: 768px) {
+//       font-size: 36px;
+//     }
+
+//     @media (max-width: 480px) {
+//       font-size: 28px;
+//     }
+//   }
+
+//   .btn-default-size {
+//     padding: 12px 24px;
+//     font-size: 18px;
+//     background-color: nav.$color-primary;
+//     color: nav.$color-light-1;
+//     border: none;
+//     border-radius: 6px;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+
+//     &:hover {
+//       background-color: nav.$color-primary-dark; // Darker color on hover
+//     }
+
+//     @media (max-width: 768px) {
+//       font-size: 16px;
+//     }
+
+//     @media (max-width: 480px) {
+//       font-size: 14px;
+//     }
+//   }
+// }
