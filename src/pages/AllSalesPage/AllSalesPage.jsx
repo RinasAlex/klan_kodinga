@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "./AllSalesPage.scss";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link } from 'react-router-dom';
 import Filtration from "@/components/Filtration/Filtration";
 import {
   filterByPriceSale,
@@ -10,12 +9,12 @@ import {
   filterSaleProductsForPage,
 } from "@/store/futures/productSlice";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import { ThemeContext } from '@/components/ThemeProvider/ThemeProvider';
 
 const AllSalesPage = () => {
   const dispatch = useDispatch();
-  const { filteredProducts, loading, products } = useSelector(
-    (state) => state.products
-  );
+  const { filteredProducts, loading, products } = useSelector(state => state.products);
+  const {theme} = useContext(ThemeContext);
 
   useEffect(() => {
     dispatch(filterSaleProductsForPage());

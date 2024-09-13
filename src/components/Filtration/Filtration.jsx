@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Filtration.scss';
 import { useDispatch } from 'react-redux';
+import { ThemeContext } from '../ThemeProvider/ThemeProvider';
 
 
 const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
   const dispatch = useDispatch();
+
+  const {theme, setTheme} = useContext(ThemeContext);
 
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
@@ -17,11 +20,11 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
     dispatch(filterByPrice({ minPrice: Number(minPriceValue), maxPrice: Number(maxPriceValue) }))
     dispatch(sortBy({ value: sortByValue }))
   }, [sortByValue, minPrice, maxPrice, dispatch]);
-
+ 
   return (
     <div className='filters'>
       <div className="filters__price">
-        <label htmlFor="">Price</label>
+        <label htmlFor="" className={`${theme === "dark" ? "dark-text" : ""}`}>Price</label>
         <input
           type="number"
           className='form-control'
@@ -43,7 +46,7 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
       {
         typeof filterSale === 'function' && (
           <div className="filters__discount">
-            <label htmlFor="">Discounted items</label>
+            <label htmlFor=""  className={`${theme === "dark" ? "dark-text" : ""}`}>Discounted items</label>
 
             <input
               type="checkbox"
@@ -59,7 +62,7 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
 
 
       <div className="filters__sort">
-        <label htmlFor="">Sorted</label>
+        <label htmlFor=""  className={`${theme === "dark" ? "dark-text" : ""}`}>Sorted</label>
         <select
           name="sortSelect"
           className='form-control-sort'

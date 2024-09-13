@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./CheckoutForm.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../store/futures/productSlice";
+import { ThemeContext } from "../components/ThemeProvider/ThemeProvider";
 
 function CheckoutForm({
   setSendingOrder,
@@ -16,6 +17,7 @@ function CheckoutForm({
   textBtn,
 }) {
   const dispatch = useDispatch();
+  const { theme } = useContext(ThemeContext);
 
   const {
     register,
@@ -45,7 +47,7 @@ function CheckoutForm({
           })}
           type="text"
           placeholder="Name"
-          className={`${classInput} input`}
+          className={`${classInput} input ${theme === "dark" ? "bg-dark" : "bg-light"}`}
         />
         {errors?.name && (
           <p className="error__message">{errors.name?.message}</p>
@@ -59,7 +61,7 @@ function CheckoutForm({
           })}
           type="number"
           placeholder="Phone number"
-          className={`${classInput} input`}
+          className={`${classInput} input ${theme === "dark" ? "bg-dark" : "bg-light"}`}
         />
         {errors?.number && (
           <p className="error__message">{errors.number?.message}</p>
@@ -75,7 +77,7 @@ function CheckoutForm({
           })}
           type="email"
           placeholder="Email"
-          className={`${classInput} input`}
+          className={`${classInput} input ${theme === "dark" ? "bg-dark" : "bg-light"}`}
         />
         {errors?.email && (
           <p className="error__message">{errors.email?.message}</p>

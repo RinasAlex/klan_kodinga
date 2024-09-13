@@ -3,7 +3,6 @@
 .allProducts {
   width: 100%;
   padding: 40px 40px 80px 40px;
-  background-color: nav.$color-light-1;
 
   .container {
     max-width: 1440px;
@@ -13,9 +12,7 @@
     &__title {
       font-weight: nav.$font-weight-bold;
       font-size: nav.$font-size-title-big;
-      color: nav.$color-dark-2;
       width: 100%;
-      // padding: 40px 0;
     }
 
     &__list {
@@ -25,15 +22,8 @@
     }
 
     @media (max-width: 1000px) {
-      // padding: 40px 20px 0 20px;
-      &__title {
-      }
-
+  
       &__list {
-        // gap: 20px;
-        // display: grid;
-        // grid-template-columns: repeat(4, 1fr);
-        // width: 100%;
         gap: nav.$content-size-gap-default;
         padding-top: 32px;
       }

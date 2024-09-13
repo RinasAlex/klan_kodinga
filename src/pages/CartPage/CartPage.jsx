@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./CartPage.scss";
-import deleteBtn from "../../assets/image/delete.svg";
+import deleteBtn from "@/assets/image/delete.svg";
 import "./CartPage.scss";
-import CheckoutForm from "../../UI/CheckoutForm.jsx";
+import CheckoutForm from "@/UI/CheckoutForm.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
   decrementProduct,
@@ -10,14 +10,17 @@ import {
   incrementProduct,
   removeProduct,
   sendProducts,
-} from "../../store/futures/productSlice.js";
+} from "@/store/futures/productSlice.js";
 import { Link } from "react-router-dom";
-import OrderModal from "../../components/OrderModal/OrderModal.jsx";
+import OrderModal from "@/components/OrderModal/OrderModal.jsx";
 import CartPageEmpty from "./CartPageEmpty.jsx";
+import { ThemeContext } from "@/components/ThemeProvider/ThemeProvider.jsx";
 
 const CartPage = () => {
   const [sendingOrder, setSendingOrder] = useState(false);
   const { cart } = useSelector((state) => state.products);
+  const { theme } = useContext(ThemeContext);
+
   const dispatch = useDispatch();
 
   const counterIncrement = (item) => {
@@ -61,7 +64,7 @@ const CartPage = () => {
           <div className="products__container">
             {cart &&
               cart.map((item) => (
-                <div key={item.id} className="cart_product__container">
+                <div key={item.id} className={`cart_product__container ${theme === "dark" ? "bg-dark_darker" : "bg-light" }`}>
                   <img
                     src={`https://exam-server-5c4e.onrender.com/${item.image}`}
                     alt=""
@@ -126,14 +129,14 @@ const CartPage = () => {
                 </div>
               ))}
           </div>
-          <div className="order__container">
+          <div className={`order__container ${theme === "dark" ? "bg-dark_darker" : "bg-light"}`}>
             <h3>Order details</h3>
             <p className="items">{cart.length} items</p>
             <div className="total__items">
               <p className="items">Total</p>
               <p className="total__price">${totalPrice}</p>
             </div>
-            <CheckoutForm
+            <CheckoutForm 
               classInput="input"
               classBtn="btn"
               textBtn="Order "

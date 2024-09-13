@@ -2,7 +2,6 @@
 
 .product__container {
   width: 100%;
-  background-color: nav.$color-light-1;
 
   .container__box {
     display: flex;
@@ -50,11 +49,13 @@
           height: 572px;
           border-radius: 12px;
         }
+
         .close__window {
           display: none;
           opacity: 0;
           z-index: -1;
         }
+
         .modal__container__img {
           position: fixed;
           z-index: 9;
@@ -66,6 +67,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
+
           .modal__window__img {
             max-width: 900px;
             max-height: 610px;
@@ -78,33 +80,40 @@
         flex-direction: column;
         gap: 32px;
         padding: 10px;
+
         .title__heart {
           display: flex;
           justify-content: space-between;
           align-items: center;
+
           .title {
             font-size: 40px;
             font-weight: 700;
           }
+
           .heart {
             width: 48px;
             height: 38px;
           }
         }
+
         .price__container {
           display: flex;
           align-items: center;
           gap: 32px;
+
           .price {
             font-size: 64px;
             font-weight: 700;
           }
+
           .discount__price {
             text-decoration: line-through;
             font-size: 20px;
             color: #8b8b8b;
             margin-top: 18px;
           }
+
           .sale {
             width: 63px;
             padding: 4px 8px;
@@ -116,8 +125,10 @@
             margin-bottom: 20px;
           }
         }
+
         .counter__container {
           display: flex;
+
           .counter__box {
             display: flex;
             align-items: center;
@@ -128,6 +139,7 @@
             justify-content: space-between;
             font-size: 20px;
             font-weight: 600;
+
             .counter__btn {
               height: 58px;
               padding: 8px 15px;
@@ -138,6 +150,7 @@
               color: #8b8b8b;
             }
           }
+
           .add__to {
             padding: 16px 32px;
             background-color: nav.$color-light-2;
@@ -148,6 +161,7 @@
             font-size: 20px;
             font-weight: 600;
           }
+
           .counter {
             width: 96px;
             height: 58px;
@@ -157,24 +171,26 @@
             justify-content: center;
           }
         }
+
         .description__container {
           max-width: 548px;
+
           h5 {
             font-size: 20px;
             font-weight: 600;
           }
+
           .description {
             -webkit-box-orient: vertical;
             font-size: 16px;
             font-weight: 400;
-            color: #424436;
             overflow: hidden;
             -webkit-line-clamp: 3;
           }
+
           .read__more {
             font-size: 16px;
             font-weight: 500;
-            color: #424436;
             text-decoration: underline;
           }
         }
@@ -234,12 +250,14 @@
         .product__box {
           display: flex;
           align-items: center;
+
           .modal__container__img {
             .modal__window__img {
               max-width: 728px;
               max-height: 494px;
             }
           }
+
           .product__img {
             width: 354px;
             height: 286px;
@@ -310,6 +328,7 @@
           margin-top: 40px;
           display: flex;
           align-items: center;
+
           .modal__container__img {
             .modal__window__img {
               max-width: 440px;
@@ -332,9 +351,11 @@
 
             .price__container {
               gap: 20px;
+
               .price {
                 font-size: 40px;
               }
+
               .sale {
                 position: absolute;
                 top: 30px;
@@ -353,44 +374,54 @@
         }
       }
     }
+
     @media (max-width: 360px) {
       .item__box {
         display: flex;
         flex-direction: column;
         gap: 20px;
+
         .product__box {
           flex-direction: column;
+
           .modal__container__img {
             .modal__window__img {
               max-width: 320px;
               max-height: 260px;
             }
           }
+
           .product__img {
             width: 320px;
             height: 220px;
           }
+
           .info__container {
             .title__heart {
               align-items: center;
               top: -75px;
+
               .title {
                 font-size: 28px;
               }
             }
+
             .price__container {
               justify-content: center;
               gap: 20px;
+
               .sale {
                 position: absolute;
                 left: 220px;
                 top: 16px;
               }
             }
+
             .counter__container {
               .counter__box {
                 margin-left: 70px;
               }
+
               .add__to {
                 width: 312px;
               }

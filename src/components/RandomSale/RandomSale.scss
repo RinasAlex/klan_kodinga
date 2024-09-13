@@ -2,7 +2,6 @@
 
 .sale {
   width: 100%;
-  background-color: nav.$color-light-1;
   padding: 20px;
 
   .container {
@@ -30,19 +29,19 @@
       margin-left: 32px;
     }
 
-    &__btn {
-      font-size: nav.$button-default-font-size;
-      color: nav.$color-dark-3;
-      background-color: transparent;
-      border: 1px solid nav.$color-dark-7;
-      border-radius: 5px;
-      padding: 5px 15px;
+    // &__btn {
+    //   font-size: nav.$button-default-font-size;
+    //   color: nav.$color-dark-3;
+    //   background-color: transparent;
+    //   border: 1px solid nav.$color-dark-7;
+    //   border-radius: 5px;
+    //   padding: 5px 15px;
 
-      &:hover {
-        color: nav.$color-light-4;
-        background-color: nav.$color-dark-7;
-      }
-    }
+    //   &:hover {
+    //     color: nav.$color-light-4;
+    //     background-color: nav.$color-dark-7;
+    //   }
+    // }
 
     &__btn-2 {
       text-decoration: none;
@@ -133,7 +132,6 @@
         border: 1px solid nav.$color-dark-4;
         border-radius: nav.$border-radius-small;
         background-color: nav.$color-light-1;
-
         margin-top: 24px;
       }
 
