@@ -2,7 +2,7 @@
 
 .categories {
   width: 100%;
-  
+
   .content {
     max-width: 1440px;
     margin: 0 auto;
@@ -15,34 +15,15 @@
       display: flex;
     }
 
-    &__list {
-      margin-top: 32px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
-      gap: 32px;
-    }
-
     @media (max-width: 1000px) {
       &__page-title {
         margin-top: 32px;
       }
-
-      &__list {
-        margin-top: 32px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-      }
     }
+
     @media (max-width: 768px) {
       &__page-title {
         font-size: nav.$font-size-title-medium;
-      }
-      &__list {
-        margin-top: 32px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
       }
     }
 
@@ -50,12 +31,7 @@
       &__page-title {
         font-size: nav.$font-size-title-deafult;
       }
-     
-      &__list {
-        grid-template-columns: repeat(2, 1fr);
-        width: 100%;
-        gap: nav.$content-size-gap-default;
-      }
+
       .breadcrumbs {
         display: none;
       }
@@ -65,12 +41,7 @@
       &__page-title {
         font-size: nav.$font-size-title-smallest;
       }
-      &__list {
-        grid-template-columns: repeat(1, 1fr);
-        // grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        width: 100%;
-        gap: nav.$content-size-gap-default;
-      }
+
       .breadcrumbs {
         display: none;
       }
