@@ -27,7 +27,7 @@ const Footer = () => {
                   <FaInstagram />
                 </Link>
                 <Link to="https://web.whatsapp.com/" target='_blank' className={`${theme === "dark" ? "dark-text" : ""}`}>
-                <FaWhatsapp />
+                  <FaWhatsapp />
                 </Link>
               </div>
 

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import discountImg from "../../assets/discount/discount.svg";
+import discountImg from "@/assets/discount/discount.svg";
 import "./HomeDiscount.scss";
-import CheckoutForm from "../../UI/CheckoutForm";
-import { sendDiscount } from "../../store/futures/productSlice";
+import CheckoutForm from "@/UI/CheckoutForm";
+import { sendDiscount } from "@/store/futures/productSlice";
 
 function HomeDiscount() {
   const [sendingDiscount, setSendingDiscount] = useState(false);

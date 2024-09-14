@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
 import "./Header.scss";
 import logo from "@/assets/headerImages/logo.svg";
-import heart from "@/assets/headerImages/heart.svg";
 import { IoIosHeartEmpty } from "react-icons/io";
 import sun from "@/assets/headerImages/sun.svg";
 import moon from "@/assets/headerImages/moon.svg";
-import cartBag from "@/assets/headerImages/cart.svg";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import Burger from "./Burger";
 import { NavLink } from "react-router-dom";

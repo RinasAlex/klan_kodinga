@@ -4,13 +4,7 @@ import deleteBtn from "@/assets/image/delete.svg";
 import "./CartPage.scss";
 import CheckoutForm from "@/UI/CheckoutForm.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  decrementProduct,
-  getCartFromLocalStorage,
-  incrementProduct,
-  removeProduct,
-  sendProducts,
-} from "@/store/futures/productSlice.js";
+import { decrementProduct, getCartFromLocalStorage, incrementProduct, removeProduct, sendProducts } from "@/store/futures/productSlice.js";
 import { Link } from "react-router-dom";
 import OrderModal from "@/components/OrderModal/OrderModal.jsx";
 import CartPageEmpty from "./CartPageEmpty.jsx";
@@ -66,16 +60,16 @@ const CartPage = () => {
               cart.map((item) => (
                 <div key={item.id} className={`cart_product__container ${theme === "dark" ? "bg-dark_darker" : "bg-light"}`}>
                   <Link to={`/productPage/${item.id}`}>
-                  <img
-                    src={`https://exam-server-5c4e.onrender.com/${item.image}`}
-                    alt=""
-                    className="img"
-                  />
+                    <img
+                      src={`https://exam-server-5c4e.onrender.com/${item.image}`}
+                      alt=""
+                      className="img"
+                    />
                   </Link>
                   <div className="info__container">
                     <div className="title__box">
                       <p className="title">
-                        <Link to={`/productPage/${item.id}`}>{item.title}</Link>
+                        <Link to={`/productPage/${item.id}`} className={`${theme === "dark" ? "dark-text" : ""}`}>{item.title}</Link>
                       </p>
                       <img
                         onClick={() => remove(item)}

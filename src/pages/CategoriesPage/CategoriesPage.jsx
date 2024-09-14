@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import "./CategoriesPage.scss";
+import React from "react";
 import AllCategories from "@/components/Categories/AllCategories";
 
 const CategoriesPage = () => {
   return (
- <div className="">
-   <AllCategories />
- </div>
+    <div className="">
+      <AllCategories />
+    </div>
   );
 };
 

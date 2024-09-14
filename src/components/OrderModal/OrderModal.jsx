@@ -1,5 +1,5 @@
 import React from "react";
-import deleted from "../../assets/image/deleteWhite.svg";
+import deleted from "@/assets/image/deleteWhite.svg";
 import "./OrderModal.scss";
 
 function OrderModal({ sendingOrder, setSendingOrder }) {

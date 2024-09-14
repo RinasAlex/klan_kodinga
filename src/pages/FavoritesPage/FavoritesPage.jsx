@@ -7,10 +7,10 @@ import { filterByPriceFavourite, filterSaleProductsFavourite, sortByFavourite } 
 import { ThemeContext } from '@/components/ThemeProvider/ThemeProvider';
 
 const FavoritesPage = () => {
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const { favourite, loading, filteredProductsFavourite } = useSelector(state => state.products);
 
-  if (loading) {  
+  if (loading) {
     return "Loading ...."
   }
 
