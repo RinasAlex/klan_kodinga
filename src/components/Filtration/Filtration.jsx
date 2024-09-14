@@ -20,7 +20,7 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
     dispatch(filterByPrice({ minPrice: Number(minPriceValue), maxPrice: Number(maxPriceValue) }))
     dispatch(sortBy({ value: sortByValue }))
   }, [sortByValue, minPrice, maxPrice, dispatch]);
-
+ 
   return (
     <div className='filters'>
       <div className="filters__price">

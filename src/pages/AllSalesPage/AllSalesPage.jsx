@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import "./AllSalesPage.scss";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link } from 'react-router-dom';
 import Filtration from "@/components/Filtration/Filtration";
 import {
   filterByPriceSale,
