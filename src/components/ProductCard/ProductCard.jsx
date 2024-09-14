@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ProductCard.scss";
 import { Link } from "react-router-dom";
-import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
+import { IoHeartSharp } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, removeProduct, setFavourite } from "../../store/futures/productSlice";
+import { addProduct, removeProduct, setFavourite } from "@/store/futures/productSlice";
+import { ThemeContext } from "../ThemeProvider/ThemeProvider";
 
 const ProductCard = ({
   product: { image, id, title, price, discont_price, count }
@@ -12,6 +13,7 @@ const ProductCard = ({
   const dispatch = useDispatch();
 
   const { product, favourite, cart } = useSelector((state) => state.products);
+  const { theme } = useContext(ThemeContext);
 
   const [isFavourite, setIsFavourite] = useState(false);
   const [isCartHidden, setIsCartHidden] = useState(false);
@@ -67,15 +69,6 @@ const ProductCard = ({
               style={{ stroke: "black", strokeWidth: "24" }}
             />
 
-            {/* {!isCartHidden && (
-              <HiOutlineShoppingBag
-              className={`actions__cart ${productInCart ? "actions__cart-active": ""}`}
-                onClick={() => 
-                  addToCart({image, id, title, price, discont_price, count }) }
-              />
-            )} */}
-
-
             <HiOutlineShoppingBag
               className={`actions__cart ${isCartHidden ? "actions__cart-active" : ""}`}
               onClick={() =>
@@ -85,22 +78,22 @@ const ProductCard = ({
         </div>
       </div>
 
-      <div className="productCard__bottom">
+      <div className={`productCard__bottom ${theme === "dark" ? "bg-dark_darker" : "bg-light"}`}>
         <h3 className="productCard__bottom-title">
-          <Link to={`/productPage/${id}`}>{title}</Link>
+          <Link className={`productCard__bottom-title ${theme === "dark" ? "dark-text" : ""}`} to={`/productPage/${id}`}>{title}</Link>
         </h3>
 
         <div className="productCard__bottom-price-container">
           {discont_price && discont_price < price ? (
             <>
-              <span className="productCard__bottom-discont_price">
+              <span className={`productCard__bottom-discont_price ${theme === "dark" ? "dark-text" : ""}`}>
                 ${discont_price}
               </span>
 
               <span className="productCard__bottom-price1">${price}</span>
             </>
           ) : (
-            <span className="productCard__bottom-price2">${price}</span>
+            <span className={`productCard__bottom-price2 ${theme === "dark" ? "dark-text" : ""}`}>${price}</span>
           )}
         </div>
       </div>

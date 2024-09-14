@@ -2,15 +2,13 @@
 
 .discount__container {
   padding: 40px;
-  background-color: nav.$color-light-1;
   width: 100%;
+
   &_box {
     background: rgb(135, 147, 61);
-    background: linear-gradient(
-      90deg,
-      rgba(135, 147, 61, 1) 40%,
-      rgba(85, 97, 11, 1) 70%
-    );
+    background: linear-gradient(90deg,
+        rgba(135, 147, 61, 1) 40%,
+        rgba(85, 97, 11, 1) 70%);
     max-width: 1440px;
     margin: 0 auto;
     padding: 32px 32px 0 32px;
@@ -22,22 +20,26 @@
       font-size: 64px;
       text-align: center;
     }
+
     .form__box {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-top: 30px;
+
       .container__form {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         row-gap: 32px;
         width: 100%;
+
         .container__inputs {
           display: flex;
           flex-direction: column;
           row-gap: 16px;
           width: 100%;
+
           .input,
           .btn {
             padding: nav.$button-large-size;
@@ -46,37 +48,44 @@
             border: 1px solid nav.$color-light-4;
             font-size: 26px;
           }
+
           .input {
             outline: none;
             font-weight: nav.$font-weight-medium;
             color: nav.$color-light-4;
             background-color: transparent;
+
             &::-webkit-outer-spin-button,
             &::-webkit-inner-spin-button {
               -webkit-appearance: none;
               margin: 0;
             }
+
             &::placeholder {
               font-size: 26px;
               color: nav.$color-light-4;
             }
           }
+
           .btn {
             color: nav.$color-dark-2;
             background-color: nav.$color-light-4;
             font-weight: nav.$font-weight-default;
             margin-bottom: 20px;
+
             &:disabled {
               opacity: 0.6;
               cursor: auto;
             }
           }
+
           .error__message {
             color: red;
             font-size: 10px;
           }
         }
       }
+
       .container__send {
         width: 440px;
         height: 300px;
@@ -85,6 +94,7 @@
         border-radius: nav.$item-radius-big;
         padding: 0 29px;
         box-shadow: 0 0 24px 6px #b1ffb1, 0 0 20px 4px #b1ffb1;
+
         .text__send {
           color: nav.$color-light-4;
           font-size: 40px;
@@ -95,6 +105,7 @@
         }
       }
     }
+
     @media (max-width: 1000px) {
       .form__box {
         .img {
@@ -102,37 +113,45 @@
         }
       }
     }
+
     @media (max-width: 768px) {
       .form__box {
         .img {
           margin-left: -462px;
         }
+
         h1 {
           font-size: 56px;
         }
       }
     }
+
     @media (max-width: 480px) {
       .form__box {
         flex-direction: column;
         border-radius: 10px;
+
         .img {
           order: 1;
 
           margin-left: 0;
           width: 400px;
         }
+
         h1 {
           font-size: 48px;
         }
       }
     }
+
     @media (max-width: 360px) {
       z-index: 99;
+
       .form__box {
         .img {
           width: 200px;
         }
+
         h1 {
           font-size: 40px;
         }

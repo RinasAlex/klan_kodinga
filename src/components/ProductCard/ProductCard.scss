@@ -32,7 +32,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 5px;
     }
 
     &-sale {
@@ -56,6 +55,7 @@
 
   &__bottom {
     padding: 15px;
+    border-top: 1px solid nav.$color-dark-4;
 
     &-title a {
       font-size: nav.$font-size-content-big;

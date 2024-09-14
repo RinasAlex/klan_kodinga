@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Breadcrumbs.scss";
+import { ThemeContext } from "../ThemeProvider/ThemeProvider";
 
 const Breadcrumbs = ({ breadcrumbs }) => {
+  const {theme} = useContext(ThemeContext);
+
   return (
     <div className="breadcrumbs">
       {breadcrumbs.map((breadcrumb, index) => (
@@ -12,7 +15,7 @@ const Breadcrumbs = ({ breadcrumbs }) => {
           {breadcrumb.link ? (
             <Link
               to={breadcrumb.link}
-              className={`breadcrumbs-link
+              className={`breadcrumbs-link ${theme === "dark" ? "dark-text" : ""}
             ${
               index === breadcrumbs.length - 1 ? "breadcrumbs-link-active" : ""
             }`}

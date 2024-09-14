@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "./AllSalesPage.scss";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,12 +10,12 @@ import {
   filterSaleProductsForPage,
 } from "@/store/futures/productSlice";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import { ThemeContext } from '@/components/ThemeProvider/ThemeProvider';
 
 const AllSalesPage = () => {
   const dispatch = useDispatch();
-  const { filteredProducts, loading, products } = useSelector(
-    (state) => state.products
-  );
+  const { filteredProducts, loading, products } = useSelector(state => state.products);
+  const {theme} = useContext(ThemeContext);
 
   useEffect(() => {
     dispatch(filterSaleProductsForPage());
@@ -38,7 +38,8 @@ const AllSalesPage = () => {
     <div className="categories">
       <div className="content">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
-        <h2 className="content__page-title">Discounted items</h2>
+
+        <h2 className={`content__page-title ${theme === "dark" ? "dark-text" : ""}`}>Discounted items</h2>
 
         <Filtration
           disabledDiscount={false}
