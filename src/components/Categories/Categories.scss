@@ -1,15 +1,14 @@
 @use "@/assets/styles/variables.scss" as nav;
 
 .categories {
-  padding: 80px 40px;
+  padding: 40px 40px;
   max-width: 100%;
-  
+
   .container {
     max-width: 1440px;
     &__position {
       display: flex;
       align-items: center;
-     
     }
 
     &__btn-2 {
@@ -47,11 +46,12 @@
         width: 100%;
         gap: nav.$content-size-gap-default;
       }
+      .breadcrumbs {
+        display: none;
+      }
     }
 
     @media (max-width: 360px) {
-
-
       &__list {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -69,7 +69,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
         font-weight: nav.$font-weight-medium;
         font-size: nav.$button-default-font-size;
         padding: nav.$button-medium-size;
@@ -77,6 +76,9 @@
         border-radius: nav.$border-radius-small;
         background-color: nav.$color-light-1;
         margin-top: 24px;
+      }
+      .breadcrumbs {
+        display: none;
       }
     }
   }

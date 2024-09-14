@@ -3,40 +3,35 @@
 .categories {
   padding: 40px 40px;
   width: 100%;
-  
+
   .content {
     max-width: 1440px;
     margin: 0 auto;
 
-    &__page-title {
+    &__title {
       color: nav.$color-dark-2;
       font-size: nav.$font-size-title-big;
       font-weight: nav.$font-weight-bold;
-      padding: 0px 10px 40px 0;
-      margin-top: 40px;
+      margin: 40px 0 40px;
       display: flex;
     }
 
-    &__list-img {
+    &__list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
       gap: nav.$content-size-gap-big;
     }
 
     @media (max-width: 768px) {
-      &__page-title {
-        font-size: nav.$font-size-title-medium;
-      }
-
-      &__list-img {
-        display: grid;
-        grid-template-columns: repeat(2, 3fr);
-        width: 100%;
-        gap: nav.$content-size-gap-default;
-      }
-
       &__title {
         font-size: nav.$font-size-title-medium;
+        margin-top: 32px;
+      }
+
+      &__list {
+        display: grid;
+        grid-template-columns: repeat(2, 3fr);
+        gap: nav.$content-size-gap-default;
       }
     }
 
@@ -47,7 +42,6 @@
 
       &__list {
         grid-template-columns: repeat(2, 1fr);
-        width: 100%;
         font-size: nav.$font-size-content-default;
         line-height: 23.4px;
         gap: nav.$content-size-gap-default;
@@ -59,11 +53,11 @@
     }
 
     @media (max-width: 360px) {
-      &__page-title {
+      &__title {
         font-size: 36px;
       }
 
-      &__list-img {
+      &__list {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         justify-content: center;

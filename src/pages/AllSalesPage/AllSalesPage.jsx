@@ -1,10 +1,14 @@
-import React, { useContext, useEffect } from 'react'
-import './AllSalesPage.scss'
-import ProductCard from '@/components/ProductCard/ProductCard'
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Filtration from '@/components/Filtration/Filtration';
-import { filterByPriceSale, sortBySale, filterSaleProductsForPage } from '@/store/futures/productSlice';
+import React, { useContext, useEffect } from "react";
+import "./AllSalesPage.scss";
+import ProductCard from "@/components/ProductCard/ProductCard";
+import { useDispatch, useSelector } from "react-redux";
+import Filtration from "@/components/Filtration/Filtration";
+import {
+  filterByPriceSale,
+  sortBySale,
+  filterSaleProductsForPage,
+} from "@/store/futures/productSlice";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import { ThemeContext } from '@/components/ThemeProvider/ThemeProvider';
 
 const AllSalesPage = () => {
@@ -17,21 +21,22 @@ const AllSalesPage = () => {
   }, [products, dispatch]);
 
   if (loading) {
-    return "Loading ...."
+    return "Loading ....";
   }
-
+  const breadcrumbs = [
+    {
+      label: "Main page",
+      link: "/",
+    },
+    {
+      label: "All sales",
+      link: "/sales",
+    },
+  ];
   return (
     <div className="categories">
       <div className="content">
-        <div className="content__position-btn">
-          <Link to={`/`}>
-            <button className="content__btn-1">Main page</button>
-          </Link>
-          <div className="content__line-position"></div>
-          <Link to={`/sales`}>
-            <button className="content__btn-2">All sales</button>
-          </Link>
-        </div>
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
 
         <h2 className={`content__page-title ${theme === "dark" ? "dark-text" : ""}`}>Discounted items</h2>
 
@@ -41,15 +46,15 @@ const AllSalesPage = () => {
           sortBy={sortBySale}
         />
 
-        <div className="container__items">
-          {
-            filteredProducts && filteredProducts.map((product) =>
-              <ProductCard key={product.id} product={product} />)
-          }
+        <div className="content__list">
+          {filteredProducts &&
+            filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default AllSalesPage
+export default AllSalesPage;
