@@ -27,11 +27,11 @@
       color: nav.$color-dark-2;
       font-weight: nav.$font-weight-medium;
     }
+  }
 
-    &-label {
-      font-weight: nav.$font-weight-medium;
-      font-size: nav.$font-size-content-small;
-      color: nav.$color-dark-2;
-    }
+  &-label {
+    font-weight: nav.$font-weight-medium;
+    font-size: nav.$font-size-content-small;
+    color: nav.$color-dark-2;
   }
 }

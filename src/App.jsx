@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import './assets/styles/index.scss'
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import MainPage from "./pages/MainPage/MainPage";
@@ -18,6 +19,7 @@ import ProductsFromCategory from "./pages/ProductsFromCategory/ProductsFromCateg
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import CartPageEmpty from "./pages/CartPage/CartPageEmpty";
 import PageNotFound from "./pages/ErrorPage/PageNotFound";
+import ThemeProvider from "./components/ThemeProvider/ThemeProvider";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,24 +33,24 @@ const App = () => {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" index element={<MainPage />} />
-          <Route path="/products" element={<AllProductsPage />} />
-          <Route path="/sales" element={<AllSalesPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/categories" element={<CategoriesPage />} />
-          <Route path="/productPage/:id" element={<ProductPage />} />
-          <Route
-            path="/categories/:categoryId"
-            element={<ProductsFromCategory />}
-          />
-          <Route path="/favourites" element={<FavoritesPage />} />
-          <Route path="/cartEmpty" element={<CartPageEmpty />} />
-          <Route path="*" element={<PageNotFound />} />
+      <ThemeProvider>
+        <Routes>
+          
+          <Route path="/" element={<Layout />}>
+            <Route path="/" index element={<MainPage />} />
+            <Route path="/products" element={<AllProductsPage />} />
+            <Route path="/sales" element={<AllSalesPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/productPage/:id" element={<ProductPage />} />
+            <Route path="/categories/:categoryId" element={<ProductsFromCategory />} />
+            <Route path="/favourites" element={<FavoritesPage />} />
+            <Route path="/cartEmpty" element={<CartPageEmpty />} />
+            <Route path="*" element={<PageNotFound />} />
 
-        </Route>
-      </Routes>
+          </Route>
+        </Routes>
+      </ThemeProvider>
     </>
   );
 };
