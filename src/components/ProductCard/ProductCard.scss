@@ -75,7 +75,7 @@
     }
 
     &-price1 {
-      font-size: nav.$font-size-content-big;
+      font-size: nav.$font-size-content-sale-default-price;
       font-weight: nav.$font-weight-medium;
       color: nav.$color-dark-3;
       text-decoration: line-through;
@@ -83,13 +83,13 @@
     }
 
     &-price2 {
-      font-size: nav.$font-size-title-smallest;
+      font-size: nav.$font-size-content-sale-default-price-active;
       color: nav.$color-dark-2;
       font-weight: nav.$font-weight-default;
     }
 
     &-discont_price {
-      font-size: 40px;
+      font-size: nav.$font-size-title-smallest;
       color: nav.$color-dark-2;
       font-weight: nav.$font-weight-default;
       padding-right: 16px;
@@ -105,7 +105,6 @@
     gap: 10px;
     color: black;
 
-
     &__favourite,
     &__cart {
       font-size: 36px;
@@ -120,8 +119,31 @@
     &__favourite,
     &__cart {
       &-active {
-        fill: #92A134;
+        fill: #92a134;
       }
+    }
+  }
+
+  @media (max-width: 480px) {
+    &-title a {
+      font-size: nav.$font-size-content-default;
+      font-weight: nav.$font-weight-medium;
+      line-height: 23.4px;
+    }
+
+    &-price1 {
+      font-size: nav.$font-size-content-sale-small-price;
+      font-weight: nav.$font-weight-medium;
+      color: nav.$color-dark-3;
+      text-decoration: line-through;
+      margin-right: 10px;
+    }
+
+    &-price2 {
+      font-size: nav.$font-size-content-sale-small-price-active;
+      color: nav.$color-dark-2;
+      font-weight: nav.$font-weight-default;
+      padding-right: 16px;
     }
   }
 }

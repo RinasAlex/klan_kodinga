@@ -1,7 +1,9 @@
+@use "@/assets/styles/variables.scss" as nav;
+
 .empty__container {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: nav.$content-size-gap-large;
   .blok__title_btn {
     margin-bottom: 0;
   }

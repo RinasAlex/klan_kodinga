@@ -7,7 +7,7 @@ import { ThemeContext } from '../ThemeProvider/ThemeProvider';
 const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
   const dispatch = useDispatch();
 
-  const {theme, setTheme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
@@ -46,7 +46,7 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
       {
         typeof filterSale === 'function' && (
           <div className="filters__discount">
-            <label htmlFor=""  className={`${theme === "dark" ? "dark-text" : ""}`}>Discounted items</label>
+            <label htmlFor="" className={`${theme === "dark" ? "dark-text" : ""}`}>Discounted items</label>
 
             <input
               type="checkbox"
@@ -62,7 +62,7 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
 
 
       <div className="filters__sort">
-        <label htmlFor=""  className={`${theme === "dark" ? "dark-text" : ""}`}>Sorted</label>
+        <label htmlFor="" className={`${theme === "dark" ? "dark-text" : ""}`}>Sorted</label>
         <select
           name="sortSelect"
           className='form-control-sort'
