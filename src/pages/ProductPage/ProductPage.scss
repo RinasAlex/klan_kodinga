@@ -12,31 +12,6 @@
     margin: 0 auto;
     padding: 40px;
 
-    .links {
-      display: flex;
-      align-items: center;
-      padding-bottom: 40px;
-
-      .link {
-        border: 1px solid #dddddd;
-        color: nav.$color-dark-2;
-        padding: 5px 10px;
-        border-radius: nav.$border-radius-medium;
-      }
-
-      .link__main {
-        border: 1px solid #dddddd;
-        color: nav.$color-dark-3;
-        padding: 5px 10px;
-        border-radius: nav.$border-radius-medium;
-      }
-
-      .feature {
-        border-bottom: 1px solid nav.$color-dark-4;
-        width: 16px;
-      }
-    }
-
     .item__box {
       .title__heart-480 {
         display: none;
@@ -94,8 +69,18 @@
           }
 
           .heart {
-            width: 48px;
-            height: 38px;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            fill: white;
+
+            &:hover {
+              opacity: 0.7;
+            }
+
+            &-active {  
+              fill: #92a134;
+            }
           }
         }
 
@@ -103,6 +88,7 @@
           display: flex;
           align-items: center;
           gap: nav.$content-size-gap-large;
+
           .price {
             font-size: 64px;
             font-weight: nav.$font-weight-bold;
@@ -140,6 +126,7 @@
             justify-content: space-between;
             font-size: nav.$button-big-font-size;
             font-weight: nav.$font-weight-default;
+
             .counter__btn {
               height: 58px;
               padding: 8px 15px;
@@ -268,6 +255,7 @@
 
             .title__heart {
               gap: 10px;
+
               .title {
                 font-size: 32px;
                 max-width: 286px;
@@ -353,6 +341,7 @@
 
             .price__container {
               gap: 10px;
+
               .price {
                 font-size: 40px;
               }
@@ -381,6 +370,7 @@
         display: flex;
         flex-direction: column;
         gap: nav.$content-size-gap-default;
+
         .product__box {
           flex-direction: column;
 
@@ -409,6 +399,7 @@
             .price__container {
               justify-content: center;
               gap: 10px;
+
               .sale {
                 position: absolute;
                 left: 220px;
