@@ -50,6 +50,7 @@
       &__title {
         font-size: nav.$font-size-title-deafult;
         line-height: 52.8px;
+        margin: 0;
       }
 
       .breadcrumbs {
@@ -75,6 +76,7 @@
       &__title {
         font-size: nav.$font-size-title-smallest;
         line-height: 44px;
+        margin: 0;
       }
 
       &__line {

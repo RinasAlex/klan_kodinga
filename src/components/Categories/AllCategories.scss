@@ -11,7 +11,7 @@
     &__title {
       font-size: nav.$font-size-title-big;
       font-weight: nav.$font-weight-bold;
-      margin: 40px 0 40px;
+      margin: 40px 0;
       display: flex;
     }
 
@@ -24,7 +24,6 @@
     @media (max-width: 768px) {
       &__title {
         font-size: nav.$font-size-title-medium;
-        margin-top: 32px;
       }
 
       &__list {
@@ -54,6 +53,8 @@
     @media (max-width: 360px) {
       &__title {
         font-size: 36px;
+        margin-bottom: 40px;
+        padding-top: 0;
       }
 
       &__list {
