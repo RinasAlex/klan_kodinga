@@ -49,10 +49,9 @@ function Header() {
           <button className="discount" onClick={() => { setShowModal(true) }}>1 day discount!</button>
 
 
-          <Burger isToggle={isToggle} setIsToggle={setIsToggle} />
+          <Burger isToggle={isToggle} setIsToggle={setIsToggle} className={`${theme === "dark" ? "bg-dark" : "bg-light"}`}/>
           <div
-            className={`navbar__list-link ${!isToggle ? "navbar__list-link-active" : ""
-              }`} >
+            className={`navbar__list-link ${!isToggle ? "navbar__list-link-active" : ""} ${theme === "dark" ? "bg-dark" : "bg-light"}`} >
 
             <ul className="link__container">
               <li className="link">
