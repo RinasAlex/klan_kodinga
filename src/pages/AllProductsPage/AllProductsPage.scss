@@ -53,6 +53,10 @@
         grid-template-columns: repeat(2, 1fr);
         gap: nav.$content-size-gap-default;
       }
+
+      .breadcrumbs {
+        display: none;
+      }
     }
 
     @media (max-width: 360px) {
@@ -64,6 +68,10 @@
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         gap: nav.$content-size-gap-default;
+      }
+
+      .breadcrumbs {
+        display: none;
       }
     }
   }
