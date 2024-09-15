@@ -4,12 +4,15 @@ import { fetchProductsById, addProduct } from "@/store/futures/productSlice";
 import { NavLink, useParams } from "react-router-dom";
 import "./ProductPage.scss";
 import heart from "@/assets/image/heart.png";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { setFavourite } from "../../store/futures/productSlice";
+import { IoHeartSharp } from "react-icons/io5";
 
 function ProductPage() {
   const { id } = useParams();
   const [category, setCategory] = useState("");
 
-  const { product, loading } = useSelector((state) => state.products);
+  const { product, favourite, loading } = useSelector((state) => state.products);
 
   const categoriesState = useSelector(
     (state) => state.categories.categoriesData
@@ -25,6 +28,7 @@ function ProductPage() {
   const [readMore, setReadMore] = useState(false);
   let [count, setCount] = useState(1);
   let [modal, setModal] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
 
   const styleDiscription = {
     display: readMore ? "block" : "-webkit-box",
@@ -35,6 +39,17 @@ function ProductPage() {
   };
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    let favouriteFound = favourite.find((item) => item.id === id);
+
+    if (favouriteFound) {
+      setIsFavourite(true);
+    } else {
+      setIsFavourite(false);
+    }
+
+  }, [favourite, product]);
 
   useEffect(() => {
     dispatch(fetchProductsById(id));
@@ -107,7 +122,13 @@ function ProductPage() {
               <div className="info__container">
                 <div className="title__heart">
                   <h3 className="title">{product?.title}</h3>
-                  <img className="heart" src={heart} alt="" />
+
+                  <IoHeartSharp
+                   className={`heart ${isFavourite ? "heart-active" : ""}`}
+                  onClick={() => dispatch(setFavourite(product.id))}
+                  style={{ stroke: "black", strokeWidth: "24" }}
+                  />
+
                 </div>
                 <div className="price__container">
                   {product?.discont_price ? (
