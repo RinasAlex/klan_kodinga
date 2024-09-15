@@ -4,9 +4,10 @@ import { fetchProductsById, addProduct } from "@/store/futures/productSlice";
 import { NavLink, useParams } from "react-router-dom";
 import "./ProductPage.scss";
 import heart from "@/assets/image/heart.png";
-import { IoIosHeartEmpty } from "react-icons/io";
-import { setFavourite } from "../../store/futures/productSlice";
+import { setFavourite } from "@/store/futures/productSlice";
 import { IoHeartSharp } from "react-icons/io5";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import { fetchCategoriesById } from "@/store/futures/categoriesSlice";
 
 function ProductPage() {
   const { id } = useParams();
@@ -53,6 +54,7 @@ function ProductPage() {
 
   useEffect(() => {
     dispatch(fetchProductsById(id));
+    dispatch(fetchCategoriesById(id))
   }, [id]);
 
   if (loading) {
@@ -78,24 +80,32 @@ function ProductPage() {
   };
 
   const salePercent = getSalePercent(product?.discont_price, product?.price);
+
+  const breadcrumbs = [
+    {
+      label: "Main page",
+      link: "/",
+    },
+    {
+      label: "Category",
+      link: "/categories",
+    },
+    {
+      label: category ? category.title : "Loading...",
+      link: id ? `/categories/${id}` : "#",
+    },
+    {
+      label: product ? product.title : "Loading...",
+      link: id ? `/products/${id}` : "#",
+    },
+  ];
+
   return (
     <div className="product__container">
       <div className="container__box">
-        <div className="links">
-          <NavLink to={"/"} className="link__main">
-            Main Page
-          </NavLink>
-          <div className="feature"></div>
-          <NavLink to={"/categories"} className="link__main">
-            Category
-          </NavLink>
-          <div className="feature"></div>
-          <NavLink to={"/"} className="link__main">
-            {category?.title}
-          </NavLink>
-          <div className="feature"></div>
-          <p className="link">{product?.title}</p>
-        </div>
+
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
+
         {product && (
           <div key={product?.id} className="item__box">
             <div className="title__heart-480">
@@ -124,9 +134,9 @@ function ProductPage() {
                   <h3 className="title">{product?.title}</h3>
 
                   <IoHeartSharp
-                   className={`heart ${isFavourite ? "heart-active" : ""}`}
-                  onClick={() => dispatch(setFavourite(product.id))}
-                  style={{ stroke: "black", strokeWidth: "24" }}
+                    className={`heart ${isFavourite ? "heart-active" : ""}`}
+                    onClick={() => dispatch(setFavourite(product.id))}
+                    style={{ stroke: "black", strokeWidth: "24" }}
                   />
 
                 </div>

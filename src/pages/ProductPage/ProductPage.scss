@@ -12,31 +12,6 @@
     margin: 0 auto;
     padding: 40px;
 
-    .links {
-      display: flex;
-      align-items: center;
-      padding-bottom: 40px;
-
-      .link {
-        border: 1px solid #dddddd;
-        color: nav.$color-dark-2;
-        padding: 5px 10px;
-        border-radius: nav.$border-radius-medium;
-      }
-
-      .link__main {
-        border: 1px solid #dddddd;
-        color: nav.$color-dark-3;
-        padding: 5px 10px;
-        border-radius: nav.$border-radius-medium;
-      }
-
-      .feature {
-        border-bottom: 1px solid nav.$color-dark-4;
-        width: 16px;
-      }
-    }
-
     .item__box {
       .title__heart-480 {
         display: none;
