@@ -19,17 +19,18 @@
     line-height: 26px;
     align-items: center;
     text-align: center;
-  
-  @media (max-width: 480px) {
-    &__title {
-      font-size: nav.$font-size-content-default;
-      line-height: 23, 4px;
+
+    @media (max-width: 480px) {
+      &__title {
+        font-size: nav.$font-size-content-default;
+        line-height: 23, 4px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      &__title {
+        font-size: nav.$font-size-title-smallest;
+      }
     }
   }
-  @media (max-width: 360px) {
-    &__title {
-      font-size: nav.$font-size-title-smallest;
-    }
-  }
-}
 }

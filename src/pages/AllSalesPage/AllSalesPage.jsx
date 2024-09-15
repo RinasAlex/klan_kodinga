@@ -14,7 +14,7 @@ import { ThemeContext } from '@/components/ThemeProvider/ThemeProvider';
 const AllSalesPage = () => {
   const dispatch = useDispatch();
   const { filteredProducts, loading, products } = useSelector(state => state.products);
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     dispatch(filterSaleProductsForPage());

@@ -19,7 +19,7 @@ export default function ProductsFromCategory() {
 
 
   const data = filterProductsData.length > 0 ? filterProductsData : products;
- 
+
   //dispatch  отправляет действия в хранилище Redux.
   const breadcrumbs = [
     {
@@ -32,7 +32,6 @@ export default function ProductsFromCategory() {
       link: "/categories",
     },
     {
-     
       label: category ? category.title : "Loading...",
       link: categoryId ? `/categories/${categoryId}` : "#",
     },
@@ -46,10 +45,10 @@ export default function ProductsFromCategory() {
         <h2 className="container__title">{category?.title}</h2>
 
         <Filtration
-          filterByPrice={categoriesFilterByPrice}   
+          filterByPrice={categoriesFilterByPrice}
           sortBy={categoriesSortBy}
           filterSale={categoriesFilterSale}
-        /> 
+        />
 
         <div className="container__items">
           {data &&

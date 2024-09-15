@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ModalWindow.scss";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../ProductCard/ProductCard";
-import { addProduct } from "../../store/futures/productSlice";
+import { addProduct } from "@/store/futures/productSlice";
 
 const ModalWindow = ({ onClose }) => {
   const { products } = useSelector((state) => state.products);
@@ -29,10 +29,9 @@ const ModalWindow = ({ onClose }) => {
     let data = {
       ...currentItem,
       price: currentItem.price,
-      discont_price: currentItem.price / 2,
+      discont_price: (currentItem.price / 2).toFixed(2),
     };
 
-    console.log(data);
     setProduct(data);
   }, []);
 

@@ -4,7 +4,7 @@ import four from '@/assets/image/four.png'
 import zero from '@/assets/image/zero.png'
 import { Link } from 'react-router-dom'
 
-export default function PageNotFound(){
+export default function PageNotFound() {
 
   return (
 
@@ -18,10 +18,10 @@ export default function PageNotFound(){
         <div className="content">
           <h1 className='content__errorTitle'>Page Not Found</h1>
           <p className='content__errorText'>
-            We’re sorry, the page you requested could not be found. 
+            We’re sorry, the page you requested could not be found.
             Please go back to the homepage.</p>
           <Link to={`/`}>
-          <button className='content__errorBtn'>Go Home</button>
+            <button className='content__errorBtn'>Go Home</button>
           </Link>
 
         </div>

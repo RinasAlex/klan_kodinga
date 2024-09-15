@@ -13,12 +13,10 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 
 const FavoritesPage = () => {
   const { theme } = useContext(ThemeContext);
-  const { favourite, loading, filteredProductsFavourite } = useSelector(
-    (state) => state.products
-  );
+  const { favourite, loading, filteredProductsFavourite } = useSelector(state => state.products);
 
   if (loading) {
-    return "Loading ....";
+    return "Loading ...."
   }
   const breadcrumbs = [
     {

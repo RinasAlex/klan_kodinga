@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import CategoryCard from "@/components/Categories/CategoryCard";
 import "./AllCategories.scss";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";

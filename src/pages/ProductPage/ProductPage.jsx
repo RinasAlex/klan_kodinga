@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProductsById,
-  addProduct,
-} from "@/store/futures/productSlice";
+import { fetchProductsById, addProduct } from "@/store/futures/productSlice";
 import { NavLink, useParams } from "react-router-dom";
 import "./ProductPage.scss";
 import heart from "@/assets/image/heart.png";

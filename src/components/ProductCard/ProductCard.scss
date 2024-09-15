@@ -86,7 +86,6 @@
       font-size: nav.$font-size-content-sale-default-price-active;
       color: nav.$color-dark-2;
       font-weight: nav.$font-weight-default;
-      padding-right: 16px;
     }
 
     &-discont_price {
@@ -124,12 +123,14 @@
       }
     }
   }
+
   @media (max-width: 480px) {
     &-title a {
       font-size: nav.$font-size-content-default;
       font-weight: nav.$font-weight-medium;
       line-height: 23.4px;
     }
+
     &-price1 {
       font-size: nav.$font-size-content-sale-small-price;
       font-weight: nav.$font-weight-medium;

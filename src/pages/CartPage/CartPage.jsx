@@ -4,13 +4,7 @@ import deleteBtn from "@/assets/image/delete.svg";
 import "./CartPage.scss";
 import CheckoutForm from "@/UI/CheckoutForm.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  decrementProduct,
-  getCartFromLocalStorage,
-  incrementProduct,
-  removeProduct,
-  sendProducts,
-} from "@/store/futures/productSlice.js";
+import { decrementProduct, getCartFromLocalStorage, incrementProduct, removeProduct, sendProducts } from "@/store/futures/productSlice.js";
 import { Link } from "react-router-dom";
 import OrderModal from "@/components/OrderModal/OrderModal.jsx";
 import CartPageEmpty from "./CartPageEmpty.jsx";
@@ -64,15 +58,19 @@ const CartPage = () => {
           <div className="products__container">
             {cart &&
               cart.map((item) => (
-                <div key={item.id} className={`cart_product__container ${theme === "dark" ? "bg-dark_darker" : "bg-light" }`}>
-                  <img
-                    src={`https://exam-server-5c4e.onrender.com/${item.image}`}
-                    alt=""
-                    className="img"
-                  />
+                <div key={item.id} className={`cart_product__container ${theme === "dark" ? "bg-dark_darker" : "bg-light"}`}>
+                  <Link to={`/productPage/${item.id}`}>
+                    <img
+                      src={`https://exam-server-5c4e.onrender.com/${item.image}`}
+                      alt=""
+                      className="img"
+                    />
+                  </Link>
                   <div className="info__container">
                     <div className="title__box">
-                      <p className="title">{item.title}</p>
+                      <p className="title">
+                        <Link to={`/productPage/${item.id}`} className={`${theme === "dark" ? "dark-text" : ""}`}>{item.title}</Link>
+                      </p>
                       <img
                         onClick={() => remove(item)}
                         className="delete"
@@ -98,13 +96,13 @@ const CartPage = () => {
                       </div>
                       <div className="price__box">
                         {item.discont_price &&
-                        item.discont_price < item.price ? (
+                          item.discont_price < item.price ? (
                           <>
                             <span className="price">
                               $
                               {item
                                 ? Math.floor(item.discount_total_price * 100) /
-                                  100
+                                100
                                 : Math.floor(item.discont_price * 100) / 100}
                             </span>
 
@@ -136,7 +134,7 @@ const CartPage = () => {
               <p className="items">Total</p>
               <p className="total__price">${totalPrice}</p>
             </div>
-            <CheckoutForm 
+            <CheckoutForm
               classInput="input"
               classBtn="btn"
               textBtn="Order "

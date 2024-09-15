@@ -82,15 +82,18 @@
     .title {
       font-size: nav.$font-size-title-deafult;
     }
+
     .contact-list {
       grid-template-columns: 1fr;
       gap: nav.$content-size-gap-little;
     }
   }
+
   @media (max-width: 360px) {
     .title {
       font-size: nav.$font-size-title-smallest;
     }
+
     .contact-list {
       grid-template-columns: 1fr;
       gap: nav.$content-size-gap-little;
