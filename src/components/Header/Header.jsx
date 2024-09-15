@@ -51,8 +51,7 @@ function Header() {
 
           <Burger isToggle={isToggle} setIsToggle={setIsToggle} />
           <div
-            className={`navbar__list-link ${!isToggle ? "navbar__list-link-active" : ""
-              }`} >
+            className={`navbar__list-link ${!isToggle ? "navbar__list-link-active" : ""} ${theme === "dark" ? "bg-dark" : "bg-light"}`} >
 
             <ul className="link__container">
               <li className="link">
