@@ -1,28 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Filtration.scss';
 import { useDispatch } from 'react-redux';
-import { filterByPrice, filterSaleProducts, sortBy } from '@/store/futures/productSlice';
+import { ThemeContext } from '../ThemeProvider/ThemeProvider';
 
 
-const Filtration = ({ disabledDiscount }) => {
+const Filtration = ({ filterByPrice, sortBy, filterSale, disabledDiscount }) => {
   const dispatch = useDispatch();
+
+  const { theme } = useContext(ThemeContext);
 
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [sale, setSale] = useState(false);
   const [sortByValue, setSortByValue] = useState("default");
 
   useEffect(() => {
-    if (minPrice !== '' && maxPrice !== '') {
-      dispatch(filterByPrice({ minPrice: Number(minPrice), maxPrice: Number(maxPrice) }));
-    }
-    dispatch(sortBy({ value: sortByValue }));
+    let minPriceValue = (minPrice !== '' || minPrice > 0) ? minPrice : 0
+    let maxPriceValue = (maxPrice !== '' || maxPrice > 0) ? maxPrice : Infinity
 
-  }, [sortByValue, minPrice, maxPrice]);
+    if (!disabledDiscount) {
+      dispatch(filterSale({ value: sale }));
+    }
+    dispatch(filterByPrice({ minPrice: Number(minPriceValue), maxPrice: Number(maxPriceValue) }))
+    dispatch(sortBy({ value: sortByValue }))
+
+  }, [sortByValue, minPrice, maxPrice, sale, dispatch]);
 
   return (
     <div className='filters'>
       <div className="filters__price">
-        <label htmlFor="">Price</label>
+        <label htmlFor="" className={`${theme === "dark" ? "dark-text" : ""}`}>Price</label>
         <input
           type="number"
           className='form-control'
@@ -44,17 +51,13 @@ const Filtration = ({ disabledDiscount }) => {
       {
         !disabledDiscount && (
           <div className="filters__discount">
-            <label htmlFor="">Discounted items</label>
+            <label htmlFor="" className={`${theme === "dark" ? "dark-text" : ""}`}>Discounted items</label>
 
             <input
               type="checkbox"
               className='form-control-disc'
               name='discount'
-              onChange={(e) => {
-                if (e.target.checked) {
-                  dispatch(filterSaleProducts());
-                }
-              }}
+              onChange={() => setSale(!sale)}
             />
           </div>
         )
@@ -62,7 +65,7 @@ const Filtration = ({ disabledDiscount }) => {
 
 
       <div className="filters__sort">
-        <label htmlFor="">Sorted</label>
+        <label htmlFor="" className={`${theme === "dark" ? "dark-text" : ""}`}>Sorted</label>
         <select
           name="sortSelect"
           className='form-control-sort'

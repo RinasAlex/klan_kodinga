@@ -1,3 +1,4 @@
+@use "@/assets/styles/variables.scss" as nav;
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
@@ -6,9 +7,40 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
+
 ul {
   list-style: none;
 }
+
 a {
   text-decoration: none;
+}
+
+body {
+  background-color: nav.$color-light-1;
+  color: nav.$color-dark-2;
+}
+
+body.dark {
+  background-color: nav.$color-dark-2;
+  color: nav.$color-light-1;
+}
+
+.dark-text {
+  color: nav.$color-light-1 !important;
+}
+
+.bg-dark {
+  background-color: nav.$color-dark-2 !important;
+}
+
+.bg-dark_darker {
+  background-color: nav.$color-dark-8 !important;
+}
+
+.container__items {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
+  gap: 32px;
 }

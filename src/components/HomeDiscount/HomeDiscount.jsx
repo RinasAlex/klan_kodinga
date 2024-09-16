@@ -1,26 +1,12 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import discountImg from "../../assets/discount/discount.svg";
+import discountImg from "@/assets/discount/discount.svg";
 import "./HomeDiscount.scss";
-import { useDispatch } from "react-redux";
-import { sendDiscount } from "../../store/futures/categoriesSlice";
+import CheckoutForm from "@/UI/CheckoutForm";
+import { sendDiscount } from "@/store/futures/productSlice";
 
 function HomeDiscount() {
   const [sendingDiscount, setSendingDiscount] = useState(false);
-  const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid },
-  } = useForm({ mode: "onBlur" });
-
-  const onSubmit = (data) => {
-    setSendingDiscount(true);
-    dispatch(sendDiscount(data));
-    reset();
-  };
   return (
     <div>
       <div className="discount__container">
@@ -29,58 +15,11 @@ function HomeDiscount() {
           <div className="form__box">
             <img className="img" src={discountImg} alt="" />
             {!sendingDiscount ? (
-              <form
-                className="container__form"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <label className="container__inputs">
-                  <input
-                    {...register("name", {
-                      required: "Field is required!",
-                    })}
-                    type="text"
-                    placeholder="Name"
-                    className="input"
-                  />
-                  {errors?.name && (
-                    <p className="error__message">{errors.name?.message}</p>
-                  )}
-
-                  <input
-                    {...register("number", {
-                      required: "Field is required!",
-                      minLength: { value: 13, message: "min 13 characters" },
-                      maxLength: { value: 13, message: "max 13 characters" },
-                    })}
-                    type="number"
-                    placeholder="Phone number"
-                    className="input"
-                  />
-                  {errors?.number && (
-                    <p className="error__message">{errors.number?.message}</p>
-                  )}
-
-                  <input
-                    {...register("email", {
-                      required: "Field is required!",
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "invalid email address",
-                      },
-                    })}
-                    type="email"
-                    placeholder="Email"
-                    className={`input`}
-                  />
-                  {errors?.email && (
-                    <p className="error__message">{errors.email?.message}</p>
-                  )}
-
-                  <button className="btn" disabled={!isValid}>
-                    Get a discount
-                  </button>
-                </label>
-              </form>
+              <CheckoutForm
+                textBtn="Get a discount"
+                setSendingDiscount={setSendingDiscount}
+                sendDiscount={sendDiscount}
+              />
             ) : (
               <div className="container__send">
                 <p className="text__send">

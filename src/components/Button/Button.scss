@@ -2,12 +2,12 @@
 
 .btn {
     border: none;
-    border-radius: 8px;
+    border-radius: nav.$border-radius-medium;
     background-color: nav.$color-light-2;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: nav.$button-big-font-size;
+    font-weight: nav.$font-weight-medium;
     height: 58px;
-    color: white;
+    color: nav.$color-light-4;
     cursor: pointer;
 
     &-default-size {

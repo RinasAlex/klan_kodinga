@@ -1,0 +1,14 @@
+@use "@/assets/styles/variables.scss" as nav;
+
+.empty__container {
+  display: flex;
+  flex-direction: column;
+  gap: nav.$content-size-gap-large;
+  .blok__title_btn {
+    margin-bottom: 0;
+  }
+  .btn-default-size {
+    white-space: nowrap;
+    width: 313px;
+  }
+}

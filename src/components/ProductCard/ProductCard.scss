@@ -1,119 +1,149 @@
 @use "@/assets/styles/variables.scss" as nav;
 
 @mixin fill($color) {
-    background-color: $color;
+  background-color: nav.$color;
 }
 
 .productCard {
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
+  border: 1px solid nav.$color-light-6;
+  border-radius: nav.$item-radius-default;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  background-color: nav.$color-light-4;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &__top {
+    width: 100%;
+    height: auto;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    width: 300px;
-    background-color: #fff;
-    margin: 10px;
+    position: relative;
 
-    &:hover {
-        transform: translateY(-5px);
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    &__top {
-        width: 100%;
-        height: auto;
-        overflow: hidden;
-        position: relative;
-
-        &-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px;
-        }
-
-        &-sale {
-            color: white;
-            background-color: orange;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        &-icon {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            gap: 10px;
-
-
-
-            &-heart,
-            &-bag {
-                width: 36px !important;
-                height: 36px !important;
-                cursor: pointer;
-
-                &:hover {
-                    opacity: 0.7;
-                }
-            }
-        }
-
-        img {
-            display: block;
-            width: 100%;
-            height: 200px;
-            border-radius: 0;
-        }
+    &-sale {
+      color: nav.$color-light-4;
+      background-color: orange;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: nav.$font-weight-bold;
+      font-size: 1rem;
     }
 
-    &__bottom {
-        padding: 15px;
-
-        &-title a {
-            font-size: 20px;
-                font-weight: 500;
-                line-height: 26px;
-                color: #282828;
-                min-height: 80px;
-                display: block;
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-
-        &-price-container {
-            margin-top: 10px;
-            padding-right: 60px;
-        }
-
-        &-price1 {
-            font-size: 20px;
-            font-weight: 500;
-            color: #8B8B8B;
-            text-decoration: line-through;
-            margin-right: 10px;
-        }
-
-        &-price2 {
-            font-size: 40px;
-            color: #424436;
-            font-weight: 600;
-            // padding-right: 16px;
-        }
-
-        &-discont_price {
-            font-size: 40px;
-            color: #424436;
-            font-weight: 600;
-            padding-right: 16px;
-        }
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
     }
+  }
+
+  &__bottom {
+    padding: 15px;
+    border-top: 1px solid nav.$color-dark-4;
+
+    &-title a {
+      font-size: nav.$font-size-content-big;
+      font-weight: nav.$font-weight-medium;
+      line-height: 26px;
+      color: nav.$color-dark-5;
+      min-height: 60px;
+      display: block;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    &-price-container {
+      padding-right: 60px;
+    }
+
+    &-price1 {
+      font-size: nav.$font-size-content-sale-default-price;
+      font-weight: nav.$font-weight-medium;
+      color: nav.$color-dark-3;
+      text-decoration: line-through;
+      margin-right: 10px;
+    }
+
+    &-price2 {
+      font-size: nav.$font-size-content-sale-default-price-active;
+      color: nav.$color-dark-2;
+      font-weight: nav.$font-weight-default;
+    }
+
+    &-discont_price {
+      font-size: nav.$font-size-title-smallest;
+      color: nav.$color-dark-2;
+      font-weight: nav.$font-weight-default;
+      padding-right: 16px;
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    gap: 10px;
+    color: black;
+
+    &__favourite,
+    &__cart {
+      font-size: 36px;
+      cursor: pointer;
+      fill: white;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    &__favourite,
+    &__cart {
+      &-active {
+        fill: #92a134;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    &-title a {
+      font-size: nav.$font-size-content-default;
+      font-weight: nav.$font-weight-medium;
+      line-height: 23.4px;
+    }
+
+    &-price1 {
+      font-size: nav.$font-size-content-sale-small-price;
+      font-weight: nav.$font-weight-medium;
+      color: nav.$color-dark-3;
+      text-decoration: line-through;
+      margin-right: 10px;
+    }
+
+    &-price2 {
+      font-size: nav.$font-size-content-sale-small-price-active;
+      color: nav.$color-dark-2;
+      font-weight: nav.$font-weight-default;
+      padding-right: 16px;
+    }
+  }
 }

@@ -1,0 +1,73 @@
+@use "@/assets/styles/variables.scss" as nav;
+
+.smallButton {
+  max-width: 1440px;
+  justify-content: space-around;
+  align-items: center;
+  display: contents;
+
+  &__title {
+    font-size: nav.$font-size-title-big;
+    font-weight: nav.$font-weight-bold;
+    padding: 0 auto 40px;
+    margin-bottom: 40px;
+  }
+
+  &__btn-line {
+    border-top: 1px solid nav.$color-dark-4;
+    flex-grow: 1;
+    margin-bottom: 30px;
+    margin-left: 10px;
+  }
+
+  &__btn-small {
+    font-weight: nav.$font-weight-medium;
+    font-size: nav.$button-default-font-size;
+    padding: nav.$button-small-size;
+    border: 1px solid nav.$color-dark-4;
+    border-radius: nav.$border-radius-small;
+    background-color: nav.$color-light-1;
+    cursor: pointer;
+    margin-bottom: 30px;
+    color: nav.$color-dark-3;
+
+    &:hover {
+      background-color: nav.$color-light-2;
+      color: nav.$color-light-4;
+    }
+  }
+  @media (max-width: 768px) {
+    &__title {
+      font-size: nav.$font-size-title-medium;
+    }
+    @media (max-width: 480px) {
+      &__title {
+        font-size: nav.$font-size-title-small;
+      }
+      &__btn-small {
+        font-size: nav.$button-small-font-size;
+      }
+
+      &__btn-line {
+        display: none;
+      }
+      &__btn-small {
+        display: none;
+        text-decoration: none;
+      }
+
+      @media (max-width: 360px) {
+        &__title {
+          font-size: nav.$font-size-title-smallest;
+        }
+        &__btn-line {
+          display: none;
+        }
+        &__btn-small {
+          display: none;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

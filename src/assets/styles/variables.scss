@@ -1,20 +1,97 @@
 $color-light-1: #fffff1;
 $color-light-2: #92a234;
 $color-light-3: #f26d22;
+$color-light-4: #ffffff;
+$color-light-5: #f2f6d3;
+$color-light-6: #e0e0e0;
+$color-light-7: #92a134;
 
 $color-dark-1: #5e6e89;
-$color-dark-2: #DDDDDD;
+$color-dark-2: #424436;
+$color-dark-3: #8b8b8b;
+$color-dark-4: #dddddd;
+$color-dark-5: #282828;
+$color-dark-6: #4a4a4a;
+$color-dark-7: #9a9a9a;
+$color-dark-8: #383A2C;
 
-$color-dark-text: #424436;
 
+// <--- Nav colors --->
+$nav-bg-color: rgba($color-light-1, 1);
+$nav-item-color: $color-dark-3;
+$nav-item-active-color: $color-dark-2;
+$nav-icon-color: $color-dark-2;
 
+// <--- Nav Font size --->
+$nav-font-size: 20px;
+
+// <--- Header colors --->
+$header-content-bg: rgba($color-light-1, 1);
+$header-title-color: $color-light-4;
+
+// <--- Header Font size --->
+$header-title-size: 96px;
+
+// <--- Button color --->
+$button-bg-default: $color-light-2;
+$button-color-default: $color-light-4;
 
 // <--- Button padding --->
-$button-default-size: 16px 56px;
+$button-small-size: 8px 16px;
 $button-large-size: 16px 32px;
+$button-medium-size: 12px 24px;
+$button-default-size: 16px 56px;
 
-
-// <--- Border radius --->
+// <--- Button border radius --->
 $border-radius-small: 6px;
+$border-radius-medium: 8px;
 $border-radius-big: 12px;
 
+// <--- Button font size --->
+$button-small-font-size: 14px;
+$button-default-font-size: 16px;
+$button-big-font-size: 20px;
+
+// <---Item radius --->
+$item-radius-big: 12px;
+$item-radius-default: 10px; // ?
+$item-radius-small: 6px;
+
+// <--- Content Font weight --->
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-default: 600;
+$font-weight-bold: 700;
+
+// <--- Content Font size --->
+$font-size-content-small: 16px;
+$font-size-content-default: 18px;
+$font-size-content-big: 20px;
+
+// <--- Content Font sale price active--->
+$font-size-content-sale-default-price-active: 40px;
+$font-size-content-sale-small-price-active: 36px;
+
+// <--- Content Font sale price --->
+$font-size-content-sale-default-price: 20px;
+$font-size-content-sale-small-price: 18px;
+
+// <--- Content gap --->
+$content-size-gap-smallest: 10px;
+$content-size-gap-little : 12px;
+$content-size-gap-small: 16px;
+$content-size-gap-default: 20px;
+$content-size-gap-big: 30px;
+$content-size-gap-large: 32px;
+$content-size-gap-biggest: 40px;
+
+// <--- Title Font size --->
+$font-size-title-smallest: 40px;
+$font-size-title-small: 42px;
+$font-size-title-deafult: 48px;
+$font-size-title-medium: 56px;
+$font-size-title-big: 64px;
+
+// <--- Footer Font weight --->
+$footer-font-weight-normal: 400;
+$footer-font-weight-bold: 600;

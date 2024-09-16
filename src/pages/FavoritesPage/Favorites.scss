@@ -1,1 +1,113 @@
+@use "@/assets/styles/variables.scss" as nav;
 
+.categories {
+  padding: 80px 40px;
+  width: 100%;
+
+  .content {
+    max-width: 1440px;
+    margin: 0 auto;
+
+    &__position-btn {
+      max-width: 254px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    &__btn-1 {
+      font-weight: nav.$font-weight-medium;
+      font-size: nav.$button-default-font-size;
+      padding: nav.$button-small-size;
+      color: nav.$color-dark-3;
+      border: 1px solid nav.$color-dark-4;
+      border-radius: nav.$border-radius-small;
+      background-color: nav.$color-light-1;
+      margin-bottom: 15px;
+      padding-right: 10px;
+      gap: nav.$content-size-gap-smallest;
+    }
+
+    &__line-position {
+      border-top: 1px solid nav.$color-dark-4;
+      flex-grow: 1;
+      margin-top: -15px;
+    }
+
+    &__btn-2 {
+      font-weight: nav.$font-weight-medium;
+      font-size: nav.$button-default-font-size;
+      padding: nav.$button-small-size;
+      border: 1px solid nav.$color-dark-4;
+      border-radius: nav.$border-radius-small;
+      background-color: nav.$color-light-1;
+      margin-bottom: 15px;
+      padding-right: 10px;
+      color: nav.$color-dark-2;
+    }
+
+    &__page-title {
+      font-size: nav.$font-size-title-big;
+      font-weight: nav.$font-weight-bold;
+      padding: 0px 10px 40px 0;
+      margin-top: 7px;
+      display: flex;
+    }
+
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+      gap: 70px;
+    }
+
+    @media (max-width: 768px) {
+      &__page-title {
+        font-size: nav.$font-size-title-medium;
+      }
+
+      &__title {
+        font-size: nav.$font-size-title-medium;
+      }
+    }
+
+    @media (max-width: 480px) {
+      
+      &__title {
+        font-size: nav.$font-size-title-deafult;
+        margin-top: 0;
+      }
+
+      &__btn-1 {
+        display: none;
+      }
+
+      &__btn-2 {
+        display: none;
+      }
+
+      &__line-position {
+        display: none;
+      }
+    }
+
+    @media (max-width: 360px) {
+      &__title {
+        font-size: nav.$font-size-title-smallest;
+        margin-top: 0;
+      }
+
+      &__btn-1 {
+        display: none;
+      }
+
+      &__btn-2 {
+        display: none;
+      }
+
+      &__line-position {
+        display: none;
+      }
+    }
+  }
+}
