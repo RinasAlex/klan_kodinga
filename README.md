@@ -4,6 +4,35 @@
 
 Klan Kodinga - это веб-приложение, которое позволяет пользователям просматривать и управлять продуктами, а также добавлять их в избранное и корзину. Приложение построено с использованием React и Redux для управления состоянием.
 
+## Ссылка на макет
+
+https://www.figma.com/design/SDNWLzCWkh9ZXdCpWEaByv/project-frontend?node-id=5251-7386&node-type=canvas&t=skCEBfiLhzxk8m6g-0
+
+## Deploy release
+
+https://gardenstore-brown.vercel.app/
+
+## Скриншот проекта
+
+./assets/image/Screenshot 2024-09-16 at 10-45-13 Vite React.png
+
+## Autors
+
+Alexandra Rinas
+Linkedin https://www.linkedin.com/in/alexandra-rinas-3501a72a3
+
+Ksenia Mishchenko
+Linkedin https://www.linkedin.com/in/kseniia-mishchenko-815496329
+
+Yuliia Pasichnyk
+Linkedin https://www.linkedin.com/in/julia-pasichnyk-720516263
+
+Albina Sabitova
+Linkedin https://kg.linkedin.com/in/albina-sabitova-41b574329
+
+Vlad Groisman
+Linkedin https://www.linkedin.com/in/vladislav-groisman-98489831b
+
 ## Установка
 
 1. Клонируйте репозиторий:
