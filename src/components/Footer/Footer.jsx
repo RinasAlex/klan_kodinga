@@ -13,7 +13,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <div className="contact">
-          <h1 className='title'>Contact</h1>
+          <h1 className='contact__title'>Contact</h1>
 
           <ul className='contact-list'>
             <li className={`contact-list__item ${theme === "dark" ? "bg-dark_darker" : "bg-light"}`}>
