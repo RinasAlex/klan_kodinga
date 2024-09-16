@@ -36,6 +36,7 @@
     @media (max-width: 480px) {
       &__title {
         font-size: nav.$font-size-title-deafult;
+        margin-top: 0;
       }
 
       &__list {
