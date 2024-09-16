@@ -48,6 +48,14 @@
         font-size: nav.$button-small-font-size;
       }
 
+      &__btn-line {
+        display: none;
+      }
+      &__btn-small {
+        display: none;
+        text-decoration: none;
+      }
+
       @media (max-width: 360px) {
         &__title {
           font-size: nav.$font-size-title-smallest;
