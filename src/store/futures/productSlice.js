@@ -93,7 +93,7 @@ export const productSlice = createSlice({
 
     filterSaleProducts: (state, { payload }) => {
       if (payload.value) {
-        state.filteredAllProducts = [...state.products].filter(
+        state.filteredAllProducts =  [...state.products].filter(
           (item) => item.discont_price != null
         );
       } else {

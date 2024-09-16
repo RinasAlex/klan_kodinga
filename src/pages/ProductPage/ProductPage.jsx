@@ -12,7 +12,10 @@ import { fetchCategoriesById } from "@/store/futures/categoriesSlice";
 function ProductPage() {
   const { id } = useParams();
   const [category, setCategory] = useState("");
-
+  const [readMore, setReadMore] = useState(false);
+  let [count, setCount] = useState(1);
+  let [modal, setModal] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
   const { product, favourite, loading } = useSelector((state) => state.products);
 
   const categoriesState = useSelector(
@@ -26,10 +29,7 @@ function ProductPage() {
     setCategory(cauntCategory);
   }, [product]);
 
-  const [readMore, setReadMore] = useState(false);
-  let [count, setCount] = useState(1);
-  let [modal, setModal] = useState(false);
-  const [isFavourite, setIsFavourite] = useState(false);
+ 
 
   const styleDiscription = {
     display: readMore ? "block" : "-webkit-box",
@@ -42,7 +42,7 @@ function ProductPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let favouriteFound = favourite.find((item) => item.id === id);
+    let favouriteFound = favourite.find((item) => item.id === Number(id));
 
     if (favouriteFound) {
       setIsFavourite(true);

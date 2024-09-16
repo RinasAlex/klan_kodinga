@@ -11,15 +11,18 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
 
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [sale, setSale] = useState(false);
   const [sortByValue, setSortByValue] = useState("default");
 
   useEffect(() => {
     let minPriceValue = (minPrice !== '' || minPrice > 0) ? minPrice : 0
     let maxPriceValue = (maxPrice !== '' || maxPrice > 0) ? maxPrice : Infinity
 
+    dispatch(filterSale({ value: sale}));
     dispatch(filterByPrice({ minPrice: Number(minPriceValue), maxPrice: Number(maxPriceValue) }))
     dispatch(sortBy({ value: sortByValue }))
-  }, [sortByValue, minPrice, maxPrice, dispatch]);
+    
+  }, [sortByValue, minPrice, maxPrice, sale, dispatch]);
 
   return (
     <div className='filters'>
@@ -52,9 +55,7 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
               type="checkbox"
               className='form-control-disc'
               name='discount'
-              onChange={(e) => {
-                dispatch(filterSale({ value: e.target.checked }));
-              }}
+              onChange={(e) => setSale(!sale)}
             />
           </div>
         )
