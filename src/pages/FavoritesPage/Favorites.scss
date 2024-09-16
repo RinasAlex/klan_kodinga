@@ -72,8 +72,10 @@
     }
 
     @media (max-width: 480px) {
+      
       &__title {
         font-size: nav.$font-size-title-deafult;
+        margin-top: 0;
       }
 
       &__btn-1 {
@@ -92,6 +94,7 @@
     @media (max-width: 360px) {
       &__title {
         font-size: nav.$font-size-title-smallest;
+        margin-top: 0;
       }
 
       &__btn-1 {

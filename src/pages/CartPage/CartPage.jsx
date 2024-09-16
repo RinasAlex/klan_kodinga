@@ -38,6 +38,7 @@ const CartPage = () => {
   }, []);
 
   const totalPrice = allPrice.reduce((acc, el) => acc + el, 0).toFixed(2);
+  
   return (
     <div className="first__container">
       <div className="blok__title_btn">

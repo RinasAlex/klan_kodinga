@@ -68,7 +68,7 @@ const ProductCard = ({
               onClick={() => dispatch(setFavourite(id))}
               style={{ stroke: "black", strokeWidth: "24" }}
             />
-
+            
             <HiOutlineShoppingBag
               className={`actions__cart ${isCartHidden ? "actions__cart-active" : ""}`}
               onClick={() =>

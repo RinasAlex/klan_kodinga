@@ -2,13 +2,12 @@
 
 .footer {
   width: 100%;
-  padding: 0 auto;
+  padding: 0 40px;
 }
 
 .container {
   max-width: 1440px;
   margin: 0 auto;
-
 }
 
 .contact {
@@ -16,8 +15,6 @@
   &__title {
     font-size: nav.$font-size-title-big;
     margin: 40px 0 20px 0;
-
-
   }
 
   &-list {
@@ -26,14 +23,11 @@
     gap: nav.$content-size-gap-large;
     position: relative;
 
-
     &__item {
       background: nav.$color-light-5;
       border-radius: nav.$item-radius-big;
       padding: 32px 16px;
       width: 100%;
-
-
 
       a,
       p {
@@ -69,7 +63,7 @@
 @media (max-width: 1000px) {
 
   .footer {
-    padding: 20px;
+    padding: 0 40px;
   }
 
   .contact-list {
@@ -80,11 +74,9 @@
 @media (max-width: 768px) {
   .contact__title {
     font-size: nav.$font-size-title-medium !important;
-
   }
 
   .contact-list {
-
     grid-template-columns: 2fr 1fr;
 
   }
@@ -107,7 +99,6 @@
 
     &__item h3 {
       font-size: 18px;
-
     }
   }
 
@@ -122,17 +113,13 @@
     grid-template-columns: 1fr;
     gap: nav.$content-size-gap-little;
 
-
     &__item a,
     p {
       font-size: 25px;
-
     }
 
     &__item h3 {
       font-size: 18px;
-
     }
   }
-
 }
