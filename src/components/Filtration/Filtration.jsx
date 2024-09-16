@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { ThemeContext } from '../ThemeProvider/ThemeProvider';
 
 
-const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
+const Filtration = ({ filterByPrice, sortBy, filterSale, disabledDiscount }) => {
   const dispatch = useDispatch();
 
   const { theme } = useContext(ThemeContext);
@@ -18,10 +18,12 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
     let minPriceValue = (minPrice !== '' || minPrice > 0) ? minPrice : 0
     let maxPriceValue = (maxPrice !== '' || maxPrice > 0) ? maxPrice : Infinity
 
-    dispatch(filterSale({ value: sale}));
+    if (!disabledDiscount) {
+      dispatch(filterSale({ value: sale }));
+    }
     dispatch(filterByPrice({ minPrice: Number(minPriceValue), maxPrice: Number(maxPriceValue) }))
     dispatch(sortBy({ value: sortByValue }))
-    
+
   }, [sortByValue, minPrice, maxPrice, sale, dispatch]);
 
   return (
@@ -47,7 +49,7 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
       </div>
 
       {
-        typeof filterSale === 'function' && (
+        !disabledDiscount && (
           <div className="filters__discount">
             <label htmlFor="" className={`${theme === "dark" ? "dark-text" : ""}`}>Discounted items</label>
 
@@ -55,7 +57,7 @@ const Filtration = ({ filterByPrice, sortBy, filterSale }) => {
               type="checkbox"
               className='form-control-disc'
               name='discount'
-              onChange={(e) => setSale(!sale)}
+              onChange={() => setSale(!sale)}
             />
           </div>
         )

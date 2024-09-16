@@ -39,7 +39,7 @@ const AllSalesPage = () => {
         <h2 className={`content__page-title ${theme === "dark" ? "dark-text" : ""}`}>Discounted items</h2>
 
         <Filtration
-          disabledDiscount={false}
+          disabledDiscount={true}
           filterByPrice={filterByPriceSale}
           sortBy={sortBySale}
         />

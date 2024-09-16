@@ -2,7 +2,6 @@
 
 .product__container {
   width: 100%;
-  padding-bottom: 40px;
 
   .container__box {
     display: flex;
@@ -69,7 +68,7 @@
           }
 
           .heart {
-           font-size: 60px;
+            font-size: 70px;
             cursor: pointer;
             fill: white;
 
@@ -220,6 +219,10 @@
             .price__container {
               gap: nav.$content-size-gap-default;
             }
+
+            .heart{
+              font-size: 60px;
+            }
           }
 
           .description__container {
@@ -262,7 +265,7 @@
               }
 
               .heart {
-                margin-right: -30px;
+                font-size: 60px;
               }
             }
 
@@ -297,20 +300,6 @@
       }
 
       .item__box {
-        .title__heart-480 {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          .title {
-            font-size: 28px;
-          }
-
-          .heart {
-            width: 40px;
-            height: 30px;
-          }
-        }
 
         .product__box {
           position: relative;
@@ -335,7 +324,17 @@
             gap: 5px;
 
             .title__heart {
-              display: none;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              .title {
+                font-size: 20px;
+              }
+
+              .heart {
+                font-size: 60px;
+              }
             }
 
             .price__container {
@@ -392,10 +391,9 @@
           .info__container {
             .title__heart {
               align-items: center;
-              top: -75px;
 
               .title {
-                font-size: 28px;
+                font-size: 26px;
               }
             }
 

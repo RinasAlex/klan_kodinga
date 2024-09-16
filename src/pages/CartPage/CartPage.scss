@@ -67,7 +67,7 @@
             display: flex;
             justify-content: space-between;
 
-            .title {
+            .title p{
               font-size: 20px;
               font-weight: 500;
               white-space: nowrap;
@@ -75,6 +75,7 @@
               text-overflow: ellipsis;
               scrollbar-width: unset;
               max-width: 200px;
+              color: nav.$color-dark-2;
             }
           }
 
