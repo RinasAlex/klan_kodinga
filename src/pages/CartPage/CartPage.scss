@@ -241,7 +241,7 @@
           column-gap: nav.$content-size-gap-smallest;
 
           .info__container {
-            gap: nav.$content-size-gap-little;
+            gap: 20px;
             .title__box {
               .title {
                 font-size: nav.$font-size-content-default;
@@ -251,7 +251,7 @@
 
             .price__container {
               flex-direction: column;
-              gap: 0;
+              gap: 15px;
             }
           }
         }
