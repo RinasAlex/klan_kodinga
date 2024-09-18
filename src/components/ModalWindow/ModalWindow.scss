@@ -19,7 +19,7 @@
     border-radius: nav.$border-radius-big;
     overflow: hidden;
     max-width: 548px;
-    padding: 32px;
+    padding: 35px;
 
     &__content {
         display: flex;
@@ -46,7 +46,7 @@
 
         &_cart {
             border: none;
-            width: 484px;
+            width: 480px;
             height: 58px;
             padding: 16px 32px;
             border-radius: nav.$border-radius-small;
