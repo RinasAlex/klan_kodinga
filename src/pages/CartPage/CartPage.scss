@@ -53,6 +53,7 @@
 
         .img {
           width: 200px;
+          height: 100%;
           border-radius: 12px 0 0 12px;
         }
 
@@ -61,21 +62,23 @@
           display: flex;
           flex-direction: column;
           gap: 32px;
-          padding: 32px 32px 32px 0;
+          padding: 20px 10px 20px 0;
 
           .title__box {
             display: flex;
             justify-content: space-between;
 
-            .title p{
+            .title__product {
               font-size: 20px;
               font-weight: 500;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
               scrollbar-width: unset;
-              max-width: 200px;
-              color: nav.$color-dark-2;
+              max-width: 100px;
+              a {
+                color: nav.$color-dark-2;
+              }
             }
           }
 
@@ -280,7 +283,6 @@
           column-gap: nav.$content-size-gap-smallest;
           .img {
             width: 116px;
-            height: 183px;
           }
 
           .info__container {
