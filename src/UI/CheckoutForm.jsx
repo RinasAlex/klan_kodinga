@@ -17,8 +17,7 @@ function CheckoutForm({
   textBtn,
 }) {
   const dispatch = useDispatch();
-  const { theme } = useContext(ThemeContext);
-
+  
   const {
     register,
     handleSubmit,
@@ -47,7 +46,7 @@ function CheckoutForm({
           })}
           type="text"
           placeholder="Name"
-          className={`${classInput} input ${theme === "dark" ? "bg-dark" : "bg-light"}`}
+          className={`${classInput} input`}
         />
         {errors?.name && (
           <p className="error__message">{errors.name?.message}</p>
@@ -61,7 +60,7 @@ function CheckoutForm({
           })}
           type="number"
           placeholder="Phone number"
-          className={`${classInput} input ${theme === "dark" ? "bg-dark" : "bg-light"}`}
+          className={`${classInput} input`}
         />
         {errors?.number && (
           <p className="error__message">{errors.number?.message}</p>
@@ -77,7 +76,7 @@ function CheckoutForm({
           })}
           type="email"
           placeholder="Email"
-          className={`${classInput} input ${theme === "dark" ? "bg-dark" : "bg-light"}`}
+          className={`${classInput} input`}
         />
         {errors?.email && (
           <p className="error__message">{errors.email?.message}</p>
