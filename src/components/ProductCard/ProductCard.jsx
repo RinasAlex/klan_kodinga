@@ -8,7 +8,7 @@ import { addProduct, removeProduct, setFavourite } from "@/store/futures/product
 import { ThemeContext } from "../ThemeProvider/ThemeProvider";
 
 const ProductCard = ({
-  product: { image, id, title, price, discont_price, count }
+  product: { image, id, title, price, discont_price, count }, isCartHidden
 }) => {
   const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const ProductCard = ({
   const { theme } = useContext(ThemeContext);
 
   const [isFavourite, setIsFavourite] = useState(false);
-  const [isCartHidden, setIsCartHidden] = useState(false);
+  const [isCart, setIsCart] = useState(false);
   const [productInCart, setProductInCart] = useState({});
 
   useEffect(() => {
@@ -30,9 +30,9 @@ const ProductCard = ({
     }
 
     if (cartFound) {
-      setIsCartHidden(true);
+      setIsCart(true);
     } else {
-      setIsCartHidden(false);
+      setIsCart(false);
     }
   }, [favourite, product, cart]);
 
@@ -69,11 +69,11 @@ const ProductCard = ({
               style={{ stroke: "black", strokeWidth: "24" }}
             />
             
-            <HiOutlineShoppingBag
-              className={`actions__cart ${isCartHidden ? "actions__cart-active" : ""}`}
+            {!isCartHidden && <HiOutlineShoppingBag
+              className={`actions__cart ${isCart ? "actions__cart-active" : ""}`}
               onClick={() =>
                 addToCart({ image, id, title, price, discont_price, count })}
-            />
+            />}
           </div>
         </div>
       </div>
