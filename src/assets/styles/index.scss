@@ -38,6 +38,28 @@ body.dark {
   background-color: nav.$color-dark-8 !important;
 }
 
+.dark-border{
+  .burger{
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 87%;
+    border: 2px solid nav.$color-light-1 !important;
+    transition: all 0.7s ease 0s;
+    z-index: 99;
+  }
+  .span {
+    width: 100%;
+    border: 2px solid nav.$color-light-1 !important;
+    transform: scale(1);
+    position: absolute;
+    margin-top: 12px;
+  }
+}
+}
+
+
 .container__items {
   margin-top: 40px;
   display: grid;
