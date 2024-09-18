@@ -4,7 +4,13 @@ import deleteBtn from "@/assets/image/delete.svg";
 import "./CartPage.scss";
 import CheckoutForm from "@/UI/CheckoutForm.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementProduct, getCartFromLocalStorage, incrementProduct, removeProduct, sendProducts } from "@/store/futures/productSlice.js";
+import {
+  decrementProduct,
+  getCartFromLocalStorage,
+  incrementProduct,
+  removeProduct,
+  sendProducts,
+} from "@/store/futures/productSlice.js";
 import { Link } from "react-router-dom";
 import OrderModal from "@/components/OrderModal/OrderModal.jsx";
 import CartPageEmpty from "./CartPageEmpty.jsx";
@@ -38,7 +44,7 @@ const CartPage = () => {
   }, []);
 
   const totalPrice = allPrice.reduce((acc, el) => acc + el, 0).toFixed(2);
-  
+
   return (
     <div className="first__container">
       <div className="blok__title_btn">
@@ -59,7 +65,12 @@ const CartPage = () => {
           <div className="products__container">
             {cart &&
               cart.map((item) => (
-                <div key={item.id} className={`cart_product__container ${theme === "dark" ? "bg-dark_darker" : "bg-light"}`}>
+                <div
+                  key={item.id}
+                  className={`cart_product__container ${
+                    theme === "dark" ? "bg-dark_darker" : "bg-light"
+                  }`}
+                >
                   <Link to={`/productPage/${item.id}`}>
                     <img
                       src={`https://exam-server-5c4e.onrender.com/${item.image}`}
@@ -69,8 +80,13 @@ const CartPage = () => {
                   </Link>
                   <div className="info__container">
                     <div className="title__box">
-                      <p className="title">
-                        <Link to={`/productPage/${item.id}`} className={`${theme === "dark" ? "dark-text" : ""}`}>{item.title}</Link>
+                      <p className="title__product">
+                        <Link
+                          to={`/productPage/${item.id}`}
+                          className={`${theme === "dark" ? "dark-text" : ""}`}
+                        >
+                          {item.title}
+                        </Link>
                       </p>
                       <img
                         onClick={() => remove(item)}
@@ -97,13 +113,13 @@ const CartPage = () => {
                       </div>
                       <div className="price__box">
                         {item.discont_price &&
-                          item.discont_price < item.price ? (
+                        item.discont_price < item.price ? (
                           <>
                             <span className="price">
                               $
                               {item
                                 ? Math.floor(item.discount_total_price * 100) /
-                                100
+                                  100
                                 : Math.floor(item.discont_price * 100) / 100}
                             </span>
 
@@ -128,7 +144,11 @@ const CartPage = () => {
                 </div>
               ))}
           </div>
-          <div className={`order__container ${theme === "dark" ? "bg-dark_darker" : "bg-light"}`}>
+          <div
+            className={`order__container ${
+              theme === "dark" ? "bg-dark_darker" : "bg-light"
+            }`}
+          >
             <h3>Order details</h3>
             <p className="items">{cart.length} items</p>
             <div className="total__items">
